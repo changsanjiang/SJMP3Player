@@ -293,8 +293,11 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
  *  播放
  */
 - (void)playAudioWithPlayURL:(NSString *)playURL {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        if ( nil == playURL || 0 == playURL.length ) return;
+    if ( nil == playURL || 0 == playURL.length ) return;
+    __weak typeof(self) _self = self;
+    [self.oprationQueue addOperationWithBlock:^{
+        __strong typeof(_self) self = _self;
+        if ( !self ) return;
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) [self.delegate audioPlayer:self currentTime:0 reachableTime:0 totalTime:0];
         });
@@ -321,7 +324,7 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
                 [self.delegate audioPlayer:self audioDownloadProgress:0];
             });
         }
-    });
+    }];
 }
 
 /**
@@ -476,10 +479,9 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
 // MARK: 因为网络环境差 而导致的暂停播放 处理
 static BOOL delay;
 - (void)_SJCheckAudioIsPlayingTimer {
-    if ( nil == self.audioPlayer ) return;
     if ( self.userClickedPause ) return;
     if ( self.audioPlayer.isPlaying ) return;
-    if ( !delay ) return;
+    if ( delay ) return;
     delay = YES;
     // 如果暂停,  ? 秒后 再次初始化
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(SJAudioDelayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -499,16 +501,11 @@ static BOOL delay;
 
 - (void)_SJPlayLocalCacheWithURLStr:(NSString *)URLStr {
     self.isDownloaded = YES;
-    __weak typeof(self) _self = self;
-    [self.oprationQueue addOperationWithBlock:^{
-        __strong typeof(_self) self = _self;
-        if ( !self ) return;
-        NSURL *contentsURL = nil;
-        if ( [URLStr hasPrefix:@"file"] )
-            contentsURL = [NSURL URLWithString:URLStr];
-        else contentsURL = [NSURL fileURLWithPath:_SJAudioCachePathWithURLStr(URLStr)];
-        [self _SJPlayWithFileURL:contentsURL];
-    }];
+    NSURL *contentsURL = nil;
+    if ( [URLStr hasPrefix:@"file"] )
+        contentsURL = [NSURL URLWithString:URLStr];
+    else contentsURL = [NSURL fileURLWithPath:_SJAudioCachePathWithURLStr(URLStr)];
+    [self _SJPlayWithFileURL:contentsURL];
 }
 
 // MARK:  播放缓存音乐
@@ -548,28 +545,27 @@ static BOOL delay;
         
         audioPlayer.delegate = self;
         
-        if ( 5 < audioPlayer.duration ) {
-            [audioPlayer play];
-            if ( 0 != currentTime ) audioPlayer.currentTime = currentTime;
-            audioPlayer.rate = self.rate;
-            self.audioPlayer = audioPlayer;
-            self.isStartPlaying = YES;
-            
-            if ( self.enableDBUG ) {
-                NSLog(@"\n-开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ",
-                      audioPlayer.duration,
-                      fileURL);
-                NSLog(@"\n-线程: %@", [NSThread currentThread]);
-                if ( [[UIDevice currentDevice].systemVersion integerValue] >= 10 ) {
-                    NSLog(@"\n-格式%@", audioPlayer.format);
-                }
-            }
-        }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self _SJEnableTimer];
         });
         
+        if ( !self.isDownloaded && audioPlayer.duration < 5 ) return;
+        
+        [audioPlayer play];
+        if ( 0 != currentTime ) audioPlayer.currentTime = currentTime;
+        audioPlayer.rate = self.rate;
+        self.audioPlayer = audioPlayer;
+        self.isStartPlaying = YES;
+        
+        if ( self.enableDBUG ) {
+            NSLog(@"\n-开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ",
+                  audioPlayer.duration,
+                  fileURL);
+            NSLog(@"\n-线程: %@", [NSThread currentThread]);
+            if ( [[UIDevice currentDevice].systemVersion integerValue] >= 10 ) {
+                NSLog(@"\n-格式%@", audioPlayer.format);
+            }
+        }
     }
 }
 
@@ -828,6 +824,4 @@ static BOOL delay;
 }
 
 @end
-
-
 
