@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'SJMP3Player_Example' do
+  
+  pod 'SJSlider'
+  pod 'SJMP3Player', :path => '../'
+
+  target 'SJMP3Player_Tests' do
+    inherit! :search_paths
+    pod 'FBSnapshotTestCase'
+  end
+end

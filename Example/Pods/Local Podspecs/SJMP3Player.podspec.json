@@ -1,0 +1,22 @@
+{
+  "name": "SJMP3Player",
+  "version": "0.1.0",
+  "summary": "A short description of SJMP3Player.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/changsanjiang/SJMP3Player",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "changsanjiang": "changsanjiang@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/changsanjiang/SJMP3Player.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SJMP3Player/Classes/**/*"
+}

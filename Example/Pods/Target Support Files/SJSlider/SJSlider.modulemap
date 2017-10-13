@@ -1,0 +1,6 @@
+framework module SJSlider {
+  umbrella header "SJSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}
