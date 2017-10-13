@@ -96,7 +96,7 @@
 #pragma mark -
 
 - (void)clickedBtn:(UIButton *)btn {
-    [self.player playAudioWithPlayURL:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"];
+    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
 }
 
 

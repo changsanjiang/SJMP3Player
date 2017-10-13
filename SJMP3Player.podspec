@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SJMP3Player'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'mp3 player.'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/changsanjiang/SJMP3Player'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'changsanjiang' => 'changsanjiang@gmail.com' }
+  s.author             = { "SanJiang" => "changsanjiang@gmail.com" }
   s.source           = { :git => 'https://github.com/changsanjiang/SJMP3Player.git', :tag => "v#{s.version}" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

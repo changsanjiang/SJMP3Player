@@ -35,8 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)player;
 
 /*!
- *  播放 */
-- (void)playAudioWithPlayURL:(NSString *)playURL;
+ *  播放
+ *  If you do not know, please set 5. */
+- (void)playeAudioWithPlayURLStr:(NSString *)playURLStr minDuration:(double)minDuration;
 
 /*!
  *  从指定的进度播放 */

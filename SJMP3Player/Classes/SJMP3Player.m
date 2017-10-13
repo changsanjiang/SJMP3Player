@@ -244,6 +244,8 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
 
 @property (nonatomic, strong, readwrite) NSURLSessionDataTask *currentTask;
 
+@property (nonatomic, assign, readwrite) double minDuration;
+
 @end
 
 
@@ -290,10 +292,10 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
 }
 
 /**
- *  播放
- */
-- (void)playAudioWithPlayURL:(NSString *)playURL {
-    if ( nil == playURL || 0 == playURL.length ) return;
+ *  播放 */
+- (void)playeAudioWithPlayURLStr:(NSString *)playURLStr minDuration:(double)minDuration {
+    if ( nil == playURLStr || 0 == playURLStr.length ) return;
+    self.minDuration = minDuration;
     __weak typeof(self) _self = self;
     [self.oprationQueue addOperationWithBlock:^{
         __strong typeof(_self) self = _self;
@@ -306,19 +308,19 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
         
         self.userClickedPause = NO;
         
-        self.currentPlayingURLStr = playURL;
+        self.currentPlayingURLStr = playURLStr;
         
         self.isStartPlaying = NO;
         
-        if ( _SJAudioCacheExistsWithURLStr(playURL) || [[NSURL URLWithString:playURL] isFileURL] ) {
-            [self _SJPlayLocalCacheWithURLStr:playURL];
+        if ( _SJAudioCacheExistsWithURLStr(playURLStr) || [[NSURL URLWithString:playURLStr] isFileURL] ) {
+            [self _SJPlayLocalCacheWithURLStr:playURLStr];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ( ![self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] ) return;
                 [self.delegate audioPlayer:self audioDownloadProgress:1];
             });
         }
         else {
-            [self _SJStartDownloadWithURLStr:playURL];
+            [self _SJStartDownloadWithURLStr:playURLStr];
             dispatch_async(dispatch_get_main_queue(), ^{
                 if ( ![self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] ) return;
                 [self.delegate audioPlayer:self audioDownloadProgress:0];
@@ -364,7 +366,7 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     if ( self.audioPlayer.isPlaying ) return;
     
     if ( nil == self.audioPlayer ) {
-        [self playAudioWithPlayURL:self.currentPlayingURLStr];
+        [self playeAudioWithPlayURLStr:self.currentPlayingURLStr minDuration:_minDuration];
     }
     else {
         if ( ![self.audioPlayer prepareToPlay] ) return;
@@ -470,10 +472,14 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     NSTimeInterval currentTime = _audioPlayer.currentTime;
     NSTimeInterval totalTime = _audioPlayer.duration;
     NSTimeInterval reachableTime = _audioPlayer.duration * self.currentTask.downloadProgress;
+    //  如果播放的进度 大于 下载的进度, 则说明进度有问题, 此时暂停回调代理
+    if ( 0 == totalTime ) return;
+    if ( _currentTask && (self.currentTask.downloadProgress < currentTime / totalTime) ) return;
     if ( ![_delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate audioPlayer:self currentTime:currentTime reachableTime:reachableTime totalTime:totalTime];
     });
+    
 }
 
 // MARK: 因为网络环境差 而导致的暂停播放 处理
@@ -549,7 +555,7 @@ static BOOL delay;
             [self _SJEnableTimer];
         });
         
-        if ( !self.isDownloaded && audioPlayer.duration < 5 ) return;
+        if ( audioPlayer.duration < self.minDuration ) return;
         
         [audioPlayer play];
         if ( 0 != currentTime ) audioPlayer.currentTime = currentTime;
@@ -659,6 +665,10 @@ static BOOL delay;
     return _checkAudioIsPlayingTimer;
 }
 
+- (double)minDuration {
+    if ( 0 != _minDuration ) return _minDuration;
+    return _audioPlayer.duration;
+}
 @end
 
 
@@ -702,23 +712,20 @@ static BOOL delay;
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionDataTask *)dataTask didCompleteWithError:(NSError *)error {
     
-    if ( self.enableDBUG ) {
+    if ( error ) {
+        self.isDownloaded = NO;
         if ( error.code == NSURLErrorCancelled ) {
-            NSLog(@"下载被取消");
+            if ( self.enableDBUG ) NSLog(@"下载被取消");
             return;
         }
-        
-        if ( error ) {
-            NSLog(@"\n-下载报错: %@", error);
-            return;
-        }
+        if ( self.enableDBUG ) NSLog(@"\n-下载报错: %@", error);
+        self.isDownloaded = NO;
+        return;
     }
     
     NSString *URLStr = dataTask.currentRequest.URL.absoluteString;
     
-    if ( self.enableDBUG ) {
-        NSLog(@"\n-下载完成: %@", URLStr);
-    }
+    if ( self.enableDBUG ) NSLog(@"\n-下载完成: %@", URLStr);
     
     self.isDownloaded = YES;
     
