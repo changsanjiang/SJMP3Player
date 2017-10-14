@@ -666,7 +666,7 @@ static BOOL delay;
 }
 
 - (double)minDuration {
-    if ( 0 != _minDuration ) return _minDuration;
+    if ( _minDuration > 0 ) return _minDuration;
     return _audioPlayer.duration;
 }
 @end
