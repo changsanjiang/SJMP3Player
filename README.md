@@ -11,6 +11,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+You should set Targets -> Capabilities -> Background Mode Modes    
+Mode Select : Audio, AirPlay, and Picture in Picture
+
 ## Installation
 
 SJMP3Player is available through [CocoaPods](http://cocoapods.org). To install
