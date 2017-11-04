@@ -69,7 +69,21 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@class SJMP3Info;
+
+
+#pragma mark -
+
+
+@interface SJMP3Info : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *artist;
+@property (nonatomic, strong) UIImage *cover;
+
+- (instancetype)initWithTitle:(NSString *)title artist:(NSString *)artist cover:(UIImage *)cover;
+
+@end
+
 
 @protocol SJMP3PlayerDelegate <NSObject>
 

@@ -10,7 +10,6 @@
 #import <SJMP3Player/SJMP3Player.h>
 #import <SJSlider/SJSlider.h>
 #import <Masonry/Masonry.h>
-#import <SJMP3Player/SJMP3Info.h>
 
 @interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate>
 

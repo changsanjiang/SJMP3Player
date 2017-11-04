@@ -10,7 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <objc/message.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "SJMP3Info.h"
 
 NSString *const SJMP3PlayerDownloadAudioIdentifier = @"com.dancebaby.lanwuzhe.audioCacheSession";
 
@@ -917,3 +916,20 @@ static BOOL delay;
 
 @end
 
+
+
+
+#pragma mark -
+
+@implementation SJMP3Info
+
+- (instancetype)initWithTitle:(NSString *)title artist:(NSString *)artist cover:(UIImage *)cover {
+    self = [super init];
+    if ( !self ) return nil;
+    _title = title;
+    _artist = artist;
+    _cover = cover;
+    return self;
+}
+
+@end
