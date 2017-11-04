@@ -10,6 +10,7 @@
 #import <SJMP3Player/SJMP3Player.h>
 #import <SJSlider/SJSlider.h>
 #import <Masonry/Masonry.h>
+#import <SJMP3Player/SJMP3Info.h>
 
 @interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate>
 
@@ -62,6 +63,19 @@
 
 
 #pragma mark -
+
+- (SJMP3Info *)playInfo {
+    return [[SJMP3Info alloc] initWithTitle:@"Title" artist:@"artist" cover:[UIImage imageNamed:@"image"]];
+}
+
+- (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player {
+    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+
+}
+
+- (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player {
+    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+}
 
 - (void)audioPlayer:(SJMP3Player *)player audioDownloadProgress:(CGFloat)progress {
     _slider.bufferProgress = progress;

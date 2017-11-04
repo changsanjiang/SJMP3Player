@@ -12,7 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol SJMP3PlayerPlayProtocol;
 
 @protocol SJMP3PlayerDelegate;
 
@@ -70,16 +69,17 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@protocol SJMP3PlayerPlayProtocol <NSObject>
+@class SJMP3Info;
+
+@protocol SJMP3PlayerDelegate <NSObject>
 
 @required
 
-@property (nonatomic, strong) NSString *playUrl;
+- (SJMP3Info *)playInfo;
 
-@end
+- (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player;
 
-
-@protocol SJMP3PlayerDelegate <NSObject>
+- (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player;
 
 @optional
 

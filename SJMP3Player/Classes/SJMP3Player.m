@@ -9,6 +9,8 @@
 #import "SJMP3Player.h"
 #import <AVFoundation/AVFoundation.h>
 #import <objc/message.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import "SJMP3Info.h"
 
 NSString *const SJMP3PlayerDownloadAudioIdentifier = @"com.dancebaby.lanwuzhe.audioCacheSession";
 
@@ -266,10 +268,12 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     if ( !self ) return nil;
     [self _SJMP3PlayerInitialize];
     [self _SJMP3PlayerAddObservers];
+    [self _SJMP3PlayerInstallNotifications];
     return self;
 }
 
 - (void)dealloc {
+    [self _SJMP3PlayerRemoveNotifications];
     [self _SJRemoveObservers];
     [self _SJClearTimer];
 }
@@ -421,6 +425,44 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     return _SJAudioCacheExistsWithURLStr(playURL);
 }
 
+// MARK: Notification
+
+- (void)_SJMP3PlayerInstallNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminateNotification) name:UIApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification) name:UIApplicationWillResignActiveNotification object:nil];
+}
+
+- (void)_SJMP3PlayerRemoveNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)applicationWillTerminateNotification {
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+}
+
+- (void)applicationWillResignActiveNotification {
+    [[UIApplication sharedApplication] becomeFirstResponder];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self _sjSetNowPlayingInfo];
+}
+
+- (void)_sjSetNowPlayingInfo {
+    SJMP3Info *info = [self.delegate playInfo];
+    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:info.cover];
+    NSDictionary *mediaDict =
+    @{
+      MPMediaItemPropertyTitle:info.title,
+      MPMediaItemPropertyMediaType:@(MPMediaTypeAnyAudio),
+      MPMediaItemPropertyPlaybackDuration:@(self.audioPlayer.duration),
+      MPNowPlayingInfoPropertyPlaybackRate:@(self.audioPlayer.rate),
+      MPNowPlayingInfoPropertyElapsedPlaybackTime:@(self.audioPlayer.currentTime),
+      MPMediaItemPropertyArtist:info.artist,
+      MPMediaItemPropertyAlbumArtist:info.artist,
+      MPMediaItemPropertyArtwork:artwork
+      };
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:mediaDict];
+}
+
 // MARK: Observers
 
 - (void)_SJMP3PlayerAddObservers {
@@ -457,11 +499,54 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     _SJCreateFolder();
     
     self.rate = 1;
+    NSError *error = NULL;
+    if ( ![[AVAudioSession sharedInstance] setActive: YES error:&error] ) {
+        NSLog(@"Failed to set active audio session! error: %@", error);
+    }
+    // 默认情况下为 AVAudioSessionCategorySoloAmbient,
+    // 这种类型可以确保当应用开始时关闭其他的音频, 并且当屏幕锁定或者设备切换为静音模式时应用能够自动保持静音,
+    // 当屏幕锁定或其他应用置于前台时, 音频将会停止, AVAudioSession会停止工作.
     
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [[AVAudioSession sharedInstance] setActive: YES error: nil];
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    // 设置为AVAudioSessionCategoryPlayback, 可以实现当应用置于后台或用户切换设备为静音模式还可以继续播放音频.
+    if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error] ) {
+        NSLog(@"Failed to set audio category! error: %@", error);
+    }
     
+    Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], @selector(remoteControlReceivedWithEvent:));
+    
+    class_replaceMethod([[UIApplication sharedApplication].delegate class], @selector(remoteControlReceivedWithEvent:), (IMP)sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
+    
+    objc_setAssociatedObject([UIApplication sharedApplication].delegate, _cmd, self, OBJC_ASSOCIATION_ASSIGN);
+}
+
+void sjRemoteControlReceivedWithEvent(id self, SEL cmd, UIEvent *event) {
+    SJMP3Player *player = objc_getAssociatedObject(self, @selector(_SJMP3PlayerInitialize));
+    if ( UIEventTypeRemoteControl != event.type ) return;
+    switch ( event.subtype ) {
+        case UIEventSubtypeRemoteControlPlay: {
+            [player resume];
+            [player _sjSetNowPlayingInfo];
+        }
+            break;
+        case UIEventSubtypeRemoteControlPause: {
+            [player pause];
+        }
+            break;
+            
+        case UIEventSubtypeRemoteControlNextTrack: {
+            if ( ![player.delegate respondsToSelector:@selector(remoteEvent_NextWithAudioPlayer:)] ) return;
+            [player.delegate remoteEvent_NextWithAudioPlayer:player];
+        }
+            break;
+            
+        case UIEventSubtypeRemoteControlPreviousTrack: {
+            if ( ![player.delegate respondsToSelector:@selector(remoteEvent_PreWithAudioPlayer:)] ) return;
+            [player.delegate remoteEvent_PreWithAudioPlayer:player];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 /**
@@ -562,6 +647,7 @@ static BOOL delay;
         audioPlayer.rate = self.rate;
         self.audioPlayer = audioPlayer;
         self.isStartPlaying = YES;
+        [self _sjSetNowPlayingInfo];
         
         if ( self.enableDBUG ) {
             NSLog(@"\n-开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ",
