@@ -510,15 +510,16 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
         NSLog(@"Failed to set audio category! error: %@", error);
     }
     
-    Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], @selector(remoteControlReceivedWithEvent:));
+    SEL sel = @selector(remoteControlReceivedWithEvent:);
+    Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], sel);
     
-    class_replaceMethod([[UIApplication sharedApplication].delegate class], @selector(remoteControlReceivedWithEvent:), (IMP)sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
+    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
     
-    objc_setAssociatedObject([UIApplication sharedApplication].delegate, _cmd, self, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject([UIApplication sharedApplication].delegate, sel, self, OBJC_ASSOCIATION_ASSIGN);
 }
 
-void sjRemoteControlReceivedWithEvent(id self, SEL cmd, UIEvent *event) {
-    SJMP3Player *player = objc_getAssociatedObject(self, @selector(_SJMP3PlayerInitialize));
+void sjRemoteControlReceivedWithEvent(id self, SEL _cmd, UIEvent *event) {
+    SJMP3Player *player = objc_getAssociatedObject(self, _cmd);
     if ( UIEventTypeRemoteControl != event.type ) return;
     switch ( event.subtype ) {
         case UIEventSubtypeRemoteControlPlay: {
@@ -550,6 +551,7 @@ void sjRemoteControlReceivedWithEvent(id self, SEL cmd, UIEvent *event) {
 /**
  *  定时器事件
  */
+static NSTimeInterval _beforeDuration = 0;
 - (void)_SJCheckAudioTime {
     if ( !_audioPlayer.isPlaying ) return;
     NSTimeInterval currentTime = _audioPlayer.currentTime;
@@ -561,8 +563,10 @@ void sjRemoteControlReceivedWithEvent(id self, SEL cmd, UIEvent *event) {
     if ( ![_delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate audioPlayer:self currentTime:currentTime reachableTime:reachableTime totalTime:totalTime];
+        if ( _beforeDuration == self.audioPlayer.duration ) return;
+        _beforeDuration = self.audioPlayer.duration;
+        [self _sjSetNowPlayingInfo];
     });
-    
 }
 
 // MARK: 因为网络环境差 而导致的暂停播放 处理
