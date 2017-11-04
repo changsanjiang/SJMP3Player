@@ -513,12 +513,12 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     SEL sel = @selector(remoteControlReceivedWithEvent:);
     Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], sel);
     
-    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
+    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)_sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
     
     objc_setAssociatedObject([UIApplication sharedApplication].delegate, sel, self, OBJC_ASSOCIATION_ASSIGN);
 }
 
-void sjRemoteControlReceivedWithEvent(id self, SEL _cmd, UIEvent *event) {
+static void _sjRemoteControlReceivedWithEvent(id self, SEL _cmd, UIEvent *event) {
     SJMP3Player *player = objc_getAssociatedObject(self, _cmd);
     if ( UIEventTypeRemoteControl != event.type ) return;
     switch ( event.subtype ) {
@@ -563,8 +563,8 @@ static NSTimeInterval _beforeDuration = 0;
     if ( ![_delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_delegate audioPlayer:self currentTime:currentTime reachableTime:reachableTime totalTime:totalTime];
-        if ( _beforeDuration == self.audioPlayer.duration ) return;
-        _beforeDuration = self.audioPlayer.duration;
+        if ( _beforeDuration == _audioPlayer.duration ) return;
+        _beforeDuration = _audioPlayer.duration;
         [self _sjSetNowPlayingInfo];
     });
 }
@@ -911,7 +911,7 @@ static BOOL delay;
     if ( self.audioPlayer.isPlaying ) [self pause];
 }
 
--(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
     
     if ( ![self.audioPlayer prepareToPlay] ) return;
     
@@ -937,3 +937,5 @@ static BOOL delay;
 }
 
 @end
+
+

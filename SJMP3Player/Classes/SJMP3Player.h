@@ -89,10 +89,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
+/// 用于显示在锁屏界面 Control Center 的信息
 - (SJMP3Info *)playInfo;
-
+/// 点击了锁屏界面 Control Center 下一首按钮
 - (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player;
-
+/// 点击了锁屏界面 Control Center 上一首按钮
 - (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player;
 
 @optional
