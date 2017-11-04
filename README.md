@@ -13,7 +13,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 You should set Targets -> Capabilities -> Background Mode Modes    
 Mode Select : Audio, AirPlay, and Picture in Picture    
-<img src='https://github.com/changsanjiang/SJMP3Player/blob/master/Example/SJMP3Player/Mode%20Select.png' />    
+<img src='https://github.com/changsanjiang/SJMP3Player/blob/master/Example/SJMP3Player/Mode%20Select.png' />     
+
 And Imp Delegate Methods
 ```objective-c
 @required
