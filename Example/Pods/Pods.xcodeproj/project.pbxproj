@@ -40,8 +40,8 @@
 		73BBDACC22CCA36A6DAAA167AD780BAF /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8412813E6BE39A755D91FDE86762C /* MASConstraintMaker.m */; };
 		756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B41F64778C4A4799F26BD917C7FCEE /* UIImage+Snapshot.m */; };
 		756DF24546C7D91459DCADC8F1C98660 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A5D0B78AB7E01048D5C753108D79D /* MASViewConstraint.m */; };
-		7759C3161FAD716800E651A3 /* SJMP3Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B45F91FAD69FC003B3667 /* SJMP3Info.m */; };
-		7759C3171FAD717300E651A3 /* SJMP3Info.h in Headers */ = {isa = PBXBuildFile; fileRef = 779B45F81FAD69FC003B3667 /* SJMP3Info.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7759C31B1FAD86CA00E651A3 /* SJMP3Info.h in Headers */ = {isa = PBXBuildFile; fileRef = 7759C3191FAD86C900E651A3 /* SJMP3Info.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7759C31C1FAD86CA00E651A3 /* SJMP3Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 7759C31A1FAD86CA00E651A3 /* SJMP3Info.m */; };
 		7BCBDC0324F3A3C1E260119E41FF9BDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */; };
 		7C17BEA6034027310D1D205DB2008CA5 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E26CF586994EF475C9959E5FEEE43B /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E9B14D5F8842A86CA86F2AF45230725 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53984FCA56388FF024D31FAE71DD30AE /* XCTest.framework */; };
@@ -169,8 +169,8 @@
 		70BEAEF007C84123D724B5C59E208FDD /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		70F50F6A28A8DC23FDB73DFA14EA38B6 /* SJMP3Player.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJMP3Player.m; path = SJMP3Player/Classes/SJMP3Player.m; sourceTree = "<group>"; };
 		7759C3181FAD847100E651A3 /* SJMP3Player.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = SJMP3Player.podspec; path = ../../SJMP3Player.podspec; sourceTree = "<group>"; };
-		779B45F81FAD69FC003B3667 /* SJMP3Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJMP3Info.h; sourceTree = "<group>"; };
-		779B45F91FAD69FC003B3667 /* SJMP3Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJMP3Info.m; sourceTree = "<group>"; };
+		7759C3191FAD86C900E651A3 /* SJMP3Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SJMP3Info.h; path = SJMP3Player/Classes/SJMP3Info.h; sourceTree = "<group>"; };
+		7759C31A1FAD86CA00E651A3 /* SJMP3Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SJMP3Info.m; path = SJMP3Player/Classes/SJMP3Info.m; sourceTree = "<group>"; };
 		7FD57E52F64248B79052DC9B61EFBC98 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		850A5D0B78AB7E01048D5C753108D79D /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
 		87F550A202EB6789053976C42C8AFC68 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
@@ -463,8 +463,8 @@
 			children = (
 				0520F76BC9D8FDA375C79D55533A7B09 /* SJMP3Player.h */,
 				70F50F6A28A8DC23FDB73DFA14EA38B6 /* SJMP3Player.m */,
-				779B45F81FAD69FC003B3667 /* SJMP3Info.h */,
-				779B45F91FAD69FC003B3667 /* SJMP3Info.m */,
+				7759C3191FAD86C900E651A3 /* SJMP3Info.h */,
+				7759C31A1FAD86CA00E651A3 /* SJMP3Info.m */,
 				EBDCEB1E10A34A6BEDB8FCF4A28EB1F3 /* Support Files */,
 			);
 			name = SJMP3Player;
@@ -558,7 +558,7 @@
 			files = (
 				A0B0DE5897EB8FCA5D3EBE4DB1F9A170 /* SJMP3Player-umbrella.h in Headers */,
 				731970094F8C23D2CA1CB8C5B6E06DB8 /* SJMP3Player.h in Headers */,
-				7759C3171FAD717300E651A3 /* SJMP3Info.h in Headers */,
+				7759C31B1FAD86CA00E651A3 /* SJMP3Info.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,7 +788,7 @@
 			files = (
 				CD38E8074200324FC6C24DC4F61211A8 /* SJMP3Player-dummy.m in Sources */,
 				50053DD5E4D8590F84453AC4156516C4 /* SJMP3Player.m in Sources */,
-				7759C3161FAD716800E651A3 /* SJMP3Info.m in Sources */,
+				7759C31C1FAD86CA00E651A3 /* SJMP3Info.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

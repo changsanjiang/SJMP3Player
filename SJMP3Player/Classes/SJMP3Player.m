@@ -14,7 +14,6 @@
 
 NSString *const SJMP3PlayerDownloadAudioIdentifier = @"com.dancebaby.lanwuzhe.audioCacheSession";
 
-
 /**
  *  0.00 - 1.00
  *  If it's 1.00, play after download. */
