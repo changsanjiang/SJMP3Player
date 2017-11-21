@@ -11,8 +11,6 @@
 #import <objc/message.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-NSString *const SJMP3PlayerDownloadAudioIdentifier = @"com.dancebaby.lanwuzhe.audioCacheSession";
-
 /**
  *  0.00 - 1.00
  *  If it's 1.00, play after download. */
@@ -713,7 +711,7 @@ static BOOL delay;
 
 - (NSURLSession *)audioCacheSession {
     if ( nil == _audioCacheSession ) {
-        NSURLSessionConfiguration *cofig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:SJMP3PlayerDownloadAudioIdentifier];
+        NSURLSessionConfiguration *cofig = [NSURLSessionConfiguration defaultSessionConfiguration];
         _audioCacheSession = [NSURLSession sessionWithConfiguration:cofig delegate:self delegateQueue:self.oprationQueue];
     }
     return _audioCacheSession;
@@ -836,7 +834,15 @@ static BOOL delay;
     [self _SJPlayWithFileURL:fileURL];
 }
 
-
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    if ( appDelegate.backgroundSessionCompletionHandler ) {
+//        void (^completionHandler)() = appDelegate.backgroundSessionCompletionHandler;
+//        appDelegate.backgroundSessionCompletionHandler = nil;
+//        completionHandler();
+//    }
+    NSLog(@"All tasks are finished");
+}
 
 
 #pragma mark -
