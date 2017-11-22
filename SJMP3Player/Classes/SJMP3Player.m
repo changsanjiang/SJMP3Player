@@ -433,11 +433,12 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
 }
 
 - (void)applicationWillTerminateNotification {
+    [(UIResponder *)[UIApplication sharedApplication].delegate resignFirstResponder];
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 }
 
 - (void)applicationWillResignActiveNotification {
-    [[UIApplication sharedApplication] becomeFirstResponder];
+    [(UIResponder *)[UIApplication sharedApplication].delegate becomeFirstResponder];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self _sjSetNowPlayingInfo];
 }
@@ -833,17 +834,6 @@ static BOOL delay;
     
     [self _SJPlayWithFileURL:fileURL];
 }
-
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
-//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    if ( appDelegate.backgroundSessionCompletionHandler ) {
-//        void (^completionHandler)() = appDelegate.backgroundSessionCompletionHandler;
-//        appDelegate.backgroundSessionCompletionHandler = nil;
-//        completionHandler();
-//    }
-    NSLog(@"All tasks are finished");
-}
-
 
 #pragma mark -
 

@@ -109,8 +109,9 @@
 #pragma mark -
 
 - (void)clickedBtn:(UIButton *)btn {
+//    http://audio.cdn.lanwuzhe.com/1492776280608c177
 //    http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3
-    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+    [self.player playeAudioWithPlayURLStr:@"http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3" minDuration:5];
 }
 
 
