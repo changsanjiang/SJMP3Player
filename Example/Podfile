@@ -4,6 +4,7 @@ target 'SJMP3Player_Example' do
   
   pod 'SJSlider'
   pod 'SJMP3Player', :path => '../'
+  pod 'SJDownloadDataTask'
 
   target 'SJMP3Player_Tests' do
     inherit! :search_paths

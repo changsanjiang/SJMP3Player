@@ -1,75 +1,81 @@
 //
 //  SJSlider.h
-//  dancebaby
+//  Pods-SJSlider_Example
 //
-//  Created by BlueDancer on 2017/6/12.
-//  Copyright © 2017年 SanJing. All rights reserved.
+//  Created by BlueDancer on 2018/5/9.
 //
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol SJSliderDelegate;
 
 @interface SJSlider : UIView
 
-/*!
- *  default is YES.
- */
-@property (nonatomic, assign, readwrite) BOOL isRound;
+@property (nonatomic, weak) id <SJSliderDelegate>delegate;
+
+/// Defualt is YES. 是否切园角. 默认YES
+@property (nonatomic, getter=isRound) BOOL round;
+
+/// Track height. default is 8.0. 轨道高度
+@property (nonatomic) CGFloat trackHeight;
 
 /*!
- *  轨道
  *  this is view, If you don't want to set up photos, You can set the background color.
+ *
+ *  轨道, 你可以设置图片或者将他当做`view`, 设置背景颜色来使用. 以下`trace` & `thumb` 相同.
  */
 @property (nonatomic, strong, readonly) UIImageView *trackImageView;
 
 /*!
- *  走过的痕迹
  *  this is view, If you don't want to set up photos, You can set the background color.
+ *
+ *  走过的痕迹.
  */
 @property (nonatomic, strong, readonly) UIImageView *traceImageView;
 
 /*!
- *  拇指
  *  If you do not set the image, it will not display.
+ *
+ *  拇指, 不设置它, 将不会创建.
  */
 @property (nonatomic, strong, readonly) UIImageView *thumbImageView;
 
+
+- (void)setThumbCornerRadius:(CGFloat)thumbCornerRadius
+                        size:(CGSize)size;
+
+- (void)setThumbCornerRadius:(CGFloat)thumbCornerRadius
+                        size:(CGSize)size
+        thumbBackgroundColor:(UIColor *)thumbBackgroundColor;
+
 /*!
- *  当前进度值
  *  current Value
  */
-@property (nonatomic, assign, readwrite) CGFloat value;
+@property (nonatomic) CGFloat value;
+- (void)setValue:(CGFloat)value animated:(BOOL)animated;
+@property (nonatomic) CGFloat animaMaxDuration; // default is 0.5.
 
 /*!
- *  设置轨道高度. 
- *  default is 8.0;
- */
-@property (nonatomic, assign, readwrite) CGFloat trackHeight;
-
-/*!
- *  最小值. 
  *  default is 0.0;
  */
-@property (nonatomic, assign, readwrite) CGFloat minValue;
+@property (nonatomic) CGFloat minValue;
 
 /*!
- *  最大值. 
  *  default is 1.0;
  */
-@property (nonatomic, assign, readwrite) CGFloat maxValue;
-
-@property (nonatomic, weak) id <SJSliderDelegate>delegate;
+@property (nonatomic) CGFloat maxValue;
 
 /*!
- *  触动手势
  *  If you don't want to use this gesture, you can disable it
  *  pan.enable = NO.
  */
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *pan;
 
 /*!
- *  slider是否被拖拽
+ *  The state of dragging.
+ *
+ *  是否在拖拽.
  */
 @property (nonatomic, assign, readonly) BOOL isDragging;
 
@@ -77,41 +83,38 @@
 
 
 
-
-
+#pragma mark - Border
 @interface SJSlider (BorderLine)
 
 /*!
  *  visual border line.
  *  default is NO.
  */
-@property (nonatomic, assign, readwrite) BOOL visualBorder;
+@property (nonatomic) BOOL visualBorder;
 
 /*!
  *  borderColor
  *  default is lightGrayColor.
  */
-@property (nonatomic, strong, readwrite) UIColor *borderColor;
+@property (null_resettable, nonatomic, strong) UIColor *borderColor;
 
 /*!
  *  borderWidth
  *  default is 0.4.
  */
-@property (nonatomic, assign, readwrite) CGFloat borderWidth;
+@property (nonatomic) CGFloat borderWidth;
 
 @end
 
 
 
-// MARK: 缓冲
-
-
+#pragma mark - Buffer
 @interface SJSlider (SJBufferProgress)
 
 /*!
  *  开启缓冲进度. default is NO.
  */
-@property (nonatomic, assign, readwrite) BOOL enableBufferProgress;
+@property (nonatomic) BOOL enableBufferProgress;
 
 /*!
  *  缓冲进度颜色. default is grayColor
@@ -121,11 +124,13 @@
 /*!
  *  缓冲进度
  */
-@property (nonatomic, assign, readwrite) CGFloat bufferProgress;
+@property (nonatomic) CGFloat bufferProgress;
 
 @end
 
 
+
+#pragma mark - Delegate
 
 
 @protocol SJSliderDelegate <NSObject>
@@ -148,3 +153,4 @@
 - (void)sliderDidEndDragging:(SJSlider *)slider;
 
 @end
+NS_ASSUME_NONNULL_END

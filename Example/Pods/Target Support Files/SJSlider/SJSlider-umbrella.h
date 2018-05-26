@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "SJButtonSlider.h"
+#import "SJCommonSlider.h"
+#import "SJLabelSlider.h"
 #import "SJSlider.h"
 
 FOUNDATION_EXPORT double SJSliderVersionNumber;

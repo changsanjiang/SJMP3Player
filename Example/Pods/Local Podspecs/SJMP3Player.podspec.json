@@ -1,22 +1,31 @@
 {
   "name": "SJMP3Player",
-  "version": "0.1.0",
-  "summary": "A short description of SJMP3Player.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.7",
+  "summary": "mp3 player.",
+  "description": "mp3 player, play while downloading. support set rate, and local cache.",
   "homepage": "https://github.com/changsanjiang/SJMP3Player",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "changsanjiang": "changsanjiang@gmail.com"
+    "SanJiang": "changsanjiang@gmail.com"
   },
   "source": {
     "git": "https://github.com/changsanjiang/SJMP3Player.git",
-    "tag": "0.1.0"
+    "tag": "v1.0.7"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "SJMP3Player/Classes/**/*"
+  "source_files": "SJMP3Player/Classes/*.{h,m}",
+  "frameworks": [
+    "UIKit",
+    "MediaPlayer"
+  ],
+  "dependencies": {
+    "SJDownloadDataTask": [
+
+    ]
+  }
 }

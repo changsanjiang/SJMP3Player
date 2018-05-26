@@ -903,17 +903,6 @@ static BOOL delay;
     });
 }
 
-- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
-    if ( self.audioPlayer.isPlaying ) [self pause];
-}
-
-- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
-    
-    if ( ![self.audioPlayer prepareToPlay] ) return;
-    
-    [self.audioPlayer play];
-}
-
 @end
 
 

@@ -10,8 +10,9 @@
 #import <SJMP3Player/SJMP3Player.h>
 #import <SJSlider/SJSlider.h>
 #import <Masonry/Masonry.h>
+#import "SJMP3PlayerV2.h"
 
-@interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate>
+@interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate, SJMP3PlayerV2Delegate>
 
 @property (nonatomic, strong, readonly) SJSlider *slider;
 @property (nonatomic, strong, readonly) UIButton *downloadBtn;
@@ -21,6 +22,7 @@
 
 
 @property (nonatomic, strong, readonly) SJMP3Player *player;
+@property (nonatomic, strong) SJMP3PlayerV2 *playerv2;
 
 @end
 
@@ -57,6 +59,7 @@
         make.top.equalTo(_speedUp.mas_bottom).offset(20);
         make.centerX.equalTo(_speedUp);
     }];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -81,6 +84,7 @@
 }
 
 - (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime {
+    if ( _slider.isDragging ) return;
     if ( 0 == totalTime ) return;
     _slider.value = currentTime * 1.0 / totalTime;
 }
@@ -93,7 +97,7 @@
 #pragma mark -
 
 - (void)sliderWillBeginDragging:(SJSlider *)slider {
-    [_player pause];
+//    [_playerv2 pause];
 }
 
 - (void)sliderDidDrag:(SJSlider *)slider {
@@ -101,8 +105,9 @@
 }
 
 - (void)sliderDidEndDragging:(SJSlider *)slider {
-    [_player setPlayProgress:slider.value];
-    [_player resume];
+//    [_player setPlayProgress:slider.value];
+//    [_playerv2 resume];
+    [_playerv2 seekToTime:slider.value * _playerv2.duration];
 }
 
 
@@ -111,11 +116,25 @@
 - (void)clickedBtn:(UIButton *)btn {
 //    http://audio.cdn.lanwuzhe.com/1492776280608c177
 //    http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3
-    [self.player playeAudioWithPlayURLStr:@"http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3" minDuration:5];
+//    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+    [self.playerv2 playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"] minDuration:5];
 }
 
 
 #pragma mark -
+
+- (SJMP3PlayerV2 *)playerv2 {
+    if ( _playerv2 ) return _playerv2;
+    _playerv2 = [SJMP3PlayerV2 player];
+    _playerv2.enableDBUG = YES;
+    _playerv2.delegate = self;
+    
+    NSLog(@"%ldM", [_playerv2 diskAudioCacheSize]);
+    
+    [_playerv2 clearDiskAudioCache];
+    
+    return _playerv2;
+}
 
 - (SJMP3Player *)player {
     if ( _player ) return _player;
@@ -151,13 +170,13 @@
 @synthesize speedCut = _speedCut;
 
 - (void)clickedUpBtn:(UIButton *)btn {
-    _player.rate += 0.1;
-    NSLog(@"rate = %f", _player.rate);
+    _playerv2.rate += 0.1;
+    NSLog(@"rate = %f", _playerv2.rate);
 }
 
 - (void)clickedCutBtn:(UIButton *)btn {
-    _player.rate -= 0.1;
-    NSLog(@"rate = %f", _player.rate);
+    _playerv2.rate -= 0.1;
+    NSLog(@"rate = %f", _playerv2.rate);
 }
 
 - (UIButton *)speedUp {

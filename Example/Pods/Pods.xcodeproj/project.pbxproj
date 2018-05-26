@@ -7,234 +7,278 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04A7D6AADAB213CE7D26F8EAD2F87536 /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DCD0DE847CFC1A7EE02496929497B91 /* MASUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		051A816D6DD0CAE13496DDCFE0829167 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = A5606F4B3388C57C3981034948E2537E /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		068EF598E554EC57038ACFB89CC2C47A /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BD1210BD747DF7D89ADF22E865D0A0DC /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		091D17D5D8F832D28546A72B788CF0AE /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F3882DD38CAA8CEC748A05A0B10D0C2B /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		094973D2D2F1E3B2E772F93C8147C6B9 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CC0188FEE8BCE7B19B2CBE2E671FE8 /* UIApplication+StrictKeyWindow.m */; };
-		0F3DF5C3BEFCC9838B53C37735B414BE /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E62F945726496ACAF862B321204C41 /* NSLayoutConstraint+MASDebugAdditions.m */; };
-		0FDB2B4F75591851F0F119EAE70B3F63 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 644E8B0B56CDBC047E610E44A4DFC884 /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1047E50A801F9FFBB2C331EEF49C3BF7 /* Pods-SJMP3Player_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 25BDA820EDBBAF544AAE80FB9F10BEB9 /* Pods-SJMP3Player_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14337DD9B9C79572251592F27BC4CC38 /* SJSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 04AF544294E8E2D0B7AD08C2D121E4C3 /* SJSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		165DDE3E06A88299D450CE88B4104AF8 /* SJSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CF622011395B81BB27C7E181780AFE /* SJSlider.m */; };
-		1AB7934C16CE49DE196FFC7BE7278287 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EEA066212A1B395086D8886946E1F8 /* SwiftSupport.swift */; };
-		2854C9B1086758BD2B6681206B6759B4 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FD57E52F64248B79052DC9B61EFBC98 /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F485B69F51E4F723A38410F31F08550 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 12018C222A66C441A9CFC2127ABB1759 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		352327A8961E0F88FFC2D3C4B2B12FB3 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE8DF4186C72A45BC9423CEE84B933D /* Masonry.framework */; };
-		35DD05FD595A6FE7F5A0692D12E319DC /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = C567E58625C9D4E631ADD817F9C088F7 /* UIImage+Diff.m */; };
-		38E0CD63021889EE46E1A6B9FA0415F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */; };
-		421CDD701AEE0F2458A84200366CDD0F /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = E9343B62551ED248259421FB7D6B4036 /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		432FA22864D148EBD4CB22F55AB68004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
-		457ACF9150DCF9AF445B129CC9678FB6 /* Masonry-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C174869D30AE840AE27882B138441839 /* Masonry-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D4F2050654580FE1F1D5F4F82CEDDB8 /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = AF176EF48F19123F40D987413F6AC9BD /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50053DD5E4D8590F84453AC4156516C4 /* SJMP3Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F50F6A28A8DC23FDB73DFA14EA38B6 /* SJMP3Player.m */; };
-		506D761F91EC3583789A837C559972FE /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8460DBE0183D92DFBDEA3CBF44AE76 /* FBSnapshotTestCase-dummy.m */; };
-		51B22086D549A70D263E6191F8DDEDF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
-		53BDF81D0A52EA526D597A5C5B139D7F /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DC81ECCCF8CDBCA949C9BE27FCD6C11E /* MASCompositeConstraint.m */; };
-		59F81DE0305CC2AC448D2A3C6B3280A2 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C5C9C37E4F0AE5F66B9E444FB7DFB2 /* MASConstraint.m */; };
-		623BE665F7E59F7830C0F48CB0B78D16 /* Pods-SJMP3Player_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A9CEAAD250F47A4FEECEDA6E3900E1 /* Pods-SJMP3Player_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		636BBA734C1A17A734761D674FAE8800 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = E6C39BE939B12A6FBD832DCE1D6E3B46 /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 062AE645669DC3468C6FD6AD3D2F91B5 /* UIImage+Compare.m */; };
-		6C23BBF56ED4DCC10CA1765A6736D1F8 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC85E1501720DE55915D5966B503723 /* MASLayoutConstraint.m */; };
-		73BBDACC22CCA36A6DAAA167AD780BAF /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8412813E6BE39A755D91FDE86762C /* MASConstraintMaker.m */; };
-		756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B41F64778C4A4799F26BD917C7FCEE /* UIImage+Snapshot.m */; };
-		756DF24546C7D91459DCADC8F1C98660 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 850A5D0B78AB7E01048D5C753108D79D /* MASViewConstraint.m */; };
-		7759C3271FAD8C6400E651A3 /* SJMP3Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 0520F76BC9D8FDA375C79D55533A7B09 /* SJMP3Player.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7BCBDC0324F3A3C1E260119E41FF9BDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */; };
-		7C17BEA6034027310D1D205DB2008CA5 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 09E26CF586994EF475C9959E5FEEE43B /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E9B14D5F8842A86CA86F2AF45230725 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53984FCA56388FF024D31FAE71DD30AE /* XCTest.framework */; };
-		841FF232C33C7D49C58CEFDBE7EEB92B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */; };
-		88DE7BAB1F4999A5F4B617F44E5FD1D3 /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = F52F8E899F9CA9A976C1981498E8E0BF /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A6EEF68E7625AB66A3A8DED1594F88F /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F06A9F7CB90A233BA02C970E7759B052 /* ViewController+MASAdditions.m */; };
-		8CD45B754192DE834B642975E85257AB /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = E785FB6DAEFFF46B98600ACFAAF0850A /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		91D0138ACFAD733E4061F12E450C336C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
-		9673CF780F48C8E4EC2A331717B1F67C /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 37E4C39629B0A1B1DDC35168F291DAB1 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A08A8AB356264E248D01F1BC0EF08166 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F8FEF187BF09535E2FCFB8D7302EB4 /* Masonry-dummy.m */; };
-		A0B0DE5897EB8FCA5D3EBE4DB1F9A170 /* SJMP3Player-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 492019536904AB9BF55B02DCB6FD190F /* SJMP3Player-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4F69F3477A935285620AC3031C5C848 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 652AACF9288BD2CF52E150213A34C14F /* FBSnapshotTestController.m */; };
-		A7370CE9231F9A4927142D79021879EC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1994E4C6A656BB68FA46FB4F1DD57C /* MASViewAttribute.m */; };
-		ACBC7D6905366444C16E9ADC6EC545E9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
-		B27DFD6025D94758785918F1D6F6C060 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0159B85CE717DEFE49FDA0064BD3B3 /* QuartzCore.framework */; };
-		B44383A3FA435C1E986942C817339302 /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 459B4639A1C71311F3D424803218B0A2 /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B461333640F8AF0757D429479E14395E /* SJSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AB0D23876B79C2593E419326791F8DB /* SJSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B6A057724D8983B4125E92647810782B /* Pods-SJMP3Player_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD4297738D9397C3E6F555A00639DAB /* Pods-SJMP3Player_Tests-dummy.m */; };
-		B758FB09FE2C06C1B8E36A71A9D76D41 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99AA37D3F7AB5715F209FC658C89B4C4 /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC952FC04FC963C1294DCD619C9B6B3B /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFF684FC7D03A3483A2D54F17BD776E /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = E07231040B3A742E33E395F84A50C849 /* FBSnapshotTestCase.m */; };
-		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 0536A843CC56EC959D5814C1B5396310 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0A16E00B4BC2D88A7833D5DAED62942 /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4617ACAD7A51C76A06BDA101B93CB361 /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C8DF22EAFFC2F81B0426E2165AC93E44 /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = BD54DA60FC4E5400A2EDC77660C9310B /* MASConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CAFA5E486BCE117A7D8C0FBF9DA6666B /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D1F3CE3A98E590151D4241C58DD8E4 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CC8F9B4A1AC4E276EA8AA4C6F2BF3CD4 /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = 87F550A202EB6789053976C42C8AFC68 /* Masonry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD38E8074200324FC6C24DC4F61211A8 /* SJMP3Player-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8D59FEE26DAC019CD8CE9BD174CD1 /* SJMP3Player-dummy.m */; };
-		D3473165E59A26BDFE66688FA6F15834 /* SJSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D86AF29FE906BBF2A4AE44BED6362B8 /* SJSlider-dummy.m */; };
-		D504B9D87CA143971AD4873A04E9F472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
-		D8B1525CB3DFCBD8E5032680530413D9 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 61DCFE93D573E22C464C65CCA9E846AE /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9FBDB0754BDF395B4702815189C766E /* Pods-SJMP3Player_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8D9C3D946C4985C8D74808F228254B /* Pods-SJMP3Player_Example-dummy.m */; };
-		DB7A106243AC974FC7EBEB00B506C786 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EE2C3BA25631AEECDD88639721931A /* FBSnapshotTestCasePlatform.m */; };
-		E72EDE323AC9F92EC8A00A93AC186093 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE1C27368CA8A8D0994D9B4DB8C7B68 /* NSArray+MASAdditions.m */; };
-		F4B3E44D5D2F6508BC1BB35A9FBDEC70 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BEAEF007C84123D724B5C59E208FDD /* View+MASAdditions.m */; };
-		FE5ADC11F072B35BC9DC2BDB81CFCC69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
+		02561E348DA58D723D00638FEFACE044 /* SJSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C882AC1FAE1D2CF9FF6D5CF51C8C01D /* SJSlider-dummy.m */; };
+		04A7D6AADAB213CE7D26F8EAD2F87536 /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BA079000F9029386D669CD84FBA623 /* MASUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		051A816D6DD0CAE13496DDCFE0829167 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B6E14C52EE504A56C88EDE2231C649 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		068EF598E554EC57038ACFB89CC2C47A /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BC90DEFDA4EDF635B0889F15ECF49E44 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0699D7CDD0B0C45F4127DC4CEE4A5401 /* SJDownloadDataTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EECEDD5EF7132549F2268939687D3DE /* SJDownloadDataTask.framework */; };
+		06D555D8AFDE49A111F7F8C5029F1444 /* SJDownloadDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8855EDB49CBD2689AB46404AF7399EC3 /* SJDownloadDataTask.m */; };
+		091D17D5D8F832D28546A72B788CF0AE /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E4D5B55353A39716454399D2D517804 /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		094973D2D2F1E3B2E772F93C8147C6B9 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0B34DE40E4D177D870D91E4361E14 /* UIApplication+StrictKeyWindow.m */; };
+		0A04E65418C1F6B4AA81B391C74CE0BD /* SJMP3Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 25416446A2DDE0F8C91F2C5097BB8DA7 /* SJMP3Player.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F3DF5C3BEFCC9838B53C37735B414BE /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C6D91C544B0F353B7B931289670AFD /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		0FDB2B4F75591851F0F119EAE70B3F63 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E021A0AFE16C50269CD39DB5F98286A /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13D0353DD164CE01EA25F451FA624B44 /* SJDownloadDataTask-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB477D3C75C6F3F7F6E53FB97C7F7C61 /* SJDownloadDataTask-dummy.m */; };
+		1AB7934C16CE49DE196FFC7BE7278287 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F5FF50D790C40EA7DCA898EA8E0FD0 /* SwiftSupport.swift */; };
+		2854C9B1086758BD2B6681206B6759B4 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E80024746A7A14A578BDACF28B1F09C /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C5436A164AED7BFE0B3F4F67B73CC46 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 544CCC020F2EC4AA412074E18C3264D2 /* Masonry.framework */; };
+		2F485B69F51E4F723A38410F31F08550 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9486250FAA662548A8ECE1E55632C25B /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35DD05FD595A6FE7F5A0692D12E319DC /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = D4458E714EE8291E3AEE45AF25F14F34 /* UIImage+Diff.m */; };
+		38E0CD63021889EE46E1A6B9FA0415F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */; };
+		403AFB2C46B0BA67C4A2D2576ABA62B3 /* Pods-SJMP3Player_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D67A7DFD49F7479719712532D5A700E /* Pods-SJMP3Player_Example-dummy.m */; };
+		421CDD701AEE0F2458A84200366CDD0F /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 98D9D115F3E84AE07231CB683D052BD7 /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42378530225FFD755FFA4E8847DF8054 /* SJButtonSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C04A9A5B41DA58D33EE20726DCF42A /* SJButtonSlider.m */; };
+		432FA22864D148EBD4CB22F55AB68004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		457ACF9150DCF9AF445B129CC9678FB6 /* Masonry-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F667C55D2E84F820C2DB7F29231A70C /* Masonry-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		465BAC52D7F612E5C16584912D9935E4 /* SJDownloadDataTask-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B4212D3351B749188579C0CE6BF53B44 /* SJDownloadDataTask-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4921F86BE4B3975307A31853910D1C1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		4A97499E7D39F3E4E9E9E0D752D89D3C /* SJLabelSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9559E0F06DEE9D71AD275B94F2ACA21 /* SJLabelSlider.m */; };
+		4ADB9850E2BF0EF5AF55E1620C8A9D20 /* SJCommonSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D46931EB937224C51F4B4C2C7D6771EB /* SJCommonSlider.m */; };
+		4D4F2050654580FE1F1D5F4F82CEDDB8 /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1495736A9F3B3211A6F74CAF156EA155 /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		506D761F91EC3583789A837C559972FE /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD4CF4F6716F8BAB685F39C174D7C6B /* FBSnapshotTestCase-dummy.m */; };
+		53BDF81D0A52EA526D597A5C5B139D7F /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 587CC27C0CCBF6AB50AE603A5B56DA8C /* MASCompositeConstraint.m */; };
+		59F81DE0305CC2AC448D2A3C6B3280A2 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = F271B34388889B0B9118961307531E07 /* MASConstraint.m */; };
+		5F65876A2707AF5CA09851F8F1ED4D79 /* SJDownloadDataTask.h in Headers */ = {isa = PBXBuildFile; fileRef = BD4C107B71241F59691D0006BD9B7BA4 /* SJDownloadDataTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6144C21FDEEC3646AFBE4B7AD85F95DD /* SJMP3Player-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 793A62767FF58A163B397D228F976F9B /* SJMP3Player-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		636BBA734C1A17A734761D674FAE8800 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = C03FD0402ED60D3AF1B2E48A24ECA83C /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 54925CCC42E8D21E2D9902719A6CB7A6 /* UIImage+Compare.m */; };
+		6C23BBF56ED4DCC10CA1765A6736D1F8 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7305156BA5BF82CEF5E8A37A03DA3B52 /* MASLayoutConstraint.m */; };
+		73BBDACC22CCA36A6DAAA167AD780BAF /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 996ECBB7439989E0358777DF40AF9A39 /* MASConstraintMaker.m */; };
+		756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9C17A5481BE108F99B7F18077DA7F3 /* UIImage+Snapshot.m */; };
+		756DF24546C7D91459DCADC8F1C98660 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = B870C17D1B8637FD7452BC747ABC38CE /* MASViewConstraint.m */; };
+		77ECE80C3DB28037F83494981D3A794D /* SJMP3Player.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBFD477E973FE27903A7BC79038B43F /* SJMP3Player.m */; };
+		7C17BEA6034027310D1D205DB2008CA5 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = DDDD034F8C813D32FAFD345620928A9E /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E9B14D5F8842A86CA86F2AF45230725 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B8D6F8840F8B6F5E027EA5F4BEC414 /* XCTest.framework */; };
+		805CEE9E0C9DF6E3E658366C805C20D3 /* Pods-SJMP3Player_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54D721050A200F5F305BCCBF1FAFF072 /* Pods-SJMP3Player_Tests-dummy.m */; };
+		8201759BE279D38EC53DC4C2C1F9DABF /* SJButtonSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 70E999F2029B050D2374C6F47CB569AC /* SJButtonSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		841FF232C33C7D49C58CEFDBE7EEB92B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */; };
+		88DE7BAB1F4999A5F4B617F44E5FD1D3 /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C970EF91E2802917AE4DB5DF0BBC374 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A6EEF68E7625AB66A3A8DED1594F88F /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 893054261D77AF18C092B101E15251FA /* ViewController+MASAdditions.m */; };
+		8CD45B754192DE834B642975E85257AB /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = D7F322C852AD5C7D1764A1C80D19811F /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91D0138ACFAD733E4061F12E450C336C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		92C32467D9594BE0ED4C49B1A11B76A8 /* SJLabelSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = B858961D20D094FE7279549216A193A8 /* SJLabelSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9673CF780F48C8E4EC2A331717B1F67C /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 13C530B498010E8E949EC72B92447AC4 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E7D764F65C7354570CB7457ED43EF39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		A08A8AB356264E248D01F1BC0EF08166 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8561BD3A4CB01C43F93D3CE41EF5F /* Masonry-dummy.m */; };
+		A4CBAA7A6641F3CF7F26A6FADAFC8FC7 /* Pods-SJMP3Player_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 71BF596387F0FF2271675C71A75420A7 /* Pods-SJMP3Player_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4F69F3477A935285620AC3031C5C848 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A25803624DAFBCF0B349D1C622B7D4 /* FBSnapshotTestController.m */; };
+		A7370CE9231F9A4927142D79021879EC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 694C4D2E0F79B32627321E5E02754F58 /* MASViewAttribute.m */; };
+		B27DFD6025D94758785918F1D6F6C060 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8BF6FE2E57F7C81D26C14A68A3C4EFF /* QuartzCore.framework */; };
+		B44383A3FA435C1E986942C817339302 /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA62B6BB5D5A5EE680CBA711DD73D80F /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B758FB09FE2C06C1B8E36A71A9D76D41 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B54773A9CAADF392D404948024B5E613 /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC952FC04FC963C1294DCD619C9B6B3B /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B01F020A8F7AC7796EC3C1AAC8AF082 /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C6CC654F12421E1B2EDB3B4968846 /* FBSnapshotTestCase.m */; };
+		BE27DDFE3CC25F8F648CDE66E6E76FB1 /* SJMP3Player-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D05AD35C73CC96460AB4F0BACF98CF /* SJMP3Player-dummy.m */; };
+		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 72A32D9CBA059B607914ED18BCC04DCD /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0A16E00B4BC2D88A7833D5DAED62942 /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 96567FE703790857E082C24B01D8BA7D /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2029B624DCDA3284DB194E122EFBBF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		C2BD91925D4EE9A35E8D796C13289E24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		C8DF22EAFFC2F81B0426E2165AC93E44 /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = A406C3EE35AA5C3445E48B8E4DCB7F30 /* MASConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CAFA5E486BCE117A7D8C0FBF9DA6666B /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C70DED613997EFDE4A4198DF4FB0F89 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CC3B671DB053D6DBF340BEAD0C736E38 /* SJSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA08D335167A47FB63EDF21CD8F19FD /* SJSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC8F9B4A1AC4E276EA8AA4C6F2BF3CD4 /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = 456B0B70578C9EDF8B9D8A1E37011355 /* Masonry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4C772AB3A8B6D517A21B55D9CF3ACFA /* SJSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CFFC2DC67EF12B938B422B39BC749A /* SJSlider.m */; };
+		D8328E683631FCB454C197BA851875A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */; };
+		D8B1525CB3DFCBD8E5032680530413D9 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BC3A7EF05D62D5D9498DE5E1D49A50F8 /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAE581CF537C8D5FB95FC6481D7AC441 /* SJSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 95898E206E8DE0010EA86B7771C55810 /* SJSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB7A106243AC974FC7EBEB00B506C786 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D084779B9BE272B8238F2E28FDDAB2 /* FBSnapshotTestCasePlatform.m */; };
+		E72EDE323AC9F92EC8A00A93AC186093 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB03910E763BBCDF88C6FAF7C6E88DE5 /* NSArray+MASAdditions.m */; };
+		F4B3E44D5D2F6508BC1BB35A9FBDEC70 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D45967A005DF76EADE007845AC2A649 /* View+MASAdditions.m */; };
+		F6CB429F0F5EF3253CDD1C6392A55A91 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2522C8B2D5698504FCC569616447991 /* MediaPlayer.framework */; };
+		F863E0DE5598C17CF0746FFF7F2288C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */; };
+		F9598C65273BDA8E1D3AB44908A953EF /* SJCommonSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = BE14B52420932AF4B023A34460FFF0FE /* SJCommonSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD301AD907D7C0DA551461E2FA771137 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */; };
+		FFAED5D3709902959D71C7F28E21ADD8 /* Pods-SJMP3Player_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 856FB545FC71C9564B1C22CE0DE88FCC /* Pods-SJMP3Player_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2173195105D9539BD259686321FC1BE7 /* PBXContainerItemProxy */ = {
+		4C5B613661511B204C41C1CDA0DD4B9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D52144DE9D7255DE912490FF5A806573;
-			remoteInfo = Masonry;
+			remoteGlobalIDString = 0269389E2DDAECDDB4670CD28AAA979A;
+			remoteInfo = "Pods-SJMP3Player_Example";
 		};
-		65E280054556C29FEFC70A204CF7E3A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1C7AADEF067927BA8A14CDC5EFC45310;
-			remoteInfo = SJMP3Player;
-		};
-		8181B822E0E3ECA81AF7325FB120D506 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D79D6147E26FF3FA2B945AE02558B22;
-			remoteInfo = SJSlider;
-		};
-		C91D4BD3D5B4503F440C9B820C738B71 /* PBXContainerItemProxy */ = {
+		8B3CA6C6C2D2A90D1FF790DA6B7194E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 34CD2E3428AB802BACA62286FF5074B1;
 			remoteInfo = FBSnapshotTestCase;
 		};
-		F48201F6D8B7CAD8D885A35E11FABBB7 /* PBXContainerItemProxy */ = {
+		93BDB6A4797E769A05299FF7B38E62F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D52144DE9D7255DE912490FF5A806573;
 			remoteInfo = Masonry;
 		};
+		99D8996FABF4C9E924227DC9949C702F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED28B2BA600F43BC0C1DE63C84FD3379;
+			remoteInfo = SJDownloadDataTask;
+		};
+		A4BFE804B41447AC4F473CD7511DB079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E863D479E02B1756B25415BEB3CE830;
+			remoteInfo = SJMP3Player;
+		};
+		A7E043307A7AFADA0F4DB5BCFFA458B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED28B2BA600F43BC0C1DE63C84FD3379;
+			remoteInfo = SJDownloadDataTask;
+		};
+		BFA2960D5E8FF136725F9705CB23D490 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D52144DE9D7255DE912490FF5A806573;
+			remoteInfo = Masonry;
+		};
+		EB58E27C9097EDCC94BCE757376E50EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4B7BB112CE3AE421D0FF3E0D6FEB7F2;
+			remoteInfo = SJSlider;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03A9CEAAD250F47A4FEECEDA6E3900E1 /* Pods-SJMP3Player_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SJMP3Player_Example-umbrella.h"; sourceTree = "<group>"; };
-		04AF544294E8E2D0B7AD08C2D121E4C3 /* SJSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJSlider.h; path = SJSlider/SJSlider.h; sourceTree = "<group>"; };
-		0520F76BC9D8FDA375C79D55533A7B09 /* SJMP3Player.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJMP3Player.h; path = SJMP3Player/Classes/SJMP3Player.h; sourceTree = "<group>"; };
-		0536A843CC56EC959D5814C1B5396310 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
-		062AE645669DC3468C6FD6AD3D2F91B5 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
-		09E26CF586994EF475C9959E5FEEE43B /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
-		12018C222A66C441A9CFC2127ABB1759 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
-		155D96F21AE4E3D77C57F9E51B8EE973 /* Pods-SJMP3Player_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Example-frameworks.sh"; sourceTree = "<group>"; };
-		1AA08BBE4FC179FE1F486F38AA96E640 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BF8D9E0346441D88DE722D66319287D /* Pods-SJMP3Player_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Tests-resources.sh"; sourceTree = "<group>"; };
-		1C60661DD61555D0D9D82D58EEB3AE72 /* Pods-SJMP3Player_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SJMP3Player_Tests.modulemap"; sourceTree = "<group>"; };
-		1CE8AED07C651AA5851A5AE0841AF5F4 /* Pods-SJMP3Player_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SJMP3Player_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		1CFD19813B090460DB712B499933CB80 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D87CFA0E81DACDB28EB1F683C896732 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
-		2039C53A2CE200AF0C4465BDD91A4C53 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21D1F3CE3A98E590151D4241C58DD8E4 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
-		232167733E6041158FB1B2FF805BD40B /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
-		25BDA820EDBBAF544AAE80FB9F10BEB9 /* Pods-SJMP3Player_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SJMP3Player_Tests-umbrella.h"; sourceTree = "<group>"; };
-		2C8460DBE0183D92DFBDEA3CBF44AE76 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
-		32C5C9C37E4F0AE5F66B9E444FB7DFB2 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
-		34E62F945726496ACAF862B321204C41 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		37E4C39629B0A1B1DDC35168F291DAB1 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
-		3AB0D23876B79C2593E419326791F8DB /* SJSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJSlider-umbrella.h"; sourceTree = "<group>"; };
-		3C1994E4C6A656BB68FA46FB4F1DD57C /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
-		3FB8D59FEE26DAC019CD8CE9BD174CD1 /* SJMP3Player-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJMP3Player-dummy.m"; sourceTree = "<group>"; };
-		4170F77C107B5A603C1FD91C504F3E73 /* SJSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SJSlider.xcconfig; sourceTree = "<group>"; };
-		451591628F27499FBC3DBEBAA61A2795 /* SJMP3Player.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SJMP3Player.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		459B4639A1C71311F3D424803218B0A2 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		4617ACAD7A51C76A06BDA101B93CB361 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
-		492019536904AB9BF55B02DCB6FD190F /* SJMP3Player-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJMP3Player-umbrella.h"; sourceTree = "<group>"; };
-		4AD4297738D9397C3E6F555A00639DAB /* Pods-SJMP3Player_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SJMP3Player_Tests-dummy.m"; sourceTree = "<group>"; };
-		4FD8412813E6BE39A755D91FDE86762C /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
-		530F7ED67567C20239FB3ACC7BF03035 /* SJSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SJSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		53984FCA56388FF024D31FAE71DD30AE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		59CC0188FEE8BCE7B19B2CBE2E671FE8 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
-		59D53D62468BBCCEAF03882E0F392E47 /* Pods-SJMP3Player_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Example.release.xcconfig"; sourceTree = "<group>"; };
-		5A8633F8A8DE0BCBE3FF447CC3E923F8 /* Pods-SJMP3Player_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SJMP3Player_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5C9586459040E50294A473859AB610E3 /* Pods-SJMP3Player_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Example-resources.sh"; sourceTree = "<group>"; };
-		5DCD0DE847CFC1A7EE02496929497B91 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
-		61DCFE93D573E22C464C65CCA9E846AE /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		644E8B0B56CDBC047E610E44A4DFC884 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		652AACF9288BD2CF52E150213A34C14F /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
-		65B41F64778C4A4799F26BD917C7FCEE /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
-		65EEA066212A1B395086D8886946E1F8 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
-		69A266CB6A0EADC735427E2570C00BA9 /* SJMP3Player.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SJMP3Player.modulemap; sourceTree = "<group>"; };
-		6D86AF29FE906BBF2A4AE44BED6362B8 /* SJSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJSlider-dummy.m"; sourceTree = "<group>"; };
-		6ECC77A7937D4F7985F124056C643B3D /* Pods_SJMP3Player_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SJMP3Player_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EFF684FC7D03A3483A2D54F17BD776E /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
-		70BEAEF007C84123D724B5C59E208FDD /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
-		70F50F6A28A8DC23FDB73DFA14EA38B6 /* SJMP3Player.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJMP3Player.m; path = SJMP3Player/Classes/SJMP3Player.m; sourceTree = "<group>"; };
-		7759C3181FAD847100E651A3 /* SJMP3Player.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = SJMP3Player.podspec; path = ../../SJMP3Player.podspec; sourceTree = "<group>"; };
-		7FD57E52F64248B79052DC9B61EFBC98 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
-		850A5D0B78AB7E01048D5C753108D79D /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
-		87F550A202EB6789053976C42C8AFC68 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
-		8E79B79F8B586A7B054D537E9CFFD141 /* Pods-SJMP3Player_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		97F8FEF187BF09535E2FCFB8D7302EB4 /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
-		991346F66A4D8A6292EB5C1560E67396 /* SJSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SJSlider.modulemap; sourceTree = "<group>"; };
-		99AA37D3F7AB5715F209FC658C89B4C4 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
-		9E727E7614045F75CBF55D38BB9D9E04 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F8CDDBF5AA76B0A76BE4616316F8546 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1CF622011395B81BB27C7E181780AFE /* SJSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJSlider.m; path = SJSlider/SJSlider.m; sourceTree = "<group>"; };
-		A5606F4B3388C57C3981034948E2537E /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		A6D1BE2B2C10D125D40A800FDCBD65AE /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
-		ABDBAD488CE426EA4DF3601C1820FAC2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF176EF48F19123F40D987413F6AC9BD /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
-		B16F8972FD2F74E363236F5ABD85FEC6 /* SJMP3Player.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SJMP3Player.xcconfig; sourceTree = "<group>"; };
-		B279EF7A3F8451C67C66D10A9149F970 /* Pods-SJMP3Player_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		B661A45B8E1D8CD41164796B9C42FF12 /* SJSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJSlider-prefix.pch"; sourceTree = "<group>"; };
-		B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B850566732047497AAF4C1B56A980EC7 /* Pods-SJMP3Player_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SJMP3Player_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BCA4F83AD3027FF0F064B5259F5B1D42 /* SJMP3Player-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJMP3Player-prefix.pch"; sourceTree = "<group>"; };
-		BCE1C27368CA8A8D0994D9B4DB8C7B68 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
-		BD1210BD747DF7D89ADF22E865D0A0DC /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
-		BD54DA60FC4E5400A2EDC77660C9310B /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
-		BE1112D290BF49ECDD683C5CA58F9BF8 /* Pods-SJMP3Player_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SJMP3Player_Example.modulemap"; sourceTree = "<group>"; };
-		C174869D30AE840AE27882B138441839 /* Masonry-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-umbrella.h"; sourceTree = "<group>"; };
-		C567E58625C9D4E631ADD817F9C088F7 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
-		C8A477EA1FA9F9AE8236689FF7217279 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
-		CCE8DF4186C72A45BC9423CEE84B933D /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD49E73667E2078EDC8E61D7985F2C95 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D00774CD2CB6C31FA4B0E13D828653CF /* Pods-SJMP3Player_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D5BFCD65F1A17AC7B48ED38D51C723B6 /* Pods-SJMP3Player_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		DC81ECCCF8CDBCA949C9BE27FCD6C11E /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
-		DFC85E1501720DE55915D5966B503723 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
-		E07231040B3A742E33E395F84A50C849 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
-		E3C7671196F4C8EAC0B923D9EDA4B49B /* Masonry.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Masonry.modulemap; sourceTree = "<group>"; };
-		E68254460B5E10210BA0B8C7C1A15881 /* Pods-SJMP3Player_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SJMP3Player_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E6C39BE939B12A6FBD832DCE1D6E3B46 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
-		E785FB6DAEFFF46B98600ACFAAF0850A /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
-		E8EE2C3BA25631AEECDD88639721931A /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
-		E9343B62551ED248259421FB7D6B4036 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
-		EA9540EEEA8CE6C5BDD4B3FEEEC88A44 /* Pods_SJMP3Player_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SJMP3Player_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB8D9C3D946C4985C8D74808F228254B /* Pods-SJMP3Player_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SJMP3Player_Example-dummy.m"; sourceTree = "<group>"; };
-		EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		F06A9F7CB90A233BA02C970E7759B052 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		F3882DD38CAA8CEC748A05A0B10D0C2B /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
-		F52F8E899F9CA9A976C1981498E8E0BF /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
-		FD531444E2B3978D31F02A3A8CD29CEA /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
-		FE0159B85CE717DEFE49FDA0064BD3B3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		FE837D41C64239159237E0608CA1C2D7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C04A9A5B41DA58D33EE20726DCF42A /* SJButtonSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJButtonSlider.m; path = SJSlider/SJButtonSlider.m; sourceTree = "<group>"; };
+		0BBF5A0ABD7DF466234E21485C31FFC0 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10FE6FAFEE1FD98421FD73FB660DA8B3 /* Pods-SJMP3Player_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		122ED92D51E3A03BAAB23183D645561C /* SJDownloadDataTask.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SJDownloadDataTask.modulemap; sourceTree = "<group>"; };
+		129DB74CA5C63670DA1C24E051BB4D74 /* Pods-SJMP3Player_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Example-frameworks.sh"; sourceTree = "<group>"; };
+		13C530B498010E8E949EC72B92447AC4 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
+		1495736A9F3B3211A6F74CAF156EA155 /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
+		16BA079000F9029386D669CD84FBA623 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
+		1C34CAA18B9780103489B5C18AF6640C /* Pods-SJMP3Player_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		1D3DEE91D98A274F052264CFB533E2C8 /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		1DA0BEAD449B7CB2BD808D881ED34C92 /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
+		21ED79056B705E621A4B37872D0E0A6D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2293CE6D8AF750B67A91F5704B04BA09 /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
+		25416446A2DDE0F8C91F2C5097BB8DA7 /* SJMP3Player.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJMP3Player.h; path = SJMP3Player/Classes/SJMP3Player.h; sourceTree = "<group>"; };
+		27A7E4C395ADC40B85E700F0458269FE /* SJMP3Player-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJMP3Player-prefix.pch"; sourceTree = "<group>"; };
+		2A915DFD42952F876D16C10B37D2F18F /* Pods-SJMP3Player_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SJMP3Player_Tests.modulemap"; sourceTree = "<group>"; };
+		2BB2880474B29C2A21E09593D015FC27 /* SJDownloadDataTask.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SJDownloadDataTask.xcconfig; sourceTree = "<group>"; };
+		2E021A0AFE16C50269CD39DB5F98286A /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		2E53248E5B81E69D63254C00EEEDE964 /* SJSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SJSlider.xcconfig; sourceTree = "<group>"; };
+		30F611FD37BC0B19947F04DF5C8A0B00 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B6E14C52EE504A56C88EDE2231C649 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		3B2C6CC654F12421E1B2EDB3B4968846 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
+		3B9C17A5481BE108F99B7F18077DA7F3 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		3D67A7DFD49F7479719712532D5A700E /* Pods-SJMP3Player_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SJMP3Player_Example-dummy.m"; sourceTree = "<group>"; };
+		3DEA92530DAF5C0C95A3CE4A3FA00EDF /* Pods-SJMP3Player_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Example-resources.sh"; sourceTree = "<group>"; };
+		3E80024746A7A14A578BDACF28B1F09C /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		41322798DA81ACDCE5815B58EF8F2B15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		456B0B70578C9EDF8B9D8A1E37011355 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
+		4704D344440AA06B7147957587AE47AF /* SJMP3Player.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SJMP3Player.framework; path = SJMP3Player.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AD4CF4F6716F8BAB685F39C174D7C6B /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
+		4B01F020A8F7AC7796EC3C1AAC8AF082 /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		4C970EF91E2802917AE4DB5DF0BBC374 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
+		4D9ED1E239139535E4A74F385F61EF76 /* SJMP3Player.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SJMP3Player.xcconfig; sourceTree = "<group>"; };
+		544CCC020F2EC4AA412074E18C3264D2 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54925CCC42E8D21E2D9902719A6CB7A6 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
+		54D721050A200F5F305BCCBF1FAFF072 /* Pods-SJMP3Player_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SJMP3Player_Tests-dummy.m"; sourceTree = "<group>"; };
+		56A80478BC6654388B41C33D7A66A649 /* SJSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SJSlider.modulemap; sourceTree = "<group>"; };
+		587CC27C0CCBF6AB50AE603A5B56DA8C /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
+		589F2B6969FD70F2EF244D0F6C1B2D9F /* Pods-SJMP3Player_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		5F667C55D2E84F820C2DB7F29231A70C /* Masonry-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-umbrella.h"; sourceTree = "<group>"; };
+		60F5FF50D790C40EA7DCA898EA8E0FD0 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
+		667D1D3D9969511D009DB295D177B6B6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		68C8DA01C8BFDB44870D1E094427B2C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		694C4D2E0F79B32627321E5E02754F58 /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
+		6999F85D15178723E237B8D0219290DB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70E999F2029B050D2374C6F47CB569AC /* SJButtonSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJButtonSlider.h; path = SJSlider/SJButtonSlider.h; sourceTree = "<group>"; };
+		71BF596387F0FF2271675C71A75420A7 /* Pods-SJMP3Player_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SJMP3Player_Tests-umbrella.h"; sourceTree = "<group>"; };
+		72A32D9CBA059B607914ED18BCC04DCD /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		7305156BA5BF82CEF5E8A37A03DA3B52 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
+		76C6D91C544B0F353B7B931289670AFD /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		793A62767FF58A163B397D228F976F9B /* SJMP3Player-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJMP3Player-umbrella.h"; sourceTree = "<group>"; };
+		7AA0B34DE40E4D177D870D91E4361E14 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
+		7D28BD2623278F49FA57B42F693ECEE8 /* SJSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJSlider-prefix.pch"; sourceTree = "<group>"; };
+		82A25803624DAFBCF0B349D1C622B7D4 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
+		83A89990CC8F81926C963F276BE1CB50 /* SJDownloadDataTask-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJDownloadDataTask-prefix.pch"; sourceTree = "<group>"; };
+		83D05AD35C73CC96460AB4F0BACF98CF /* SJMP3Player-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJMP3Player-dummy.m"; sourceTree = "<group>"; };
+		83FC0DBF34606AC2D98E868547778B0D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		856FB545FC71C9564B1C22CE0DE88FCC /* Pods-SJMP3Player_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SJMP3Player_Example-umbrella.h"; sourceTree = "<group>"; };
+		85F3D138332EF0C829E5A83FCD6C8D83 /* SJSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SJSlider.framework; path = SJSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8855EDB49CBD2689AB46404AF7399EC3 /* SJDownloadDataTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJDownloadDataTask.m; path = SJDownloadDataTask/SJDownloadDataTask/SJDownloadDataTask/SJDownloadDataTask.m; sourceTree = "<group>"; };
+		893054261D77AF18C092B101E15251FA /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		8A8CEE49E75C8AA4DB90A1C0D87FB628 /* Pods-SJMP3Player_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SJMP3Player_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		8E4D5B55353A39716454399D2D517804 /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
+		8EECEDD5EF7132549F2268939687D3DE /* SJDownloadDataTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SJDownloadDataTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FF6005521A8F751E06EC30F27BD704F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9154810B0520D52A46009809BD8B9BE5 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
+		915E04FF79A0C21BF8FFE3E91D88EA5A /* Pods-SJMP3Player_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		916F7E4851BFBEF97CC2004C0AA0556D /* Pods-SJMP3Player_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SJMP3Player_Example.modulemap"; sourceTree = "<group>"; };
+		92008F78C7322B5AA02AFFBDDED4120D /* SJDownloadDataTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SJDownloadDataTask.framework; path = SJDownloadDataTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94137F68827742117FBE06A1B9422E87 /* Pods-SJMP3Player_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SJMP3Player_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9486250FAA662548A8ECE1E55632C25B /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
+		95898E206E8DE0010EA86B7771C55810 /* SJSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJSlider.h; path = SJSlider/SJSlider.h; sourceTree = "<group>"; };
+		96567FE703790857E082C24B01D8BA7D /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		98D9D115F3E84AE07231CB683D052BD7 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
+		996ECBB7439989E0358777DF40AF9A39 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
+		9C70DED613997EFDE4A4198DF4FB0F89 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
+		9C882AC1FAE1D2CF9FF6D5CF51C8C01D /* SJSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJSlider-dummy.m"; sourceTree = "<group>"; };
+		9D45967A005DF76EADE007845AC2A649 /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
+		9DA08D335167A47FB63EDF21CD8F19FD /* SJSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJSlider-umbrella.h"; sourceTree = "<group>"; };
+		A406C3EE35AA5C3445E48B8E4DCB7F30 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
+		A563F850CD92A2848C44BB808475D9B9 /* SJMP3Player.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SJMP3Player.modulemap; sourceTree = "<group>"; };
+		A791978636E3225839C9B6B41D89EA1F /* Pods-SJMP3Player_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SJMP3Player_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		AB03910E763BBCDF88C6FAF7C6E88DE5 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		B1CFFC2DC67EF12B938B422B39BC749A /* SJSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJSlider.m; path = SJSlider/SJSlider.m; sourceTree = "<group>"; };
+		B4212D3351B749188579C0CE6BF53B44 /* SJDownloadDataTask-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SJDownloadDataTask-umbrella.h"; sourceTree = "<group>"; };
+		B54773A9CAADF392D404948024B5E613 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
+		B550ECCD5C5DABC55715B24C9677377B /* Pods_SJMP3Player_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SJMP3Player_Example.framework; path = "Pods-SJMP3Player_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B858961D20D094FE7279549216A193A8 /* SJLabelSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJLabelSlider.h; path = SJSlider/SJLabelSlider.h; sourceTree = "<group>"; };
+		B870C17D1B8637FD7452BC747ABC38CE /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
+		B9559E0F06DEE9D71AD275B94F2ACA21 /* SJLabelSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJLabelSlider.m; path = SJSlider/SJLabelSlider.m; sourceTree = "<group>"; };
+		BC250ED5D6893C4369C1867D03262E48 /* Pods_SJMP3Player_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SJMP3Player_Tests.framework; path = "Pods-SJMP3Player_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC3A7EF05D62D5D9498DE5E1D49A50F8 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		BC90DEFDA4EDF635B0889F15ECF49E44 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
+		BD4C107B71241F59691D0006BD9B7BA4 /* SJDownloadDataTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJDownloadDataTask.h; path = SJDownloadDataTask/SJDownloadDataTask/SJDownloadDataTask/SJDownloadDataTask.h; sourceTree = "<group>"; };
+		BE14B52420932AF4B023A34460FFF0FE /* SJCommonSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJCommonSlider.h; path = SJSlider/SJCommonSlider.h; sourceTree = "<group>"; };
+		C03FD0402ED60D3AF1B2E48A24ECA83C /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
+		C2522C8B2D5698504FCC569616447991 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		CF9C85A970B221440BEA62ECBE7C32A2 /* SJMP3Player.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SJMP3Player.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D140CF18AEA697B403053BC385D6C8D8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D4458E714EE8291E3AEE45AF25F14F34 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
+		D46931EB937224C51F4B4C2C7D6771EB /* SJCommonSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJCommonSlider.m; path = SJSlider/SJCommonSlider.m; sourceTree = "<group>"; };
+		D4E8561BD3A4CB01C43F93D3CE41EF5F /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
+		D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D7F322C852AD5C7D1764A1C80D19811F /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
+		DA62B6BB5D5A5EE680CBA711DD73D80F /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		DBB61F8F012AEC9D626C789669D126D0 /* Pods-SJMP3Player_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SJMP3Player_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DDDD034F8C813D32FAFD345620928A9E /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
+		DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		E14E051873B31420F099B6AA02EA9AA7 /* Masonry.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Masonry.modulemap; sourceTree = "<group>"; };
+		E2AD5B582DB3511E5702F81628FDB24E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC9BF9D03307CCB2B040FFF56A6CD0E0 /* Pods-SJMP3Player_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SJMP3Player_Tests-resources.sh"; sourceTree = "<group>"; };
+		ECBFD477E973FE27903A7BC79038B43F /* SJMP3Player.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJMP3Player.m; path = SJMP3Player/Classes/SJMP3Player.m; sourceTree = "<group>"; };
+		F271B34388889B0B9118961307531E07 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
+		F2B8D6F8840F8B6F5E027EA5F4BEC414 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F2D084779B9BE272B8238F2E28FDDAB2 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		F8BF6FE2E57F7C81D26C14A68A3C4EFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		FB477D3C75C6F3F7F6E53FB97C7F7C61 /* SJDownloadDataTask-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJDownloadDataTask-dummy.m"; sourceTree = "<group>"; };
+		FD56229521244A8AF80F1378DFF5CA42 /* Pods-SJMP3Player_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJMP3Player_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FE1CDE29E63B50473120C5E8B9291833 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00174F4281ACABC9B49BEB6B617FE779 /* Frameworks */ = {
+		14D7C3ED69ABF9F90136AF2D26AC3693 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D504B9D87CA143971AD4873A04E9F472 /* Foundation.framework in Frameworks */,
-				352327A8961E0F88FFC2D3C4B2B12FB3 /* Masonry.framework in Frameworks */,
-				7BCBDC0324F3A3C1E260119E41FF9BDB /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1A15479976BBAC6C13B586C74B2EF676 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ACBC7D6905366444C16E9ADC6EC545E9 /* Foundation.framework in Frameworks */,
+				4921F86BE4B3975307A31853910D1C1B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,19 +293,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A10A6259CDE0C63F0F0AEE078AF8881 /* Frameworks */ = {
+		2DE2B71ECCED68D47FAD70ED4E9785E2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE5ADC11F072B35BC9DC2BDB81CFCC69 /* Foundation.framework in Frameworks */,
+				C2BD91925D4EE9A35E8D796C13289E24 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CD4258DD9AEA7467F546C97EBC19C8B /* Frameworks */ = {
+		2DF6DE3713E7E9043CC3AE5C01D6C434 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51B22086D549A70D263E6191F8DDEDF6 /* Foundation.framework in Frameworks */,
+				9E7D764F65C7354570CB7457ED43EF39 /* Foundation.framework in Frameworks */,
+				2C5436A164AED7BFE0B3F4F67B73CC46 /* Masonry.framework in Frameworks */,
+				FD301AD907D7C0DA551461E2FA771137 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56C8774640FE785E0D345E7465B28160 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2029B624DCDA3284DB194E122EFBBF0 /* Foundation.framework in Frameworks */,
+				F6CB429F0F5EF3253CDD1C6392A55A91 /* MediaPlayer.framework in Frameworks */,
+				0699D7CDD0B0C45F4127DC4CEE4A5401 /* SJDownloadDataTask.framework in Frameworks */,
+				D8328E683631FCB454C197BA851875A9 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2640A40ECD310043152FE5584C8D552 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F863E0DE5598C17CF0746FFF7F2288C1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,281 +342,338 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E8BB7F78A92657D12196A9759099250 /* iOS */ = {
+		153B5A1C9ED557B5EB7F687063A362F3 /* FBSnapshotTestCase */ = {
 			isa = PBXGroup;
 			children = (
-				B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */,
-				FE0159B85CE717DEFE49FDA0064BD3B3 /* QuartzCore.framework */,
-				EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */,
-				53984FCA56388FF024D31FAE71DD30AE /* XCTest.framework */,
+				DA4069EF4BAAA0C5B01EA4841CAD8CEF /* Core */,
+				BBF511647F7D23C1E35D19935A19A321 /* Support Files */,
+				6B7DEA150CB727798777ED714A399013 /* SwiftSupport */,
 			);
-			name = iOS;
+			name = FBSnapshotTestCase;
+			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
-		1C16BEBE8B4F52AAC720C2A15B4F7F43 /* Support Files */ = {
+		2E333AEA44D95427562AFF20ED7D7155 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9F8CDDBF5AA76B0A76BE4616316F8546 /* Info.plist */,
-				991346F66A4D8A6292EB5C1560E67396 /* SJSlider.modulemap */,
-				4170F77C107B5A603C1FD91C504F3E73 /* SJSlider.xcconfig */,
-				6D86AF29FE906BBF2A4AE44BED6362B8 /* SJSlider-dummy.m */,
-				B661A45B8E1D8CD41164796B9C42FF12 /* SJSlider-prefix.pch */,
-				3AB0D23876B79C2593E419326791F8DB /* SJSlider-umbrella.h */,
+				E2AD5B582DB3511E5702F81628FDB24E /* Info.plist */,
+				122ED92D51E3A03BAAB23183D645561C /* SJDownloadDataTask.modulemap */,
+				2BB2880474B29C2A21E09593D015FC27 /* SJDownloadDataTask.xcconfig */,
+				FB477D3C75C6F3F7F6E53FB97C7F7C61 /* SJDownloadDataTask-dummy.m */,
+				83A89990CC8F81926C963F276BE1CB50 /* SJDownloadDataTask-prefix.pch */,
+				B4212D3351B749188579C0CE6BF53B44 /* SJDownloadDataTask-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SJDownloadDataTask";
+			sourceTree = "<group>";
+		};
+		2FDE73295F89CE99999269EA7E705E13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BBF5A0ABD7DF466234E21485C31FFC0 /* FBSnapshotTestCase.framework */,
+				41322798DA81ACDCE5815B58EF8F2B15 /* Masonry.framework */,
+				B550ECCD5C5DABC55715B24C9677377B /* Pods_SJMP3Player_Example.framework */,
+				BC250ED5D6893C4369C1867D03262E48 /* Pods_SJMP3Player_Tests.framework */,
+				92008F78C7322B5AA02AFFBDDED4120D /* SJDownloadDataTask.framework */,
+				4704D344440AA06B7147957587AE47AF /* SJMP3Player.framework */,
+				85F3D138332EF0C829E5A83FCD6C8D83 /* SJSlider.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		44D2976C7569A4A2B3844AEC1AB0DE82 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				83FC0DBF34606AC2D98E868547778B0D /* Info.plist */,
+				56A80478BC6654388B41C33D7A66A649 /* SJSlider.modulemap */,
+				2E53248E5B81E69D63254C00EEEDE964 /* SJSlider.xcconfig */,
+				9C882AC1FAE1D2CF9FF6D5CF51C8C01D /* SJSlider-dummy.m */,
+				7D28BD2623278F49FA57B42F693ECEE8 /* SJSlider-prefix.pch */,
+				9DA08D335167A47FB63EDF21CD8F19FD /* SJSlider-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SJSlider";
 			sourceTree = "<group>";
 		};
-		22CA8EE33AD8785E33A547AE67BBA4A6 /* SJSlider */ = {
+		4A9FE574BFBCBB2E9E4544FE8432A193 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				04AF544294E8E2D0B7AD08C2D121E4C3 /* SJSlider.h */,
-				A1CF622011395B81BB27C7E181780AFE /* SJSlider.m */,
-				1C16BEBE8B4F52AAC720C2A15B4F7F43 /* Support Files */,
-			);
-			path = SJSlider;
-			sourceTree = "<group>";
-		};
-		3FDFBB75DF0A1579E171573D01B22EDA /* Pods-SJMP3Player_Example */ = {
-			isa = PBXGroup;
-			children = (
-				ABDBAD488CE426EA4DF3601C1820FAC2 /* Info.plist */,
-				BE1112D290BF49ECDD683C5CA58F9BF8 /* Pods-SJMP3Player_Example.modulemap */,
-				B850566732047497AAF4C1B56A980EC7 /* Pods-SJMP3Player_Example-acknowledgements.markdown */,
-				1CE8AED07C651AA5851A5AE0841AF5F4 /* Pods-SJMP3Player_Example-acknowledgements.plist */,
-				EB8D9C3D946C4985C8D74808F228254B /* Pods-SJMP3Player_Example-dummy.m */,
-				155D96F21AE4E3D77C57F9E51B8EE973 /* Pods-SJMP3Player_Example-frameworks.sh */,
-				5C9586459040E50294A473859AB610E3 /* Pods-SJMP3Player_Example-resources.sh */,
-				03A9CEAAD250F47A4FEECEDA6E3900E1 /* Pods-SJMP3Player_Example-umbrella.h */,
-				D5BFCD65F1A17AC7B48ED38D51C723B6 /* Pods-SJMP3Player_Example.debug.xcconfig */,
-				59D53D62468BBCCEAF03882E0F392E47 /* Pods-SJMP3Player_Example.release.xcconfig */,
-			);
-			name = "Pods-SJMP3Player_Example";
-			path = "Target Support Files/Pods-SJMP3Player_Example";
-			sourceTree = "<group>";
-		};
-		533D349F436CF07B7821B53FCD72A899 /* SwiftSupport */ = {
-			isa = PBXGroup;
-			children = (
-				65EEA066212A1B395086D8886946E1F8 /* SwiftSupport.swift */,
-			);
-			name = SwiftSupport;
-			sourceTree = "<group>";
-		};
-		58F27BC59D926CA70273212BD9D7032E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				37E4C39629B0A1B1DDC35168F291DAB1 /* FBSnapshotTestCase.h */,
-				E07231040B3A742E33E395F84A50C849 /* FBSnapshotTestCase.m */,
-				0536A843CC56EC959D5814C1B5396310 /* FBSnapshotTestCasePlatform.h */,
-				E8EE2C3BA25631AEECDD88639721931A /* FBSnapshotTestCasePlatform.m */,
-				12018C222A66C441A9CFC2127ABB1759 /* FBSnapshotTestController.h */,
-				652AACF9288BD2CF52E150213A34C14F /* FBSnapshotTestController.m */,
-				6EFF684FC7D03A3483A2D54F17BD776E /* UIApplication+StrictKeyWindow.h */,
-				59CC0188FEE8BCE7B19B2CBE2E671FE8 /* UIApplication+StrictKeyWindow.m */,
-				21D1F3CE3A98E590151D4241C58DD8E4 /* UIImage+Compare.h */,
-				062AE645669DC3468C6FD6AD3D2F91B5 /* UIImage+Compare.m */,
-				A5606F4B3388C57C3981034948E2537E /* UIImage+Diff.h */,
-				C567E58625C9D4E631ADD817F9C088F7 /* UIImage+Diff.m */,
-				E9343B62551ED248259421FB7D6B4036 /* UIImage+Snapshot.h */,
-				65B41F64778C4A4799F26BD917C7FCEE /* UIImage+Snapshot.m */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		753393F1119C01759A81A07DB8D7131B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				C8A477EA1FA9F9AE8236689FF7217279 /* FBSnapshotTestCase.modulemap */,
-				FD531444E2B3978D31F02A3A8CD29CEA /* FBSnapshotTestCase.xcconfig */,
-				2C8460DBE0183D92DFBDEA3CBF44AE76 /* FBSnapshotTestCase-dummy.m */,
-				A6D1BE2B2C10D125D40A800FDCBD65AE /* FBSnapshotTestCase-prefix.pch */,
-				99AA37D3F7AB5715F209FC658C89B4C4 /* FBSnapshotTestCase-umbrella.h */,
-				FE837D41C64239159237E0608CA1C2D7 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FBSnapshotTestCase";
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				7759C3181FAD847100E651A3 /* SJMP3Player.podspec */,
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				809A197A47EC2AC4EDB10A8EB0AABEE6 /* Development Pods */,
-				918E94116373AD325E040E1578F66FA2 /* Frameworks */,
-				F2E44A061E6D90C63A8C508AA8CC2DDD /* Pods */,
-				E8104B7D41C64FAD0BFBB63B934E7FF5 /* Products */,
-				E73035AAE8F85B15128495EB0F1E7F06 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		809A197A47EC2AC4EDB10A8EB0AABEE6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E1F29248614BEB10478509E3B45593F9 /* SJMP3Player */,
+				EF8ABECB18AE3DE83D0E618638DDE27B /* SJMP3Player */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		918E94116373AD325E040E1578F66FA2 /* Frameworks */ = {
+		4F5FFC7D891FAFA22ABAAC12A7F0F545 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CCE8DF4186C72A45BC9423CEE84B933D /* Masonry.framework */,
-				0E8BB7F78A92657D12196A9759099250 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B233D4747E82A37844531F6160DAA5B0 /* Pods-SJMP3Player_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				2039C53A2CE200AF0C4465BDD91A4C53 /* Info.plist */,
-				1C60661DD61555D0D9D82D58EEB3AE72 /* Pods-SJMP3Player_Tests.modulemap */,
-				5A8633F8A8DE0BCBE3FF447CC3E923F8 /* Pods-SJMP3Player_Tests-acknowledgements.markdown */,
-				E68254460B5E10210BA0B8C7C1A15881 /* Pods-SJMP3Player_Tests-acknowledgements.plist */,
-				4AD4297738D9397C3E6F555A00639DAB /* Pods-SJMP3Player_Tests-dummy.m */,
-				B279EF7A3F8451C67C66D10A9149F970 /* Pods-SJMP3Player_Tests-frameworks.sh */,
-				1BF8D9E0346441D88DE722D66319287D /* Pods-SJMP3Player_Tests-resources.sh */,
-				25BDA820EDBBAF544AAE80FB9F10BEB9 /* Pods-SJMP3Player_Tests-umbrella.h */,
-				8E79B79F8B586A7B054D537E9CFFD141 /* Pods-SJMP3Player_Tests.debug.xcconfig */,
-				D00774CD2CB6C31FA4B0E13D828653CF /* Pods-SJMP3Player_Tests.release.xcconfig */,
-			);
-			name = "Pods-SJMP3Player_Tests";
-			path = "Target Support Files/Pods-SJMP3Player_Tests";
-			sourceTree = "<group>";
-		};
-		B3602DCF01140CAEFD4C15A7587FC634 /* Masonry */ = {
-			isa = PBXGroup;
-			children = (
-				E785FB6DAEFFF46B98600ACFAAF0850A /* MASCompositeConstraint.h */,
-				DC81ECCCF8CDBCA949C9BE27FCD6C11E /* MASCompositeConstraint.m */,
-				BD54DA60FC4E5400A2EDC77660C9310B /* MASConstraint.h */,
-				32C5C9C37E4F0AE5F66B9E444FB7DFB2 /* MASConstraint.m */,
-				AF176EF48F19123F40D987413F6AC9BD /* MASConstraint+Private.h */,
-				F52F8E899F9CA9A976C1981498E8E0BF /* MASConstraintMaker.h */,
-				4FD8412813E6BE39A755D91FDE86762C /* MASConstraintMaker.m */,
-				09E26CF586994EF475C9959E5FEEE43B /* MASLayoutConstraint.h */,
-				DFC85E1501720DE55915D5966B503723 /* MASLayoutConstraint.m */,
-				87F550A202EB6789053976C42C8AFC68 /* Masonry.h */,
-				5DCD0DE847CFC1A7EE02496929497B91 /* MASUtilities.h */,
-				E6C39BE939B12A6FBD832DCE1D6E3B46 /* MASViewAttribute.h */,
-				3C1994E4C6A656BB68FA46FB4F1DD57C /* MASViewAttribute.m */,
-				F3882DD38CAA8CEC748A05A0B10D0C2B /* MASViewConstraint.h */,
-				850A5D0B78AB7E01048D5C753108D79D /* MASViewConstraint.m */,
-				4617ACAD7A51C76A06BDA101B93CB361 /* NSArray+MASAdditions.h */,
-				BCE1C27368CA8A8D0994D9B4DB8C7B68 /* NSArray+MASAdditions.m */,
-				61DCFE93D573E22C464C65CCA9E846AE /* NSArray+MASShorthandAdditions.h */,
-				644E8B0B56CDBC047E610E44A4DFC884 /* NSLayoutConstraint+MASDebugAdditions.h */,
-				34E62F945726496ACAF862B321204C41 /* NSLayoutConstraint+MASDebugAdditions.m */,
-				BD1210BD747DF7D89ADF22E865D0A0DC /* View+MASAdditions.h */,
-				70BEAEF007C84123D724B5C59E208FDD /* View+MASAdditions.m */,
-				459B4639A1C71311F3D424803218B0A2 /* View+MASShorthandAdditions.h */,
-				7FD57E52F64248B79052DC9B61EFBC98 /* ViewController+MASAdditions.h */,
-				F06A9F7CB90A233BA02C970E7759B052 /* ViewController+MASAdditions.m */,
-				F50589656DB7BC314194353AB0FADA38 /* Support Files */,
-			);
-			path = Masonry;
-			sourceTree = "<group>";
-		};
-		E1F29248614BEB10478509E3B45593F9 /* SJMP3Player */ = {
-			isa = PBXGroup;
-			children = (
-				0520F76BC9D8FDA375C79D55533A7B09 /* SJMP3Player.h */,
-				70F50F6A28A8DC23FDB73DFA14EA38B6 /* SJMP3Player.m */,
-				EBDCEB1E10A34A6BEDB8FCF4A28EB1F3 /* Support Files */,
-			);
-			name = SJMP3Player;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		E73035AAE8F85B15128495EB0F1E7F06 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3FDFBB75DF0A1579E171573D01B22EDA /* Pods-SJMP3Player_Example */,
-				B233D4747E82A37844531F6160DAA5B0 /* Pods-SJMP3Player_Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		E8104B7D41C64FAD0BFBB63B934E7FF5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1AA08BBE4FC179FE1F486F38AA96E640 /* FBSnapshotTestCase.framework */,
-				1CFD19813B090460DB712B499933CB80 /* Masonry.framework */,
-				EA9540EEEA8CE6C5BDD4B3FEEEC88A44 /* Pods_SJMP3Player_Example.framework */,
-				6ECC77A7937D4F7985F124056C643B3D /* Pods_SJMP3Player_Tests.framework */,
-				451591628F27499FBC3DBEBAA61A2795 /* SJMP3Player.framework */,
-				530F7ED67567C20239FB3ACC7BF03035 /* SJSlider.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EBDCEB1E10A34A6BEDB8FCF4A28EB1F3 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9E727E7614045F75CBF55D38BB9D9E04 /* Info.plist */,
-				69A266CB6A0EADC735427E2570C00BA9 /* SJMP3Player.modulemap */,
-				B16F8972FD2F74E363236F5ABD85FEC6 /* SJMP3Player.xcconfig */,
-				3FB8D59FEE26DAC019CD8CE9BD174CD1 /* SJMP3Player-dummy.m */,
-				BCA4F83AD3027FF0F064B5259F5B1D42 /* SJMP3Player-prefix.pch */,
-				492019536904AB9BF55B02DCB6FD190F /* SJMP3Player-umbrella.h */,
+				21ED79056B705E621A4B37872D0E0A6D /* Info.plist */,
+				A563F850CD92A2848C44BB808475D9B9 /* SJMP3Player.modulemap */,
+				4D9ED1E239139535E4A74F385F61EF76 /* SJMP3Player.xcconfig */,
+				83D05AD35C73CC96460AB4F0BACF98CF /* SJMP3Player-dummy.m */,
+				27A7E4C395ADC40B85E700F0458269FE /* SJMP3Player-prefix.pch */,
+				793A62767FF58A163B397D228F976F9B /* SJMP3Player-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/SJMP3Player";
 			sourceTree = "<group>";
 		};
-		F2E44A061E6D90C63A8C508AA8CC2DDD /* Pods */ = {
+		6571431D7513854ED6FBCDF9657230C6 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				F40D19B14C850AA19EF2AE0FB6835B75 /* FBSnapshotTestCase */,
-				B3602DCF01140CAEFD4C15A7587FC634 /* Masonry */,
-				22CA8EE33AD8785E33A547AE67BBA4A6 /* SJSlider */,
+				667D1D3D9969511D009DB295D177B6B6 /* LICENSE */,
+				D140CF18AEA697B403053BC385D6C8D8 /* README.md */,
+				CF9C85A970B221440BEA62ECBE7C32A2 /* SJMP3Player.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		6B7DEA150CB727798777ED714A399013 /* SwiftSupport */ = {
+			isa = PBXGroup;
+			children = (
+				60F5FF50D790C40EA7DCA898EA8E0FD0 /* SwiftSupport.swift */,
+			);
+			name = SwiftSupport;
+			sourceTree = "<group>";
+		};
+		6CBA011103E5AEAF95994CD98D99ED38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				544CCC020F2EC4AA412074E18C3264D2 /* Masonry.framework */,
+				8EECEDD5EF7132549F2268939687D3DE /* SJDownloadDataTask.framework */,
+				FD33B09A1C3AAF51D2608751C80C3532 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				4A9FE574BFBCBB2E9E4544FE8432A193 /* Development Pods */,
+				6CBA011103E5AEAF95994CD98D99ED38 /* Frameworks */,
+				87418B9834C4DBCF39272C8E4DF146AF /* Pods */,
+				2FDE73295F89CE99999269EA7E705E13 /* Products */,
+				E73035AAE8F85B15128495EB0F1E7F06 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		87418B9834C4DBCF39272C8E4DF146AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				153B5A1C9ED557B5EB7F687063A362F3 /* FBSnapshotTestCase */,
+				9F9F6B1CDC273D2466B3ABC498D8A526 /* Masonry */,
+				E2A5E0230043B72D3E1632F3D6EC7A44 /* SJDownloadDataTask */,
+				DD6B12D0905718882AF6156FB056A27E /* SJSlider */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F40D19B14C850AA19EF2AE0FB6835B75 /* FBSnapshotTestCase */ = {
+		9F9F6B1CDC273D2466B3ABC498D8A526 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
-				58F27BC59D926CA70273212BD9D7032E /* Core */,
-				753393F1119C01759A81A07DB8D7131B /* Support Files */,
-				533D349F436CF07B7821B53FCD72A899 /* SwiftSupport */,
+				D7F322C852AD5C7D1764A1C80D19811F /* MASCompositeConstraint.h */,
+				587CC27C0CCBF6AB50AE603A5B56DA8C /* MASCompositeConstraint.m */,
+				A406C3EE35AA5C3445E48B8E4DCB7F30 /* MASConstraint.h */,
+				F271B34388889B0B9118961307531E07 /* MASConstraint.m */,
+				1495736A9F3B3211A6F74CAF156EA155 /* MASConstraint+Private.h */,
+				4C970EF91E2802917AE4DB5DF0BBC374 /* MASConstraintMaker.h */,
+				996ECBB7439989E0358777DF40AF9A39 /* MASConstraintMaker.m */,
+				DDDD034F8C813D32FAFD345620928A9E /* MASLayoutConstraint.h */,
+				7305156BA5BF82CEF5E8A37A03DA3B52 /* MASLayoutConstraint.m */,
+				456B0B70578C9EDF8B9D8A1E37011355 /* Masonry.h */,
+				16BA079000F9029386D669CD84FBA623 /* MASUtilities.h */,
+				C03FD0402ED60D3AF1B2E48A24ECA83C /* MASViewAttribute.h */,
+				694C4D2E0F79B32627321E5E02754F58 /* MASViewAttribute.m */,
+				8E4D5B55353A39716454399D2D517804 /* MASViewConstraint.h */,
+				B870C17D1B8637FD7452BC747ABC38CE /* MASViewConstraint.m */,
+				96567FE703790857E082C24B01D8BA7D /* NSArray+MASAdditions.h */,
+				AB03910E763BBCDF88C6FAF7C6E88DE5 /* NSArray+MASAdditions.m */,
+				BC3A7EF05D62D5D9498DE5E1D49A50F8 /* NSArray+MASShorthandAdditions.h */,
+				2E021A0AFE16C50269CD39DB5F98286A /* NSLayoutConstraint+MASDebugAdditions.h */,
+				76C6D91C544B0F353B7B931289670AFD /* NSLayoutConstraint+MASDebugAdditions.m */,
+				BC90DEFDA4EDF635B0889F15ECF49E44 /* View+MASAdditions.h */,
+				9D45967A005DF76EADE007845AC2A649 /* View+MASAdditions.m */,
+				DA62B6BB5D5A5EE680CBA711DD73D80F /* View+MASShorthandAdditions.h */,
+				3E80024746A7A14A578BDACF28B1F09C /* ViewController+MASAdditions.h */,
+				893054261D77AF18C092B101E15251FA /* ViewController+MASAdditions.m */,
+				EF91004857CC1E8C11E7CC31838B5132 /* Support Files */,
 			);
-			path = FBSnapshotTestCase;
+			name = Masonry;
+			path = Masonry;
 			sourceTree = "<group>";
 		};
-		F50589656DB7BC314194353AB0FADA38 /* Support Files */ = {
+		AB277FF3A88CDB2E0F0FC73B10FE3234 /* Pods-SJMP3Player_Example */ = {
 			isa = PBXGroup;
 			children = (
-				CD49E73667E2078EDC8E61D7985F2C95 /* Info.plist */,
-				E3C7671196F4C8EAC0B923D9EDA4B49B /* Masonry.modulemap */,
-				1D87CFA0E81DACDB28EB1F683C896732 /* Masonry.xcconfig */,
-				97F8FEF187BF09535E2FCFB8D7302EB4 /* Masonry-dummy.m */,
-				232167733E6041158FB1B2FF805BD40B /* Masonry-prefix.pch */,
-				C174869D30AE840AE27882B138441839 /* Masonry-umbrella.h */,
+				30F611FD37BC0B19947F04DF5C8A0B00 /* Info.plist */,
+				916F7E4851BFBEF97CC2004C0AA0556D /* Pods-SJMP3Player_Example.modulemap */,
+				DBB61F8F012AEC9D626C789669D126D0 /* Pods-SJMP3Player_Example-acknowledgements.markdown */,
+				8A8CEE49E75C8AA4DB90A1C0D87FB628 /* Pods-SJMP3Player_Example-acknowledgements.plist */,
+				3D67A7DFD49F7479719712532D5A700E /* Pods-SJMP3Player_Example-dummy.m */,
+				129DB74CA5C63670DA1C24E051BB4D74 /* Pods-SJMP3Player_Example-frameworks.sh */,
+				3DEA92530DAF5C0C95A3CE4A3FA00EDF /* Pods-SJMP3Player_Example-resources.sh */,
+				856FB545FC71C9564B1C22CE0DE88FCC /* Pods-SJMP3Player_Example-umbrella.h */,
+				1C34CAA18B9780103489B5C18AF6640C /* Pods-SJMP3Player_Example.debug.xcconfig */,
+				FD56229521244A8AF80F1378DFF5CA42 /* Pods-SJMP3Player_Example.release.xcconfig */,
+			);
+			name = "Pods-SJMP3Player_Example";
+			path = "Target Support Files/Pods-SJMP3Player_Example";
+			sourceTree = "<group>";
+		};
+		BBF511647F7D23C1E35D19935A19A321 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE1CDE29E63B50473120C5E8B9291833 /* FBSnapshotTestCase.modulemap */,
+				2293CE6D8AF750B67A91F5704B04BA09 /* FBSnapshotTestCase.xcconfig */,
+				4AD4CF4F6716F8BAB685F39C174D7C6B /* FBSnapshotTestCase-dummy.m */,
+				1D3DEE91D98A274F052264CFB533E2C8 /* FBSnapshotTestCase-prefix.pch */,
+				B54773A9CAADF392D404948024B5E613 /* FBSnapshotTestCase-umbrella.h */,
+				6999F85D15178723E237B8D0219290DB /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSnapshotTestCase";
+			sourceTree = "<group>";
+		};
+		DA4069EF4BAAA0C5B01EA4841CAD8CEF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				13C530B498010E8E949EC72B92447AC4 /* FBSnapshotTestCase.h */,
+				3B2C6CC654F12421E1B2EDB3B4968846 /* FBSnapshotTestCase.m */,
+				72A32D9CBA059B607914ED18BCC04DCD /* FBSnapshotTestCasePlatform.h */,
+				F2D084779B9BE272B8238F2E28FDDAB2 /* FBSnapshotTestCasePlatform.m */,
+				9486250FAA662548A8ECE1E55632C25B /* FBSnapshotTestController.h */,
+				82A25803624DAFBCF0B349D1C622B7D4 /* FBSnapshotTestController.m */,
+				4B01F020A8F7AC7796EC3C1AAC8AF082 /* UIApplication+StrictKeyWindow.h */,
+				7AA0B34DE40E4D177D870D91E4361E14 /* UIApplication+StrictKeyWindow.m */,
+				9C70DED613997EFDE4A4198DF4FB0F89 /* UIImage+Compare.h */,
+				54925CCC42E8D21E2D9902719A6CB7A6 /* UIImage+Compare.m */,
+				35B6E14C52EE504A56C88EDE2231C649 /* UIImage+Diff.h */,
+				D4458E714EE8291E3AEE45AF25F14F34 /* UIImage+Diff.m */,
+				98D9D115F3E84AE07231CB683D052BD7 /* UIImage+Snapshot.h */,
+				3B9C17A5481BE108F99B7F18077DA7F3 /* UIImage+Snapshot.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		DD6B12D0905718882AF6156FB056A27E /* SJSlider */ = {
+			isa = PBXGroup;
+			children = (
+				70E999F2029B050D2374C6F47CB569AC /* SJButtonSlider.h */,
+				01C04A9A5B41DA58D33EE20726DCF42A /* SJButtonSlider.m */,
+				BE14B52420932AF4B023A34460FFF0FE /* SJCommonSlider.h */,
+				D46931EB937224C51F4B4C2C7D6771EB /* SJCommonSlider.m */,
+				B858961D20D094FE7279549216A193A8 /* SJLabelSlider.h */,
+				B9559E0F06DEE9D71AD275B94F2ACA21 /* SJLabelSlider.m */,
+				95898E206E8DE0010EA86B7771C55810 /* SJSlider.h */,
+				B1CFFC2DC67EF12B938B422B39BC749A /* SJSlider.m */,
+				44D2976C7569A4A2B3844AEC1AB0DE82 /* Support Files */,
+			);
+			name = SJSlider;
+			path = SJSlider;
+			sourceTree = "<group>";
+		};
+		E239D6BC508BCBAA0EF9C987CACDF1A1 /* Pods-SJMP3Player_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8FF6005521A8F751E06EC30F27BD704F /* Info.plist */,
+				2A915DFD42952F876D16C10B37D2F18F /* Pods-SJMP3Player_Tests.modulemap */,
+				94137F68827742117FBE06A1B9422E87 /* Pods-SJMP3Player_Tests-acknowledgements.markdown */,
+				A791978636E3225839C9B6B41D89EA1F /* Pods-SJMP3Player_Tests-acknowledgements.plist */,
+				54D721050A200F5F305BCCBF1FAFF072 /* Pods-SJMP3Player_Tests-dummy.m */,
+				915E04FF79A0C21BF8FFE3E91D88EA5A /* Pods-SJMP3Player_Tests-frameworks.sh */,
+				EC9BF9D03307CCB2B040FFF56A6CD0E0 /* Pods-SJMP3Player_Tests-resources.sh */,
+				71BF596387F0FF2271675C71A75420A7 /* Pods-SJMP3Player_Tests-umbrella.h */,
+				10FE6FAFEE1FD98421FD73FB660DA8B3 /* Pods-SJMP3Player_Tests.debug.xcconfig */,
+				589F2B6969FD70F2EF244D0F6C1B2D9F /* Pods-SJMP3Player_Tests.release.xcconfig */,
+			);
+			name = "Pods-SJMP3Player_Tests";
+			path = "Target Support Files/Pods-SJMP3Player_Tests";
+			sourceTree = "<group>";
+		};
+		E2A5E0230043B72D3E1632F3D6EC7A44 /* SJDownloadDataTask */ = {
+			isa = PBXGroup;
+			children = (
+				BD4C107B71241F59691D0006BD9B7BA4 /* SJDownloadDataTask.h */,
+				8855EDB49CBD2689AB46404AF7399EC3 /* SJDownloadDataTask.m */,
+				2E333AEA44D95427562AFF20ED7D7155 /* Support Files */,
+			);
+			name = SJDownloadDataTask;
+			path = SJDownloadDataTask;
+			sourceTree = "<group>";
+		};
+		E73035AAE8F85B15128495EB0F1E7F06 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB277FF3A88CDB2E0F0FC73B10FE3234 /* Pods-SJMP3Player_Example */,
+				E239D6BC508BCBAA0EF9C987CACDF1A1 /* Pods-SJMP3Player_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EF8ABECB18AE3DE83D0E618638DDE27B /* SJMP3Player */ = {
+			isa = PBXGroup;
+			children = (
+				25416446A2DDE0F8C91F2C5097BB8DA7 /* SJMP3Player.h */,
+				ECBFD477E973FE27903A7BC79038B43F /* SJMP3Player.m */,
+				6571431D7513854ED6FBCDF9657230C6 /* Pod */,
+				4F5FFC7D891FAFA22ABAAC12A7F0F545 /* Support Files */,
+			);
+			name = SJMP3Player;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		EF91004857CC1E8C11E7CC31838B5132 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				68C8DA01C8BFDB44870D1E094427B2C5 /* Info.plist */,
+				E14E051873B31420F099B6AA02EA9AA7 /* Masonry.modulemap */,
+				9154810B0520D52A46009809BD8B9BE5 /* Masonry.xcconfig */,
+				D4E8561BD3A4CB01C43F93D3CE41EF5F /* Masonry-dummy.m */,
+				1DA0BEAD449B7CB2BD808D881ED34C92 /* Masonry-prefix.pch */,
+				5F667C55D2E84F820C2DB7F29231A70C /* Masonry-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Masonry";
 			sourceTree = "<group>";
 		};
+		FD33B09A1C3AAF51D2608751C80C3532 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D7D2F6DBE3BB74EA764ADDFAA035C10A /* Foundation.framework */,
+				C2522C8B2D5698504FCC569616447991 /* MediaPlayer.framework */,
+				F8BF6FE2E57F7C81D26C14A68A3C4EFF /* QuartzCore.framework */,
+				DEBF2993701C18D1D09B23E804CE9946 /* UIKit.framework */,
+				F2B8D6F8840F8B6F5E027EA5F4BEC414 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		44B2FEBA7F2CFB8A57B3B76E72944405 /* Headers */ = {
+		37EB72E5E238CDBDE650E6549BF8D748 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				623BE665F7E59F7830C0F48CB0B78D16 /* Pods-SJMP3Player_Example-umbrella.h in Headers */,
+				6144C21FDEEC3646AFBE4B7AD85F95DD /* SJMP3Player-umbrella.h in Headers */,
+				0A04E65418C1F6B4AA81B391C74CE0BD /* SJMP3Player.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66E02817601969478076A61B0D3C2A99 /* Headers */ = {
+		5CFE19D7289617949800C7D2BF376ED0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7759C3271FAD8C6400E651A3 /* SJMP3Player.h in Headers */,
-				A0B0DE5897EB8FCA5D3EBE4DB1F9A170 /* SJMP3Player-umbrella.h in Headers */,
+				A4CBAA7A6641F3CF7F26A6FADAFC8FC7 /* Pods-SJMP3Player_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77321CD586029DAB77CD1C1DAC2F72D2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				465BAC52D7F612E5C16584912D9935E4 /* SJDownloadDataTask-umbrella.h in Headers */,
+				5F65876A2707AF5CA09851F8F1ED4D79 /* SJDownloadDataTask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,20 +692,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B0E7C5CD2410BE5D7D408578E77BF575 /* Headers */ = {
+		A801207398E3202EC90182C82220B4B6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B461333640F8AF0757D429479E14395E /* SJSlider-umbrella.h in Headers */,
-				14337DD9B9C79572251592F27BC4CC38 /* SJSlider.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C0AE30CB12B248AB866C8D0CD00BCB2E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1047E50A801F9FFBB2C331EEF49C3BF7 /* Pods-SJMP3Player_Tests-umbrella.h in Headers */,
+				8201759BE279D38EC53DC4C2C1F9DABF /* SJButtonSlider.h in Headers */,
+				F9598C65273BDA8E1D3AB44908A953EF /* SJCommonSlider.h in Headers */,
+				92C32467D9594BE0ED4C49B1A11B76A8 /* SJLabelSlider.h in Headers */,
+				CC3B671DB053D6DBF340BEAD0C736E38 /* SJSlider-umbrella.h in Headers */,
+				DAE581CF537C8D5FB95FC6481D7AC441 /* SJSlider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,24 +727,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE8AA463089A327AF19886D58740749F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFAED5D3709902959D71C7F28E21ADD8 /* Pods-SJMP3Player_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1C7AADEF067927BA8A14CDC5EFC45310 /* SJMP3Player */ = {
+		0269389E2DDAECDDB4670CD28AAA979A /* Pods-SJMP3Player_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E97639B8CBAA340C13AAD26F01571864 /* Build configuration list for PBXNativeTarget "SJMP3Player" */;
+			buildConfigurationList = 7470D487E1C4CC292FD97E2593566FDA /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Example" */;
 			buildPhases = (
-				08C4D614A7F86D2238AF6208B536A618 /* Sources */,
-				1A15479976BBAC6C13B586C74B2EF676 /* Frameworks */,
-				66E02817601969478076A61B0D3C2A99 /* Headers */,
+				A220C181EEB770B7CA25856CBA24CC1C /* Sources */,
+				2DE2B71ECCED68D47FAD70ED4E9785E2 /* Frameworks */,
+				FE8AA463089A327AF19886D58740749F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				13C1967CC9C6D984D3DD0CBFF9DA7EF2 /* PBXTargetDependency */,
+				0370C30F9F04EA61D48BF4DD43F17DB1 /* PBXTargetDependency */,
+				B29A43180DFB53729300C7213EE1FC44 /* PBXTargetDependency */,
+				93D79DD327809011C5B75B5D3BADBEC4 /* PBXTargetDependency */,
+			);
+			name = "Pods-SJMP3Player_Example";
+			productName = "Pods-SJMP3Player_Example";
+			productReference = B550ECCD5C5DABC55715B24C9677377B /* Pods_SJMP3Player_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2E863D479E02B1756B25415BEB3CE830 /* SJMP3Player */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3164BD337F70A37580F3E448373F19EE /* Build configuration list for PBXNativeTarget "SJMP3Player" */;
+			buildPhases = (
+				1A4A1A12AF0CADD96B8A333583990D2A /* Sources */,
+				56C8774640FE785E0D345E7465B28160 /* Frameworks */,
+				37EB72E5E238CDBDE650E6549BF8D748 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A38089D466E905C20BCE5EC4A6C82253 /* PBXTargetDependency */,
 			);
 			name = SJMP3Player;
 			productName = SJMP3Player;
-			productReference = 451591628F27499FBC3DBEBAA61A2795 /* SJMP3Player.framework */;
+			productReference = 4704D344440AA06B7147957587AE47AF /* SJMP3Player.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		34CD2E3428AB802BACA62286FF5074B1 /* FBSnapshotTestCase */ = {
@@ -644,43 +791,7 @@
 			);
 			name = FBSnapshotTestCase;
 			productName = FBSnapshotTestCase;
-			productReference = 1AA08BBE4FC179FE1F486F38AA96E640 /* FBSnapshotTestCase.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		5D79D6147E26FF3FA2B945AE02558B22 /* SJSlider */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BEB69223E497E71193CD3F399E889426 /* Build configuration list for PBXNativeTarget "SJSlider" */;
-			buildPhases = (
-				91A441060467593C67765C608E656A16 /* Sources */,
-				00174F4281ACABC9B49BEB6B617FE779 /* Frameworks */,
-				B0E7C5CD2410BE5D7D408578E77BF575 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8CF7C4032CB95D0117218E3C41FBC43A /* PBXTargetDependency */,
-			);
-			name = SJSlider;
-			productName = SJSlider;
-			productReference = 530F7ED67567C20239FB3ACC7BF03035 /* SJSlider.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		812D71998DA5ADB951EFF1913503E269 /* Pods-SJMP3Player_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 48E8446EE870D8146AC904122BCFB00E /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Tests" */;
-			buildPhases = (
-				C6FFE90A2828E2F21EA09BFECE1ADAC6 /* Sources */,
-				4A10A6259CDE0C63F0F0AEE078AF8881 /* Frameworks */,
-				C0AE30CB12B248AB866C8D0CD00BCB2E /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83F98B1FAA65613C63D3E9B6590A1E0C /* PBXTargetDependency */,
-			);
-			name = "Pods-SJMP3Player_Tests";
-			productName = "Pods-SJMP3Player_Tests";
-			productReference = 6ECC77A7937D4F7985F124056C643B3D /* Pods_SJMP3Player_Tests.framework */;
+			productReference = 0BBF5A0ABD7DF466234E21485C31FFC0 /* FBSnapshotTestCase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D52144DE9D7255DE912490FF5A806573 /* Masonry */ = {
@@ -697,27 +808,61 @@
 			);
 			name = Masonry;
 			productName = Masonry;
-			productReference = 1CFD19813B090460DB712B499933CB80 /* Masonry.framework */;
+			productReference = 41322798DA81ACDCE5815B58EF8F2B15 /* Masonry.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DF20B156CC38B1DFCE5C7C13FF413E6B /* Pods-SJMP3Player_Example */ = {
+		E4B7BB112CE3AE421D0FF3E0D6FEB7F2 /* SJSlider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4626915D18ECEC3D39D543B86F68F180 /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Example" */;
+			buildConfigurationList = 61F336AD8E1DB26164EAAD395014394B /* Build configuration list for PBXNativeTarget "SJSlider" */;
 			buildPhases = (
-				12066AF54E7864D50389EBC0131E6A97 /* Sources */,
-				6CD4258DD9AEA7467F546C97EBC19C8B /* Frameworks */,
-				44B2FEBA7F2CFB8A57B3B76E72944405 /* Headers */,
+				BEAAD69536F47EF5A4BBD3DABF0D5F50 /* Sources */,
+				2DF6DE3713E7E9043CC3AE5C01D6C434 /* Frameworks */,
+				A801207398E3202EC90182C82220B4B6 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8745738EE6436818D7A09D7098EBB7A8 /* PBXTargetDependency */,
-				CCC18C33BB78C2006BF4E160B8CEEAE0 /* PBXTargetDependency */,
-				7E5068A3659F01C1F686E3C5FCB2FF76 /* PBXTargetDependency */,
+				45E6E91F9EDD97ED89833E6D427D2776 /* PBXTargetDependency */,
 			);
-			name = "Pods-SJMP3Player_Example";
-			productName = "Pods-SJMP3Player_Example";
-			productReference = EA9540EEEA8CE6C5BDD4B3FEEEC88A44 /* Pods_SJMP3Player_Example.framework */;
+			name = SJSlider;
+			productName = SJSlider;
+			productReference = 85F3D138332EF0C829E5A83FCD6C8D83 /* SJSlider.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ED28B2BA600F43BC0C1DE63C84FD3379 /* SJDownloadDataTask */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48B8581751180BCAF5C09AC8B68CDFD8 /* Build configuration list for PBXNativeTarget "SJDownloadDataTask" */;
+			buildPhases = (
+				C1E0A98A3BC87BC95BB5762AD305B11D /* Sources */,
+				B2640A40ECD310043152FE5584C8D552 /* Frameworks */,
+				77321CD586029DAB77CD1C1DAC2F72D2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SJDownloadDataTask;
+			productName = SJDownloadDataTask;
+			productReference = 92008F78C7322B5AA02AFFBDDED4120D /* SJDownloadDataTask.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F9F8708FD46B3737B7ACB41EE0BC4A77 /* Pods-SJMP3Player_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D76D04D3BC8E6F352B53C31B2AF4076 /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Tests" */;
+			buildPhases = (
+				EDA4D96BFD78B75160382D4912674481 /* Sources */,
+				14D7C3ED69ABF9F90136AF2D26AC3693 /* Frameworks */,
+				5CFE19D7289617949800C7D2BF376ED0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF9F7CB45340CA144039817B8C73960A /* PBXTargetDependency */,
+				A1B2DA9B7FFC911D4DC19B583A9A5B57 /* PBXTargetDependency */,
+			);
+			name = "Pods-SJMP3Player_Tests";
+			productName = "Pods-SJMP3Player_Tests";
+			productReference = BC250ED5D6893C4369C1867D03262E48 /* Pods_SJMP3Player_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -726,13 +871,8 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					34CD2E3428AB802BACA62286FF5074B1 = {
-						LastSwiftMigration = 0900;
-					};
-				};
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -742,16 +882,17 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E8104B7D41C64FAD0BFBB63B934E7FF5 /* Products */;
+			productRefGroup = 2FDE73295F89CE99999269EA7E705E13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				34CD2E3428AB802BACA62286FF5074B1 /* FBSnapshotTestCase */,
 				D52144DE9D7255DE912490FF5A806573 /* Masonry */,
-				DF20B156CC38B1DFCE5C7C13FF413E6B /* Pods-SJMP3Player_Example */,
-				812D71998DA5ADB951EFF1913503E269 /* Pods-SJMP3Player_Tests */,
-				1C7AADEF067927BA8A14CDC5EFC45310 /* SJMP3Player */,
-				5D79D6147E26FF3FA2B945AE02558B22 /* SJSlider */,
+				0269389E2DDAECDDB4670CD28AAA979A /* Pods-SJMP3Player_Example */,
+				F9F8708FD46B3737B7ACB41EE0BC4A77 /* Pods-SJMP3Player_Tests */,
+				ED28B2BA600F43BC0C1DE63C84FD3379 /* SJDownloadDataTask */,
+				2E863D479E02B1756B25415BEB3CE830 /* SJMP3Player */,
+				E4B7BB112CE3AE421D0FF3E0D6FEB7F2 /* SJSlider */,
 			);
 		};
 /* End PBXProject section */
@@ -775,37 +916,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		08C4D614A7F86D2238AF6208B536A618 /* Sources */ = {
+		1A4A1A12AF0CADD96B8A333583990D2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD38E8074200324FC6C24DC4F61211A8 /* SJMP3Player-dummy.m in Sources */,
-				50053DD5E4D8590F84453AC4156516C4 /* SJMP3Player.m in Sources */,
+				BE27DDFE3CC25F8F648CDE66E6E76FB1 /* SJMP3Player-dummy.m in Sources */,
+				77ECE80C3DB28037F83494981D3A794D /* SJMP3Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		12066AF54E7864D50389EBC0131E6A97 /* Sources */ = {
+		A220C181EEB770B7CA25856CBA24CC1C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9FBDB0754BDF395B4702815189C766E /* Pods-SJMP3Player_Example-dummy.m in Sources */,
+				403AFB2C46B0BA67C4A2D2576ABA62B3 /* Pods-SJMP3Player_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		91A441060467593C67765C608E656A16 /* Sources */ = {
+		BEAAD69536F47EF5A4BBD3DABF0D5F50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3473165E59A26BDFE66688FA6F15834 /* SJSlider-dummy.m in Sources */,
-				165DDE3E06A88299D450CE88B4104AF8 /* SJSlider.m in Sources */,
+				42378530225FFD755FFA4E8847DF8054 /* SJButtonSlider.m in Sources */,
+				4ADB9850E2BF0EF5AF55E1620C8A9D20 /* SJCommonSlider.m in Sources */,
+				4A97499E7D39F3E4E9E9E0D752D89D3C /* SJLabelSlider.m in Sources */,
+				02561E348DA58D723D00638FEFACE044 /* SJSlider-dummy.m in Sources */,
+				D4C772AB3A8B6D517A21B55D9CF3ACFA /* SJSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C6FFE90A2828E2F21EA09BFECE1ADAC6 /* Sources */ = {
+		C1E0A98A3BC87BC95BB5762AD305B11D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6A057724D8983B4125E92647810782B /* Pods-SJMP3Player_Tests-dummy.m in Sources */,
+				13D0353DD164CE01EA25F451FA624B44 /* SJDownloadDataTask-dummy.m in Sources */,
+				06D555D8AFDE49A111F7F8C5029F1444 /* SJDownloadDataTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,354 +970,219 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDA4D96BFD78B75160382D4912674481 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				805CEE9E0C9DF6E3E658366C805C20D3 /* Pods-SJMP3Player_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7E5068A3659F01C1F686E3C5FCB2FF76 /* PBXTargetDependency */ = {
+		0370C30F9F04EA61D48BF4DD43F17DB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SJDownloadDataTask;
+			target = ED28B2BA600F43BC0C1DE63C84FD3379 /* SJDownloadDataTask */;
+			targetProxy = 99D8996FABF4C9E924227DC9949C702F /* PBXContainerItemProxy */;
+		};
+		13C1967CC9C6D984D3DD0CBFF9DA7EF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Masonry;
+			target = D52144DE9D7255DE912490FF5A806573 /* Masonry */;
+			targetProxy = 93BDB6A4797E769A05299FF7B38E62F7 /* PBXContainerItemProxy */;
+		};
+		45E6E91F9EDD97ED89833E6D427D2776 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Masonry;
+			target = D52144DE9D7255DE912490FF5A806573 /* Masonry */;
+			targetProxy = BFA2960D5E8FF136725F9705CB23D490 /* PBXContainerItemProxy */;
+		};
+		93D79DD327809011C5B75B5D3BADBEC4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SJSlider;
-			target = 5D79D6147E26FF3FA2B945AE02558B22 /* SJSlider */;
-			targetProxy = 8181B822E0E3ECA81AF7325FB120D506 /* PBXContainerItemProxy */;
+			target = E4B7BB112CE3AE421D0FF3E0D6FEB7F2 /* SJSlider */;
+			targetProxy = EB58E27C9097EDCC94BCE757376E50EA /* PBXContainerItemProxy */;
 		};
-		83F98B1FAA65613C63D3E9B6590A1E0C /* PBXTargetDependency */ = {
+		A1B2DA9B7FFC911D4DC19B583A9A5B57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-SJMP3Player_Example";
+			target = 0269389E2DDAECDDB4670CD28AAA979A /* Pods-SJMP3Player_Example */;
+			targetProxy = 4C5B613661511B204C41C1CDA0DD4B9D /* PBXContainerItemProxy */;
+		};
+		A38089D466E905C20BCE5EC4A6C82253 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SJDownloadDataTask;
+			target = ED28B2BA600F43BC0C1DE63C84FD3379 /* SJDownloadDataTask */;
+			targetProxy = A7E043307A7AFADA0F4DB5BCFFA458B2 /* PBXContainerItemProxy */;
+		};
+		B29A43180DFB53729300C7213EE1FC44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SJMP3Player;
+			target = 2E863D479E02B1756B25415BEB3CE830 /* SJMP3Player */;
+			targetProxy = A4BFE804B41447AC4F473CD7511DB079 /* PBXContainerItemProxy */;
+		};
+		DF9F7CB45340CA144039817B8C73960A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBSnapshotTestCase;
 			target = 34CD2E3428AB802BACA62286FF5074B1 /* FBSnapshotTestCase */;
-			targetProxy = C91D4BD3D5B4503F440C9B820C738B71 /* PBXContainerItemProxy */;
-		};
-		8745738EE6436818D7A09D7098EBB7A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Masonry;
-			target = D52144DE9D7255DE912490FF5A806573 /* Masonry */;
-			targetProxy = 2173195105D9539BD259686321FC1BE7 /* PBXContainerItemProxy */;
-		};
-		8CF7C4032CB95D0117218E3C41FBC43A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Masonry;
-			target = D52144DE9D7255DE912490FF5A806573 /* Masonry */;
-			targetProxy = F48201F6D8B7CAD8D885A35E11FABBB7 /* PBXContainerItemProxy */;
-		};
-		CCC18C33BB78C2006BF4E160B8CEEAE0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SJMP3Player;
-			target = 1C7AADEF067927BA8A14CDC5EFC45310 /* SJMP3Player */;
-			targetProxy = 65E280054556C29FEFC70A204CF7E3A4 /* PBXContainerItemProxy */;
+			targetProxy = 8B3CA6C6C2D2A90D1FF790DA6B7194E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		055423804E2352C9E11BCF74F87E9AC2 /* Debug */ = {
+		1F1753C75664B8963E34604DD95E3C0F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD531444E2B3978D31F02A3A8CD29CEA /* FBSnapshotTestCase.xcconfig */;
+			baseConfigurationReference = FD56229521244A8AF80F1378DFF5CA42 /* Pods-SJMP3Player_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = FBSnapshotTestCase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		09E9A2A10D94881E21A18728511C269B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD531444E2B3978D31F02A3A8CD29CEA /* FBSnapshotTestCase.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FBSnapshotTestCase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		156C87683A1B421836D691C8EEADFB93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D00774CD2CB6C31FA4B0E13D828653CF /* Pods-SJMP3Player_Tests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Pods-SJMP3Player_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SJMP3Player_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		157AF0CD5E5AB2A2E74D3B8ECD865185 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		2ABED697F39C14D9E609CDED67BFBCDE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4170F77C107B5A603C1FD91C504F3E73 /* SJSlider.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SJSlider/SJSlider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SJSlider/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SJSlider/SJSlider.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SJSlider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		408164338FA0BF04285CE4331D227C8A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4170F77C107B5A603C1FD91C504F3E73 /* SJSlider.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SJSlider/SJSlider-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SJSlider/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SJSlider/SJSlider.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SJSlider;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5B2E97694B47B1C56E536D6C0F171AC5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B16F8972FD2F74E363236F5ABD85FEC6 /* SJMP3Player.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SJMP3Player/SJMP3Player-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SJMP3Player/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SJMP3Player/SJMP3Player.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SJMP3Player;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		65A1423554413195FA9D53686F1919C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5BFCD65F1A17AC7B48ED38D51C723B6 /* Pods-SJMP3Player_Example.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Example/Pods-SJMP3Player_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SJMP3Player_Example;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		80410A9A281E9B87CE0AE274ED819AFE /* Debug */ = {
+		2A9CDCCE4C61DD0A02E66FED4F855A12 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D87CFA0E81DACDB28EB1F683C896732 /* Masonry.xcconfig */;
+			baseConfigurationReference = 2BB2880474B29C2A21E09593D015FC27 /* SJDownloadDataTask.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SJDownloadDataTask/SJDownloadDataTask-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJDownloadDataTask/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJDownloadDataTask/SJDownloadDataTask.modulemap";
+				PRODUCT_MODULE_NAME = SJDownloadDataTask;
+				PRODUCT_NAME = SJDownloadDataTask;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2C8A9857209ADF46BEF27D9C6CE55FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 589F2B6969FD70F2EF244D0F6C1B2D9F /* Pods-SJMP3Player_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Pods-SJMP3Player_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		34165B93A83DC3EE022982DEEF717ECA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E53248E5B81E69D63254C00EEEDE964 /* SJSlider.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJSlider/SJSlider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJSlider/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJSlider/SJSlider.modulemap";
+				PRODUCT_MODULE_NAME = SJSlider;
+				PRODUCT_NAME = SJSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3845069A573E47CF21533487C497A730 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9154810B0520D52A46009809BD8B9BE5 /* Masonry.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Masonry/Masonry.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_MODULE_NAME = Masonry;
 				PRODUCT_NAME = Masonry;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1183,104 +1193,26 @@
 			};
 			name = Debug;
 		};
-		9559D3E45B7CE68D2EF5F10AEA4933D1 /* Debug */ = {
+		572561F7B3CECF7A30A1ABCF001E8103 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E79B79F8B586A7B054D537E9CFFD141 /* Pods-SJMP3Player_Tests.debug.xcconfig */;
+			baseConfigurationReference = 4D9ED1E239139535E4A74F385F61EF76 /* SJMP3Player.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Pods-SJMP3Player_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SJMP3Player_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B287FB44FDE4D79BCA0ADD6254257FFF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59D53D62468BBCCEAF03882E0F392E47 /* Pods-SJMP3Player_Example.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Example/Pods-SJMP3Player_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_SJMP3Player_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C5D1810CD2911F752AC9F8E951C966D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B16F8972FD2F74E363236F5ABD85FEC6 /* SJMP3Player.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SJMP3Player/SJMP3Player-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SJMP3Player/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SJMP3Player/SJMP3Player.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = SJMP3Player;
 				PRODUCT_NAME = SJMP3Player;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1289,85 +1221,377 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		EED546DBB23FC32035C9BDC4E22B30BD /* Debug */ = {
+		6B80330A4D3C365FEB75E3FD0D726723 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C34CAA18B9780103489B5C18AF6640C /* Pods-SJMP3Player_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Example/Pods-SJMP3Player_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8889736D3D08447FFCE1315CAAC1B2EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E53248E5B81E69D63254C00EEEDE964 /* SJSlider.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJSlider/SJSlider-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJSlider/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJSlider/SJSlider.modulemap";
+				PRODUCT_MODULE_NAME = SJSlider;
+				PRODUCT_NAME = SJSlider;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		F7F4B6B9A8E53E1F8A7F6D0F0D708EBF /* Release */ = {
+		A2766D0F1038B4E7A4313BF7DC6FEB0E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D87CFA0E81DACDB28EB1F683C896732 /* Masonry.xcconfig */;
+			baseConfigurationReference = 10FE6FAFEE1FD98421FD73FB660DA8B3 /* Pods-SJMP3Player_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SJMP3Player_Tests/Pods-SJMP3Player_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A38749C15819B02B742737E489EE0EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2293CE6D8AF750B67A91F5704B04BA09 /* FBSnapshotTestCase.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				PRODUCT_MODULE_NAME = FBSnapshotTestCase;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AB74B6A60AA3078D80BB7D633DFBCA01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2293CE6D8AF750B67A91F5704B04BA09 /* FBSnapshotTestCase.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				PRODUCT_MODULE_NAME = FBSnapshotTestCase;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ABB978B1C94619B82B18AB1B094CB027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BB2880474B29C2A21E09593D015FC27 /* SJDownloadDataTask.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJDownloadDataTask/SJDownloadDataTask-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJDownloadDataTask/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJDownloadDataTask/SJDownloadDataTask.modulemap";
+				PRODUCT_MODULE_NAME = SJDownloadDataTask;
+				PRODUCT_NAME = SJDownloadDataTask;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B42B54097A876E8A982CBF5DAA91B1AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CF4E3A6C74E79072C9B77E9A4B9D265A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D9ED1E239139535E4A74F385F61EF76 /* SJMP3Player.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJMP3Player/SJMP3Player-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJMP3Player/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJMP3Player/SJMP3Player.modulemap";
+				PRODUCT_MODULE_NAME = SJMP3Player;
+				PRODUCT_NAME = SJMP3Player;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FE3EC76958EB417BB5A9577967FD1019 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9154810B0520D52A46009809BD8B9BE5 /* Masonry.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Masonry/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Masonry/Masonry.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_MODULE_NAME = Masonry;
 				PRODUCT_NAME = Masonry;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1379,8 +1603,17 @@
 		02D024184BD368B565F3B6257DF3C605 /* Build configuration list for PBXNativeTarget "Masonry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				80410A9A281E9B87CE0AE274ED819AFE /* Debug */,
-				F7F4B6B9A8E53E1F8A7F6D0F0D708EBF /* Release */,
+				3845069A573E47CF21533487C497A730 /* Debug */,
+				FE3EC76958EB417BB5A9577967FD1019 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D76D04D3BC8E6F352B53C31B2AF4076 /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2766D0F1038B4E7A4313BF7DC6FEB0E /* Debug */,
+				2C8A9857209ADF46BEF27D9C6CE55FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1388,44 +1621,44 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EED546DBB23FC32035C9BDC4E22B30BD /* Debug */,
-				157AF0CD5E5AB2A2E74D3B8ECD865185 /* Release */,
+				8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */,
+				B42B54097A876E8A982CBF5DAA91B1AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4626915D18ECEC3D39D543B86F68F180 /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Example" */ = {
+		3164BD337F70A37580F3E448373F19EE /* Build configuration list for PBXNativeTarget "SJMP3Player" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65A1423554413195FA9D53686F1919C8 /* Debug */,
-				B287FB44FDE4D79BCA0ADD6254257FFF /* Release */,
+				572561F7B3CECF7A30A1ABCF001E8103 /* Debug */,
+				CF4E3A6C74E79072C9B77E9A4B9D265A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48E8446EE870D8146AC904122BCFB00E /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Tests" */ = {
+		48B8581751180BCAF5C09AC8B68CDFD8 /* Build configuration list for PBXNativeTarget "SJDownloadDataTask" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9559D3E45B7CE68D2EF5F10AEA4933D1 /* Debug */,
-				156C87683A1B421836D691C8EEADFB93 /* Release */,
+				ABB978B1C94619B82B18AB1B094CB027 /* Debug */,
+				2A9CDCCE4C61DD0A02E66FED4F855A12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEB69223E497E71193CD3F399E889426 /* Build configuration list for PBXNativeTarget "SJSlider" */ = {
+		61F336AD8E1DB26164EAAD395014394B /* Build configuration list for PBXNativeTarget "SJSlider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				408164338FA0BF04285CE4331D227C8A /* Debug */,
-				2ABED697F39C14D9E609CDED67BFBCDE /* Release */,
+				8889736D3D08447FFCE1315CAAC1B2EB /* Debug */,
+				34165B93A83DC3EE022982DEEF717ECA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E97639B8CBAA340C13AAD26F01571864 /* Build configuration list for PBXNativeTarget "SJMP3Player" */ = {
+		7470D487E1C4CC292FD97E2593566FDA /* Build configuration list for PBXNativeTarget "Pods-SJMP3Player_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B2E97694B47B1C56E536D6C0F171AC5 /* Debug */,
-				C5D1810CD2911F752AC9F8E951C966D8 /* Release */,
+				6B80330A4D3C365FEB75E3FD0D726723 /* Debug */,
+				1F1753C75664B8963E34604DD95E3C0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1433,8 +1666,8 @@
 		F28097D43AF5CD8DA838ABD52A053790 /* Build configuration list for PBXNativeTarget "FBSnapshotTestCase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				055423804E2352C9E11BCF74F87E9AC2 /* Debug */,
-				09E9A2A10D94881E21A18728511C269B /* Release */,
+				A38749C15819B02B742737E489EE0EEB /* Debug */,
+				AB74B6A60AA3078D80BB7D633DFBCA01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
