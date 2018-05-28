@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)player;
 - (void)playWithURL:(NSURL *)URL;
+/// 由外部提供源文件的播放时间, 这有助于让播放器更好的进行初始化工作
+- (void)playWithURL:(NSURL *)URL audioDuration:(NSTimeInterval)sec;
 
 @property (nonatomic, weak, nullable) id <SJMP3PlayerDelegate> delegate;
 @property (nonatomic, strong, readonly, nullable) NSURL *currentURL;

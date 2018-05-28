@@ -159,6 +159,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
 
 
 #pragma mark
+@property (nonatomic) NSTimeInterval audioDuration;
 @property (nonatomic) SJMP3PlayerFileOrigin fileOrigin;
 @property (nonatomic, strong, nullable) SJDownloadDataTask *task;
 @property (nonatomic) BOOL userClickedPause;
@@ -260,6 +261,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     self.downloadProgress = 0;
     self.isDownloaded = NO;
     self.fileOrigin = SJMP3PlayerFileOriginUnknown;
+    self.audioDuration = 0;
 }
 
 - (void)clearDiskAudioCache {
@@ -283,9 +285,14 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
 
 #pragma mark
 - (void)playWithURL:(NSURL *)URL {
-    if ( !URL ) return;
+    [self playWithURL:URL audioDuration:0];
+}
+
+- (void)playWithURL:(NSURL *)URL audioDuration:(NSTimeInterval)sec {
+    NSParameterAssert(URL);
     [self stop];
     [self.fileManager updateURL:URL];
+    self.audioDuration = sec;
     if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) {
         [self.delegate audioPlayer:self currentTime:0 reachableTime:0 totalTime:0];
     }
@@ -304,7 +311,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
         else if ( self.fileManager.isCached ) {
             [self _playFile:self.fileManager.fileURL
                  fileOrigin:SJMP3PlayerFileOriginCache];
-
+            
             if ( self.enableDBUG ) {
                 NSLog(@"\nSJMP3Player: -此次播放缓存文件, URL: %@, fileURL: %@ \n", URL, self.fileManager.fileURL);
             }
@@ -399,6 +406,9 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     if ( !audioPlayer ) return NO;
     audioPlayer.enableRate = YES;
     if ( ![audioPlayer prepareToPlay] ) return NO;
+    if ( self.audioDuration != 0 ) {
+        if ( audioPlayer.currentTime < self.audioDuration * 0.3 ) return NO;
+    }
     audioPlayer.delegate = self;
     audioPlayer.currentTime = currentTime;
     [audioPlayer play];
