@@ -8,13 +8,14 @@
 
 #import "SJViewController.h"
 #import <SJMP3Player/SJMP3Player.h>
-#import <SJSlider/SJSlider.h>
+#import <SJSlider/SJLabelSlider.h>
 #import <Masonry/Masonry.h>
-#import "SJMP3PlayerV2.h"
+#import "SJMP3Player.h"
 
-@interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate, SJMP3PlayerV2Delegate>
+@interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate, SJMP3PlayerDelegate>
 
-@property (nonatomic, strong, readonly) SJSlider *slider;
+@property (weak, nonatomic) IBOutlet UILabel *cacheSizeLabel;
+@property (nonatomic, strong, readonly) SJLabelSlider *slider;
 @property (nonatomic, strong, readonly) UIButton *downloadBtn;
 @property (nonatomic, strong, readonly) UIButton *speedUp;
 @property (nonatomic, strong, readonly) UIButton *speedCut;
@@ -22,7 +23,6 @@
 
 
 @property (nonatomic, strong, readonly) SJMP3Player *player;
-@property (nonatomic, strong) SJMP3PlayerV2 *playerv2;
 
 @end
 
@@ -32,8 +32,12 @@
 @synthesize downloadBtn = _downloadBtn;
 @synthesize slider = _slider;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%@", NSHomeDirectory());
+    
     [self.view addSubview:self.downloadBtn];
     [self.view addSubview:self.slider];
     [self.view addSubview:self.speedCut];
@@ -60,9 +64,13 @@
         make.centerX.equalTo(_speedUp);
     }];
     
+    [self _updateCacheSize];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)_updateCacheSize {
+    self.cacheSizeLabel.text = [NSString stringWithFormat:@"CacheSize: %0.2lfM", [self.player diskAudioCacheSize] / 1024 / 1024.0];
+}
 
 #pragma mark -
 
@@ -71,33 +79,54 @@
 }
 
 - (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player {
-    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
-
+    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"]];
 }
 
 - (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player {
-    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"]];
 }
 
 - (void)audioPlayer:(SJMP3Player *)player audioDownloadProgress:(CGFloat)progress {
-    _slider.bufferProgress = progress;
+    _slider.slider.bufferProgress = progress;
+}
+
+- (void)audioPlayer:(SJMP3Player *)player downloadFinishedForURL:(NSURL *)URL {
+    [self _updateCacheSize];
+    NSLog(@"文件缓存完毕");
 }
 
 - (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime {
-    if ( _slider.isDragging ) return;
+    if ( _slider.slider.isDragging ) return;
     if ( 0 == totalTime ) return;
-    _slider.value = currentTime * 1.0 / totalTime;
+    _slider.slider.value = currentTime * 1.0 / totalTime;
+    _slider.leftLabel.text = [self timeString:currentTime];
+    _slider.rightlabel.text = [self timeString:totalTime];
+}
+- (NSString *)timeString:(NSTimeInterval)secs {
+    long min = 60;
+    long hour = 60 * min;
+    
+    long hours, seconds, minutes;
+    hours = secs / hour;
+    minutes = (secs - hours * hour) / 60;
+    seconds = (NSInteger)secs % 60;
+    if ( self.player.duration < hour ) {
+        return [NSString stringWithFormat:@"%02ld:%02ld", minutes, seconds];
+    }
+    else {
+        return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", hours, minutes, seconds];
+    }
 }
 
 - (void)audioPlayerDidFinishPlaying:(SJMP3Player *)player {
-    
+    NSLog(@"音乐播放完毕");
 }
 
 
 #pragma mark -
 
 - (void)sliderWillBeginDragging:(SJSlider *)slider {
-//    [_playerv2 pause];
+//    [_player pause];
 }
 
 - (void)sliderDidDrag:(SJSlider *)slider {
@@ -106,8 +135,8 @@
 
 - (void)sliderDidEndDragging:(SJSlider *)slider {
 //    [_player setPlayProgress:slider.value];
-//    [_playerv2 resume];
-    [_playerv2 seekToTime:slider.value * _playerv2.duration];
+//    [_player resume];
+    [_player seekToTime:slider.value * _player.duration];
 }
 
 
@@ -117,30 +146,38 @@
 //    http://audio.cdn.lanwuzhe.com/1492776280608c177
 //    http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3
 //    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
-    [self.playerv2 playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"] minDuration:5];
+    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"]];
 }
 
+
+- (IBAction)clear:(id)sender {
+    [self.player clearDiskAudioCache];
+    [self _updateCacheSize];
+}
+
+- (IBAction)clearTmp:(id)sender {
+    [self.player clearTmpAudioCache];
+}
+
+- (IBAction)pause:(id)sender {
+    [self.player pause];
+}
+
+- (IBAction)resume:(id)sender {
+    [self.player resume];
+}
+
+- (IBAction)stop:(id)sender {
+    [self.player stop];
+}
 
 #pragma mark -
-
-- (SJMP3PlayerV2 *)playerv2 {
-    if ( _playerv2 ) return _playerv2;
-    _playerv2 = [SJMP3PlayerV2 player];
-    _playerv2.enableDBUG = YES;
-    _playerv2.delegate = self;
-    
-    NSLog(@"%ldM", [_playerv2 diskAudioCacheSize]);
-    
-    [_playerv2 clearDiskAudioCache];
-    
-    return _playerv2;
-}
 
 - (SJMP3Player *)player {
     if ( _player ) return _player;
     _player = [SJMP3Player player];
-    _player.delegate = self;
     _player.enableDBUG = YES;
+    _player.delegate = self;
     return _player;
 }
 
@@ -154,12 +191,12 @@
     return _downloadBtn;
 }
 
-- (SJSlider *)slider {
+- (SJLabelSlider *)slider {
     if ( _slider ) return _slider;
-    _slider = [SJSlider new];
-    _slider.visualBorder = YES;
-    _slider.enableBufferProgress = YES;
-    _slider.delegate = self;
+    _slider = [SJLabelSlider new];
+    _slider.slider.visualBorder = YES;
+    _slider.slider.enableBufferProgress = YES;
+    _slider.slider.delegate = self;
     return _slider;
 }
 
@@ -170,13 +207,13 @@
 @synthesize speedCut = _speedCut;
 
 - (void)clickedUpBtn:(UIButton *)btn {
-    _playerv2.rate += 0.1;
-    NSLog(@"rate = %f", _playerv2.rate);
+    _player.rate += 0.1;
+    NSLog(@"rate = %f", _player.rate);
 }
 
 - (void)clickedCutBtn:(UIButton *)btn {
-    _playerv2.rate -= 0.1;
-    NSLog(@"rate = %f", _playerv2.rate);
+    _player.rate -= 0.1;
+    NSLog(@"rate = %f", _player.rate);
 }
 
 - (UIButton *)speedUp {

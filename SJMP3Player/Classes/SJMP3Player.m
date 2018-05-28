@@ -1,501 +1,182 @@
 //
 //  SJMP3Player.m
-//  SJMP3PlayWhileDownloadingProject
+//  SJMP3Player_Example
 //
-//  Created by BlueDancer on 2017/6/21.
-//  Copyright © 2017年 SanJiang. All rights reserved.
+//  Created by 畅三江 on 2018/5/26.
+//  Copyright © 2018年 changsanjiang. All rights reserved.
 //
 
 #import "SJMP3Player.h"
+#import <SJDownloadDataTask/SJDownloadDataTask.h>
 #import <AVFoundation/AVFoundation.h>
+#import "NSTimer+SJMP3PlayerAdd.h"
 #import <objc/message.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-/**
- *  0.00 - 1.00
- *  If it's 1.00, play after download. */
-#define SJAudioWhenToStartPlaying   (0.1)
+NS_ASSUME_NONNULL_BEGIN
 
-/*!
- *  网路环境差 导致的停止播放 延迟多少秒继续播放 */
-#define SJAudioDelayTime (2)
+@interface SJMP3PlayerFileManager : NSObject
+#pragma mark
++ (BOOL)delete:(NSURL *)fileURL;
++ (BOOL)isCached:(NSURL *)URL;
++ (BOOL)isCachedForFileURL:(NSURL *)fileURL;
++ (NSURL *)tmpFileURL:(NSURL *)URL; // remote url
++ (void)clear;
++ (void)clearTmpFiles;
++ (long long)cacheSize;
 
-
-// MARK: File Path
-
-/*!
- *  查看某个目录是否存在 */
-inline static BOOL _SJFolderExists(NSString *path) { return [[NSFileManager defaultManager] fileExistsAtPath:path];}
-
-inline static NSString *_SJHashStr(NSString *URLStr) {
-    if ( !URLStr ) return nil;
-    return [NSString stringWithFormat:@"%zd", [URLStr hash]];
-}
-
-/**
- *  缓存根目录
- *  ../com.dancebaby.lanwuzhe.audioCacheFolder/ */
-inline static NSString *_SJAudioCacheRootFolder() {
-    NSString *sCachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *folderPath = [sCachePath stringByAppendingPathComponent:@"com.dancebaby.lanwuzhe.audioCacheFolder"];
-    return folderPath;
-}
-
-/*!
- *  临时缓存目录
- *  tmp/audioTmpFolder */
-inline static NSString *_SJAudioDownloadingTmpFolder() {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
-}
-
-/*!
- *  临时缓存路径
- * tmp/audioTmpFolder/urlStrHash */
-inline static NSString *_SJAudioDownloadingTmpPath(NSString *URLStr) {
-    return [_SJAudioDownloadingTmpFolder() stringByAppendingPathComponent:_SJHashStr(URLStr)];
-}
-
-/*!
- *  缓存目录
- *  ../com.dancebaby.lanwuzhe.audioCacheFolder/cache */
-inline static NSString *_SJAudioCacheFolderPath() { return [_SJAudioCacheRootFolder() stringByAppendingPathComponent:@"cache"];}
-
-/**
- *  /var/../com.dancebaby.lanwuzhe.audioCacheFolder/cache/StrHash */
-inline static NSString *_SJAudioCachePathWithURLStr(NSString *URLStr) {
-    NSString *cacheName = [_SJHashStr(URLStr) stringByAppendingString:@".mp3"];
-    NSString *cachePath = [_SJAudioCacheFolderPath() stringByAppendingPathComponent:cacheName];
-    if ( cachePath ) return cachePath;
-    return @"";
-}
-
-/*!
- *  查看缓存是否存在 */
-inline static BOOL _SJAudioCacheExistsWithURLStr(NSString *URLStr) { return [[NSFileManager defaultManager] fileExistsAtPath:_SJAudioCachePathWithURLStr(URLStr)];}
-
-/*!
- *  根据文件路径查看缓存是否存在 */
-inline static BOOL _SJCacheExistsWithFileURLStr(NSString *fileURLStr) {
-    if ( [fileURLStr hasPrefix:@"file://"] ) fileURLStr = [fileURLStr substringFromIndex:7];
-    NSString *dataName = fileURLStr.lastPathComponent;
-    if ( !dataName ) return NO;
-    return [[NSFileManager defaultManager] fileExistsAtPath:[_SJAudioCacheFolderPath() stringByAppendingPathComponent:dataName]];
-}
-
-/**
- *  Root Folder */
-inline static void _SJCreateFolder() {
-    
-    NSString *cacheFolder = _SJAudioCacheFolderPath();
-    if ( !_SJFolderExists(cacheFolder) ) [[NSFileManager defaultManager] createDirectoryAtPath:cacheFolder withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    NSString *tmpFolder = _SJAudioDownloadingTmpFolder();
-    if ( !_SJFolderExists(tmpFolder) ) [[NSFileManager defaultManager] createDirectoryAtPath:tmpFolder withIntermediateDirectories:YES attributes:nil error:nil];
-}
-
-inline static NSArray<NSString *> *_SJContentsOfPath(NSString *path) {
-    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
-    NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
-    [paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [itemPaths addObject:[path stringByAppendingPathComponent:obj]];
-    }];
-    return itemPaths;
-}
-
-inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPath(_SJAudioCacheFolderPath());}
-
-
-
-
-#pragma mark -
-
-@interface NSURLSessionTask (SJMP3PlayerAdd)
-
-@property (nonatomic, strong, readwrite) NSOutputStream *outputStream;
-@property (nonatomic, strong, readonly) NSString *requestURLStr;
-@property (nonatomic, strong, readonly) NSString *tmpPath;
-@property (nonatomic, assign, readwrite) long long totalSize;
-@property (nonatomic, assign, readwrite) long long downloadSize;
-@property (nonatomic, assign, readonly) float downloadProgress;
-
+#pragma mark
+- (void)updateURL:(nullable NSURL *)URL;
+@property (nonatomic, readonly) BOOL isCached;
+@property (nonatomic, strong, readonly, nullable) NSURL *URL;
+@property (nonatomic, strong, readonly, nullable) NSURL *fileURL;
+@property (nonatomic, strong, readonly, nullable) NSURL *tmpFileURL;
+- (BOOL)deleteCache;
+- (BOOL)deleteTmpFile;
+- (void)moveTmpFileToCache;
 @end
 
-@implementation NSURLSessionTask (SJMP3PlayerAdd)
-
-- (void)setOutputStream:(NSOutputStream *)outputStream {
-    objc_setAssociatedObject(self, @selector(outputStream), outputStream, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSOutputStream *)outputStream {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
-- (NSString *)requestURLStr {
-    return [self.currentRequest.URL absoluteString];
-}
-
-- (NSString *)tmpPath {
-    return _SJAudioDownloadingTmpPath([self requestURLStr]);
-}
-
-- (long long)totalSize {
-    return [objc_getAssociatedObject(self, _cmd) longLongValue];
-}
-
-- (void)setTotalSize:(long long)totalSize {
-    objc_setAssociatedObject(self, @selector(totalSize), @(totalSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (long long)downloadSize {
-    return [objc_getAssociatedObject(self, _cmd) longLongValue];
-}
-
-- (void)setDownloadSize:(long long)downloadSize {
-    objc_setAssociatedObject(self, @selector(downloadSize), @(downloadSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (float)downloadProgress {
-    if ( 0 == self.totalSize ) return 0;
-    return self.downloadSize * 1.0f / self.totalSize;
-}
-
-@end
-
-
-
-
-
-#pragma mark -
-
-
-
-
-
-
-
-
-
-@interface NSTimer (SJMP3PlayerAdd)
-
-+ (NSTimer *)SJMP3Player_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer * _Nonnull timer))block;
-
-@end
-
-@implementation NSTimer (SJMP3PlayerAdd)
-
-+ (NSTimer *)SJMP3Player_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer * _Nonnull))block {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(SJMP3Player_exeBlock:) userInfo:[block copy] repeats:repeats];
-    return timer;
-}
-
-+ (void)SJMP3Player_exeBlock:(NSTimer *)timer {
-    void (^block)(NSTimer * _Nonnull block) = timer.userInfo;
-    if ( block ) block(timer);
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-
-@interface SJMP3Player (NSURLSessionDelegateMethos) <NSURLSessionDelegate>
-
-/*!
- *  到达播放点 */
-@property (nonatomic, assign, readwrite) BOOL isStartPlaying;
-
-/*!
- *  下载完毕 */
-@property (nonatomic, assign, readwrite) BOOL isDownloaded;
-
-@end
-
-
-#pragma mark -
-
-@interface SJMP3Player (AVAudioPlayerDelegateMethods) <AVAudioPlayerDelegate>
-@end
-
-
-
-#pragma mark -
-
-
-@interface SJMP3Player ()
-
-@property (nonatomic, strong, readwrite) AVAudioPlayer *audioPlayer;
-
-@property (nonatomic, strong, readonly)  NSURLSession *audioCacheSession;
-
-@property (nonatomic, strong, readonly) NSTimer *checkAudioTimeTimer;
-
-@property (nonatomic, strong, readonly) NSTimer *checkAudioIsPlayingTimer;
-
-@property (nonatomic, assign, readwrite) BOOL userClickedPause;
-
-@property (nonatomic, strong, readonly) NSOperationQueue *oprationQueue;
-
-@property (nonatomic, strong, readwrite) NSString *currentPlayingURLStr;
-
-@property (nonatomic, strong, readwrite) NSURLSessionDataTask *currentTask;
-
-@property (nonatomic, assign, readwrite) double minDuration;
-
-@end
-
-
-
-
-
-@implementation SJMP3Player
-
-@synthesize audioCacheSession = _audioCacheSession;
-@synthesize checkAudioTimeTimer = _checkAudioTimeTimer;
-@synthesize oprationQueue = _oprationQueue;
-@synthesize checkAudioIsPlayingTimer = _checkAudioIsPlayingTimer;
-
-// MARK: Init
-
+@implementation SJMP3PlayerFileManager
 - (instancetype)init {
     self = [super init];
     if ( !self ) return nil;
-    [self _SJMP3PlayerInitialize];
-    [self _SJMP3PlayerAddObservers];
-    [self _SJMP3PlayerInstallNotifications];
+    [[self class] _checkoutCacheFolder];
     return self;
 }
 
-- (void)dealloc {
-    [self _SJMP3PlayerRemoveNotifications];
-    [self _SJRemoveObservers];
-    [self _SJClearTimer];
++ (void)_checkoutCacheFolder {
+    /// cache folder
+    NSString *folder = SJMP3PlayerFileManager.rootFolder;
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath:folder] ) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    /// tmp cache folder
+    folder = SJMP3PlayerFileManager.tmpFolder;
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath:folder] ) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
+    }
 }
 
-// MARK: Public
-
-/**
- *  播放状态
- */
-- (BOOL)playStatus {
-    return self.audioPlayer.isPlaying;
+#pragma mark
+- (void)updateURL:(nullable NSURL *)URL {
+    if ( URL.isFileURL ) return;
+    _URL = URL;
+}
+- (BOOL)isCached {
+    if ( !self.URL ) return NO;
+    return [SJMP3PlayerFileManager isCached:self.URL];
+}
+- (nullable NSURL *)fileURL {
+    if ( !self.URL ) return nil;
+    return [NSURL fileURLWithPath:[SJMP3PlayerFileManager filePath:self.URL]];
+}
+- (nullable NSURL *)tmpFileURL {
+    if ( !self.URL ) return nil;
+    return [NSURL fileURLWithPath:[SJMP3PlayerFileManager tmpFilePath:self.URL]];
+}
+- (BOOL)deleteCache {
+    if ( !self.isCached ) return NO;
+    return [[NSFileManager defaultManager] removeItemAtPath:self.fileURL.path error:nil];
+}
+- (BOOL)deleteTmpFile {
+    return [[NSFileManager defaultManager] removeItemAtPath:self.tmpFileURL.path error:nil];
+}
+- (void)moveTmpFileToCache {
+    if ( !self.URL ) return;
+    [[NSFileManager defaultManager] copyItemAtURL:self.tmpFileURL toURL:self.fileURL error:nil];
 }
 
+#pragma mark
++ (NSString *)rootFolder {
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"com.dancebaby.lanwuzhe.audioCacheFolder/cache"];
+}
++ (NSString *)tmpFolder {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
+}
++ (NSString *)filePath:(NSURL *)URL {
+    return [SJMP3PlayerFileManager.rootFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", (unsigned long)[URL.absoluteString hash]]];
+}
++ (NSString *)tmpFilePath:(NSURL *)URL {
+    return [SJMP3PlayerFileManager.tmpFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", (unsigned long)[URL.absoluteString hash]]];
+}
++ (BOOL)delete:(NSURL *)fileURL {
+    return [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+}
++ (BOOL)isCached:(NSURL *)URL {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[SJMP3PlayerFileManager filePath:URL]];
+}
++ (BOOL)isCachedForFileURL:(NSURL *)fileURL {
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self.rootFolder stringByAppendingPathComponent:fileURL.lastPathComponent]];
+}
++ (NSURL *)tmpFileURL:(NSURL *)URL {
+    return [NSURL fileURLWithPath:[self tmpFilePath:URL]];
+}
++ (void)clear {
+    [[NSFileManager defaultManager] removeItemAtPath:[self rootFolder]  error:nil];
+    [self _checkoutCacheFolder];
+}
++ (long long)cacheSize {
+    __block long long size = 0;
+    [[self cacheFiles] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary<NSFileAttributeKey, id> *dict = [[NSFileManager defaultManager] attributesOfItemAtPath:obj error:nil];
+        size += [dict[NSFileSize] integerValue];
+    }];
+    return size;
+}
++ (void)clearTmpFiles {
+    [[NSFileManager defaultManager] removeItemAtPath:[self tmpFolder] error:nil];
+    [self _checkoutCacheFolder];
+}
++ (NSArray<NSString *> *)cacheFiles {
+    NSString *rootFolder = [self rootFolder];
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rootFolder error:nil];
+    NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
+    [paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [itemPaths addObject:[rootFolder stringByAppendingPathComponent:obj]];
+    }];
+    return itemPaths;
+}
+@end
 
-/**
- *  初始化
- */
+
+#pragma mark -
+
+typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
+    SJMP3PlayerFileOriginUnknown,
+    SJMP3PlayerFileOriginLocal,
+    SJMP3PlayerFileOriginCache,
+    SJMP3PlayerFileOriginTmpCache,
+};
+
+@interface SJMP3Player()<AVAudioPlayerDelegate>
+@property (nonatomic, strong, readonly) SJMP3PlayerFileManager *fileManager;
+@property (nonatomic, readonly) dispatch_queue_t serialQueue;
+@property (nonatomic, readonly) BOOL needToPlay;
+
+@property (nonatomic, strong, nullable) NSTimer *refreshCurrentTimeTimer;
+@property (strong, nullable) AVAudioPlayer *audioPlayer;
+
+
+#pragma mark
+@property (nonatomic) SJMP3PlayerFileOrigin fileOrigin;
+@property (nonatomic, strong, nullable) SJDownloadDataTask *task;
+@property (nonatomic) BOOL userClickedPause;
+@property (nonatomic) BOOL needDownload;
+@property (nonatomic) BOOL isDownloaded;
+@property float downloadProgress;
+@end
+
+@implementation SJMP3Player
+
 + (instancetype)player {
     return [self new];
 }
 
-/**
- *  播放 */
-- (void)playeAudioWithPlayURLStr:(NSString *)playURLStr minDuration:(double)minDuration {
-    if ( nil == playURLStr || 0 == playURLStr.length ) return;
-    self.minDuration = minDuration;
-    __weak typeof(self) _self = self;
-    [self.oprationQueue addOperationWithBlock:^{
-        __strong typeof(_self) self = _self;
-        if ( !self ) return;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) [self.delegate audioPlayer:self currentTime:0 reachableTime:0 totalTime:0];
-        });
-        
-        [self stop];
-        
-        self.userClickedPause = NO;
-        
-        self.currentPlayingURLStr = playURLStr;
-        
-        self.isStartPlaying = NO;
-        
-        if ( _SJAudioCacheExistsWithURLStr(playURLStr) || [[NSURL URLWithString:playURLStr] isFileURL] ) {
-            [self _SJPlayLocalCacheWithURLStr:playURLStr];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ( ![self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] ) return;
-                [self.delegate audioPlayer:self audioDownloadProgress:1];
-            });
-        }
-        else {
-            [self _SJStartDownloadWithURLStr:playURLStr];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ( ![self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] ) return;
-                [self.delegate audioPlayer:self audioDownloadProgress:0];
-            });
-        }
-    }];
-}
-
-/**
- *  从指定的进度播放
- */
-- (void)setPlayProgress:(float)progress {
-    if ( !self.audioPlayer ) return;
-    
-    NSTimeInterval reachableTime = 0;
-    if ( self.currentTask ) reachableTime = self.audioPlayer.duration * self.currentTask.downloadProgress;
-    else reachableTime = self.audioPlayer.duration;
-    
-    if ( self.audioPlayer.duration * progress <= reachableTime ) self.audioPlayer.currentTime = self.audioPlayer.duration * progress;
-    
-    [self _SJEnableTimer];
-}
-
-/**
- *  暂停
- */
-- (void)pause {
-    
-    self.userClickedPause = YES;
-    
-    [self.audioPlayer pause];
-    
-    [self _SJClearTimer];
-}
-
-/**
- *  恢复播放
- */
-- (void)resume {
-    
-    self.userClickedPause = NO;
-    
-    if ( self.audioPlayer.isPlaying ) return;
-    
-    if ( nil == self.audioPlayer ) {
-        [self playeAudioWithPlayURLStr:self.currentPlayingURLStr minDuration:_minDuration];
-    }
-    else {
-        if ( ![self.audioPlayer prepareToPlay] ) return;
-        [self.audioPlayer play];
-    }
-    [self _SJEnableTimer];
-}
-
-/**
- *  停止播放, 停止缓存
- */
-- (void)stop {
-    self.userClickedPause = YES;
-    self.isStartPlaying = NO;
-    [self _SJClearMemoryCache];
-    [self _SJClearTimer];
-    [_audioPlayer stop];
-    _audioPlayer = nil;
-}
-
-/**
- *  清除本地缓存
- */
-- (void)clearDiskAudioCache {
-    if ( self.audioPlayer ) [self stop];
-    
-    if ( _SJAudioCacheFolderPath() )
-        [_SJCacheItemPaths() enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [[NSFileManager defaultManager] removeItemAtPath:obj error:nil];
-        }];
-}
-
-/**
- *  已缓存的大小
- */
-- (NSInteger)diskAudioCacheSize {
-    
-    __block NSInteger size = 0;
-    if ( _SJAudioCacheFolderPath() ) {
-        [_SJCacheItemPaths() enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary<NSFileAttributeKey, id> *dict = [[NSFileManager defaultManager] attributesOfItemAtPath:obj error:nil];
-            size += [dict[NSFileSize] integerValue] / 1000 / 1000;
-        }];
-    }
-    return size;
-}
-
-/*!
- *  查看音乐是否已缓存
- */
-- (BOOL)checkMusicHasBeenCachedWithPlayURL:(NSString *)playURL {
-    return _SJAudioCacheExistsWithURLStr(playURL);
-}
-
-// MARK: Notification
-
-- (void)_SJMP3PlayerInstallNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminateNotification) name:UIApplicationWillTerminateNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification) name:UIApplicationWillResignActiveNotification object:nil];
-}
-
-- (void)_SJMP3PlayerRemoveNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)applicationWillTerminateNotification {
-    [(UIResponder *)[UIApplication sharedApplication].delegate resignFirstResponder];
-    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-}
-
-- (void)applicationWillResignActiveNotification {
-    [(UIResponder *)[UIApplication sharedApplication].delegate becomeFirstResponder];
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    [self _sjSetNowPlayingInfo];
-}
-
-- (void)_sjSetNowPlayingInfo {
-    SJMP3Info *info = [self.delegate playInfo];
-    MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:info.cover];
-    NSDictionary *mediaDict =
-    @{
-      MPMediaItemPropertyTitle:info.title,
-      MPMediaItemPropertyMediaType:@(MPMediaTypeAnyAudio),
-      MPMediaItemPropertyPlaybackDuration:@(self.audioPlayer.duration),
-      MPNowPlayingInfoPropertyPlaybackRate:@(self.audioPlayer.rate),
-      MPNowPlayingInfoPropertyElapsedPlaybackTime:@(self.audioPlayer.currentTime),
-      MPMediaItemPropertyArtist:info.artist,
-      MPMediaItemPropertyAlbumArtist:info.artist,
-      MPMediaItemPropertyArtwork:artwork
-      };
-    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:mediaDict];
-}
-
-// MARK: Observers
-
-- (void)_SJMP3PlayerAddObservers {
-    [self addObserver:self forKeyPath:@"rate" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)_SJRemoveObservers {
-    [self removeObserver:self forKeyPath:@"rate"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    
-    if ( object != self ) { return;}
-    
-    if ( [keyPath isEqualToString:@"rate"] ) self.audioPlayer.rate = self.rate;
-}
-
-// MARK: Private
-
-- (void)_SJClearTimer {
-    [_checkAudioTimeTimer invalidate];
-    _checkAudioTimeTimer = nil;
-    [_checkAudioIsPlayingTimer invalidate];
-    _checkAudioIsPlayingTimer = nil;
-}
-
-- (void)_SJEnableTimer {
-    [self checkAudioTimeTimer];
-    [self checkAudioIsPlayingTimer];
-}
-
-- (void)_SJMP3PlayerInitialize {
-    
-    _SJCreateFolder();
-    
-    self.rate = 1;
+- (instancetype)init {
+    self = [super init];
+    if ( !self ) return nil;
+    _rate = 1;
     NSError *error = NULL;
     if ( ![[AVAudioSession sharedInstance] setActive: YES error:&error] ) {
         NSLog(@"Failed to set active audio session! error: %@", error);
@@ -508,22 +189,358 @@ inline static NSArray<NSString *> *_SJCacheItemPaths() { return _SJContentsOfPat
     if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error] ) {
         NSLog(@"Failed to set audio category! error: %@", error);
     }
+
+    _serialQueue = dispatch_queue_create("com.sjmp3player.audioQueue", DISPATCH_QUEUE_SERIAL);
+    _fileManager = [SJMP3PlayerFileManager new];
+    [self _configRemoteEventReceiver];
+    return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setRate:(float)rate {
+    if ( isnan(rate) ) return;
+    _rate = rate;
+    if ( [self.audioPlayer prepareToPlay] ) self.audioPlayer.rate = rate;
+}
+
+- (NSTimeInterval)currentTime {
+    return self.audioPlayer.currentTime;
+}
+
+- (NSTimeInterval)duration {
+    return self.audioPlayer.duration;
+}
+
+- (BOOL)isPlaying {
+    return self.audioPlayer.isPlaying;
+}
+
+- (BOOL)needToPlay {
+    return !self.isPlaying && !self.userClickedPause;
+}
+
+- (BOOL)seekToTime:(NSTimeInterval)sec {
+    if ( isnan(sec) ) return NO;
+    if ( ![self.audioPlayer prepareToPlay] ) return NO;
+    if ( self.needDownload ) {
+        if ( sec / self.audioPlayer.duration > self.downloadProgress ) return NO;
+    }
+    self.audioPlayer.currentTime = sec;
+    [self resume];
+    return YES;
+}
+
+- (void)pause {
+    self.userClickedPause =  YES;
+    [self.audioPlayer pause];
+}
+
+- (void)resume {
+    self.userClickedPause = NO;
+    [self.audioPlayer play];
+    [self _setPlayInfo];
+    [self activateRefreshTimeTimer];
+}
+
+- (void)stop {
+    [self.fileManager updateURL:nil];
+    if ( self.audioPlayer ) {
+        [self.audioPlayer stop];
+        self.audioPlayer = nil;
+    }
+    self.userClickedPause = NO;
+    if ( _task ) {
+        [_task cancel];
+        _task = nil;
+    }
+    self.needDownload = NO;
+    self.downloadProgress = 0;
+    self.isDownloaded = NO;
+    self.fileOrigin = SJMP3PlayerFileOriginUnknown;
+}
+
+- (void)clearDiskAudioCache {
+    if ( self.isPlaying ) [self stop];
+    [SJMP3PlayerFileManager clear];
+}
+
+- (void)clearTmpAudioCache {
+    [SJMP3PlayerFileManager clearTmpFiles];
+}
+
+- (long long)diskAudioCacheSize {
+    return [SJMP3PlayerFileManager cacheSize];
+}
+
+/*!
+ *  查看音乐是否已缓存 */
+- (BOOL)isCached:(NSURL *)URL {
+    return [SJMP3PlayerFileManager isCached:URL];
+}
+
+#pragma mark
+- (void)playWithURL:(NSURL *)URL {
+    if ( !URL ) return;
+    [self stop];
+    [self.fileManager updateURL:URL];
+    if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) {
+        [self.delegate audioPlayer:self currentTime:0 reachableTime:0 totalTime:0];
+    }
+    __weak typeof(self) _self = self;
+    dispatch_async(_serialQueue, ^{
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        if ( URL.isFileURL ) {
+            [self _playFile:URL
+                 fileOrigin:SJMP3PlayerFileOriginLocal];
+            
+            if ( self.enableDBUG ) {
+                NSLog(@"\nSJMP3Player: -此次播放本地文件, URL: %@\n", URL);
+            }
+        }
+        else if ( self.fileManager.isCached ) {
+            [self _playFile:self.fileManager.fileURL
+                 fileOrigin:SJMP3PlayerFileOriginCache];
+
+            if ( self.enableDBUG ) {
+                NSLog(@"\nSJMP3Player: -此次播放缓存文件, URL: %@, fileURL: %@ \n", URL, self.fileManager.fileURL);
+            }
+        }
+        else {
+            [self _downloadAudio];
+            
+            if ( self.enableDBUG ) {
+                NSLog(@"\nSJMP3Player: -准备缓存媒体文件, URL: %@, 保存地址: %@ \n", URL, self.fileManager.tmpFileURL);
+            }
+        }
+    });
+}
+
+- (void)_downloadAudio {
+    self.needDownload = YES;
+    NSURL *URL = self.fileManager.URL;
+    __weak typeof(self) _self = self;
+    self.task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:self.fileManager.tmpFileURL append:YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        if ( self.needToPlay && progress > 0.1 ) {
+            [self _playFile:dataTask.fileURL
+                 fileOrigin:SJMP3PlayerFileOriginTmpCache
+                currentTime:self.audioPlayer.currentTime];
+        }
+        if ( [self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] ) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof(_self) self = _self;
+                if ( !self ) return ;
+                [self.delegate audioPlayer:self
+                     audioDownloadProgress:progress];
+            });
+        }
+        self.downloadProgress = progress;
+    } success:^(SJDownloadDataTask * _Nonnull dataTask) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        [self.fileManager moveTmpFileToCache];
+        if ( self.needToPlay ) {
+            [self _playFile:self.fileManager.fileURL
+                 fileOrigin:SJMP3PlayerFileOriginTmpCache
+                currentTime:self.audioPlayer.currentTime];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(_self) self = _self;
+            if ( !self ) return ;
+            if ( [self.delegate respondsToSelector:@selector(audioPlayer:downloadFinishedForURL:)] ) {
+                [self.delegate audioPlayer:self downloadFinishedForURL:URL];
+            }
+        });
+        
+        self.isDownloaded = YES;
+    } failure:^(SJDownloadDataTask * _Nonnull dataTask) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        self.isDownloaded = NO;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __strong typeof(_self) self = _self;
+            if ( !self ) return ;
+            [dataTask restart];
+        });
+        
+        if ( self.enableDBUG ) {
+            NSLog(@"\nSJMP3Player: -下载失败, 2秒后将重启下载. URL: %@, savePath: %@ \n", URL, self.fileManager.tmpFileURL);
+        }
+    }];
+}
+
+- (BOOL)_playFile:(NSURL *)fileURL fileOrigin:(SJMP3PlayerFileOrigin)origin {
+    return [self _playFile:fileURL fileOrigin:origin currentTime:0];
+}
+
+- (BOOL)_playFile:(NSURL *)fileURL fileOrigin:(SJMP3PlayerFileOrigin)origin currentTime:(NSTimeInterval)currentTime {
+    self.fileOrigin = origin;
+    NSError *error = nil;
+    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL
+                                                                 fileTypeHint:AVFileTypeMPEGLayer3
+                                                                        error:&error];
+    if ( error ) {
+        if ( [SJMP3PlayerFileManager isCachedForFileURL:fileURL] ) {
+            [SJMP3PlayerFileManager delete:fileURL];
+            NSLog(@"\nSJMP3Player: -播放失败, 已删除下载文件-%@ \n", fileURL);
+        }
+        
+        if ( self.enableDBUG ) NSLog(@"\nSJMP3Player: -播放器初始化失败-%@-%@ \n", error, fileURL);
+        return NO;
+    }
+    
+    if ( !audioPlayer ) return NO;
+    audioPlayer.enableRate = YES;
+    if ( ![audioPlayer prepareToPlay] ) return NO;
+    audioPlayer.delegate = self;
+    audioPlayer.currentTime = currentTime;
+    [audioPlayer play];
+    audioPlayer.rate = self.rate;
+    if ( self.enableDBUG ) {
+        NSLog(@"\nSJMP3Player: -开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ", audioPlayer.duration, fileURL);
+        if ( @available(ios 10, *) ) NSLog(@"\n-格式%@", audioPlayer.format);
+    }
+    self.audioPlayer = audioPlayer;
+    [self activateRefreshTimeTimer];
+    [self _setPlayInfo];
+    return YES;
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    if ( self.fileOrigin == SJMP3PlayerFileOriginTmpCache ) {
+        if ( !self.isDownloaded ) return;
+    }
+    
+    if ( self.enableDBUG ) {
+        NSLog(@"\nSJMP3Player: -播放完毕\n-播放地址:%@", player.url);
+    }
+    
+    if ( [self.delegate respondsToSelector:@selector(audioPlayerDidFinishPlaying:)] ) {
+        __weak typeof(self) _self = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(_self) self = _self;
+            if ( !self ) return ;
+            [self.delegate audioPlayerDidFinishPlaying:self];
+        });
+    }
+}
+
+/* if an error occurs while decoding it will be reported to the delegate. */
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError * __nullable)error {
+    NSLog(@"SJMP3Player: %@", error);
+#ifdef DEBUG
+    NSLog(@"%d - %s", (int)__LINE__, __func__);
+#endif
+
+}
+
+
+#pragma mark
+
+- (void)_clearRefreshCurrentTimeTimer {
+    if ( _refreshCurrentTimeTimer ) {
+        [_refreshCurrentTimeTimer invalidate];
+        _refreshCurrentTimeTimer = nil;
+    }
+}
+
+- (void)activateRefreshTimeTimer {
+    [self _clearRefreshCurrentTimeTimer];
+    __weak typeof(self) _self = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        self.refreshCurrentTimeTimer = [NSTimer SJMP3PlayerAdd_timerWithTimeInterval:0.2 block:^(NSTimer *timer) {
+            __strong typeof(_self) self = _self;
+            if ( !self ) {
+                [timer invalidate];
+                return ;
+            }
+            if ( !self.audioPlayer.isPlaying ) {
+                [self _clearRefreshCurrentTimeTimer];
+                return;
+            }
+            NSTimeInterval currentTime = self.audioPlayer.currentTime;
+            NSTimeInterval totalTime = self.audioPlayer.duration;
+            NSTimeInterval reachableTime = self.audioPlayer.duration * self.downloadProgress;
+            if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) {
+                [self.delegate audioPlayer:self currentTime:currentTime reachableTime:reachableTime totalTime:totalTime];
+            }
+        } repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.refreshCurrentTimeTimer forMode:NSRunLoopCommonModes];
+    });
+}
+
+#pragma mark
+- (void)_configRemoteEventReceiver {
     
     SEL sel = @selector(remoteControlReceivedWithEvent:);
     Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], sel);
-    
-    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)_sjRemoteControlReceivedWithEvent, method_getTypeEncoding(remoteControlReceivedWithEvent));
-    
+    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)_sj_remoteControlReceived, method_getTypeEncoding(remoteControlReceivedWithEvent));
     objc_setAssociatedObject([UIApplication sharedApplication].delegate, sel, self, OBJC_ASSOCIATION_ASSIGN);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminateNotification) name:UIApplicationWillTerminateNotification object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
+
+}
+- (void)audioSessionInterruptionNotification:(NSNotification *)notification{
+    NSDictionary *info = notification.userInfo;
+    if( (AVAudioSessionInterruptionType)[info[AVAudioSessionInterruptionTypeKey] integerValue] == AVAudioSessionInterruptionTypeBegan ) {
+        [self pause];
+    }
 }
 
-static void _sjRemoteControlReceivedWithEvent(id self, SEL _cmd, UIEvent *event) {
+- (void)applicationWillResignActiveNotification {
+    if ( !self.audioPlayer ) return;
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [(UIResponder *)[UIApplication sharedApplication].delegate becomeFirstResponder];
+    [self _setPlayInfo];
+}
+
+- (void)applicationWillTerminateNotification {
+    [(UIResponder *)[UIApplication sharedApplication].delegate resignFirstResponder];
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+}
+
+- (void)_setPlayInfo {
+    if ( !self.audioPlayer ) return;
+    if ( ![self.delegate respondsToSelector:@selector(playInfo)] ) return;
+    SJMP3Info *info = [self.delegate playInfo];
+    if ( !info ) return;
+    NSMutableDictionary *mediaDict =
+    @{
+      MPMediaItemPropertyTitle:info.title?:@"",
+      MPMediaItemPropertyMediaType:@(MPMediaTypeAnyAudio),
+      MPMediaItemPropertyPlaybackDuration:@(self.audioPlayer.duration),
+      MPNowPlayingInfoPropertyPlaybackRate:@(self.audioPlayer.rate),
+      MPNowPlayingInfoPropertyElapsedPlaybackTime:@(self.audioPlayer.currentTime),
+      MPMediaItemPropertyArtist:info.artist?:@"",
+      MPMediaItemPropertyAlbumArtist:info.artist?:@"",
+      }.mutableCopy;
+    if ( info.cover ) {
+        [mediaDict setValue:[[MPMediaItemArtwork alloc] initWithImage:info.cover]
+                     forKey:MPMediaItemPropertyArtwork];
+    }
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = mediaDict;
+}
+
+static void _sj_remoteControlReceived(id self, SEL _cmd, UIEvent *event) {
     SJMP3Player *player = objc_getAssociatedObject(self, _cmd);
     if ( UIEventTypeRemoteControl != event.type ) return;
     switch ( event.subtype ) {
         case UIEventSubtypeRemoteControlPlay: {
             [player resume];
-            [player _sjSetNowPlayingInfo];
         }
             break;
         case UIEventSubtypeRemoteControlPause: {
@@ -546,372 +563,10 @@ static void _sjRemoteControlReceivedWithEvent(id self, SEL _cmd, UIEvent *event)
             break;
     }
 }
-
-/**
- *  定时器事件
- */
-static NSTimeInterval _beforeDuration = 0;
-- (void)_SJCheckAudioTime {
-    if ( !_audioPlayer.isPlaying ) return;
-    NSTimeInterval currentTime = _audioPlayer.currentTime;
-    NSTimeInterval totalTime = _audioPlayer.duration;
-    NSTimeInterval reachableTime = _audioPlayer.duration * self.currentTask.downloadProgress;
-    //  如果播放的进度 大于 下载的进度, 则说明进度有问题, 此时暂停回调代理
-    if ( 0 == totalTime ) return;
-    if ( _currentTask && (self.currentTask.downloadProgress < currentTime / totalTime) ) return;
-    if ( ![_delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) return;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_delegate audioPlayer:self currentTime:currentTime reachableTime:reachableTime totalTime:totalTime];
-        if ( _beforeDuration == _audioPlayer.duration ) return;
-        _beforeDuration = _audioPlayer.duration;
-        [self _sjSetNowPlayingInfo];
-    });
-}
-
-// MARK: 因为网络环境差 而导致的暂停播放 处理
-static BOOL delay;
-- (void)_SJCheckAudioIsPlayingTimer {
-    if ( self.userClickedPause ) return;
-    if ( self.audioPlayer.isPlaying ) return;
-    if ( delay ) return;
-    delay = YES;
-    // 如果暂停,  ? 秒后 再次初始化
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(SJAudioDelayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        delay = NO;
-        if ( self.userClickedPause ) return;
-        if ( self.audioPlayer.isPlaying ) return;
-        /*!
-         *  再次初始化 */
-        NSString *itemTmpPath = self.currentTask.tmpPath;
-        NSURL *filePathURL = nil;
-        
-        if ( itemTmpPath ) filePathURL = [NSURL fileURLWithPath:itemTmpPath];
-        
-        if ( filePathURL ) [self _SJPlayWithFileURL:filePathURL];
-    });
-}
-
-- (void)_SJPlayLocalCacheWithURLStr:(NSString *)URLStr {
-    self.isDownloaded = YES;
-    NSURL *contentsURL = nil;
-    if ( [URLStr hasPrefix:@"file"] )
-        contentsURL = [NSURL URLWithString:URLStr];
-    else contentsURL = [NSURL fileURLWithPath:_SJAudioCachePathWithURLStr(URLStr)];
-    [self _SJPlayWithFileURL:contentsURL];
-}
-
-// MARK:  播放缓存音乐
-
-- (void)_SJPlayWithFileURL:(NSURL *)fileURL {
-    
-    @synchronized (self) {
-        
-        NSError *error = nil;
-        
-        NSTimeInterval currentTime = self.audioPlayer.currentTime;
-        
-        AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL fileTypeHint:AVFileTypeMPEGLayer3 error:&error];
-        
-        if ( error ) {
-            
-            if ( self.enableDBUG ) {
-                NSLog(@"\n-播放器初始化失败-%@-%@ \n", error, fileURL);
-            }
-            NSString *fileURLStr = fileURL.absoluteString;
-            if ( [fileURLStr hasPrefix:@"file://"] ) fileURLStr = [fileURLStr substringFromIndex:7];
-            if ( _SJCacheExistsWithFileURLStr(fileURLStr) ) {
-                if ( [[NSFileManager defaultManager] removeItemAtPath:fileURLStr error:nil] ) {
-                    if ( self.enableDBUG ) {
-                        NSLog(@"\n-播放失败, 已删除下载文件-%@ \n", fileURLStr);
-                    }
-                }
-            }
-            return;
-        }
-        
-        if ( !audioPlayer ) return;
-        
-        audioPlayer.enableRate = YES;
-        
-        if ( ![audioPlayer prepareToPlay] ) return;
-        
-        audioPlayer.delegate = self;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self _SJEnableTimer];
-        });
-        
-        if ( audioPlayer.duration < self.minDuration ) return;
-        
-        [audioPlayer play];
-        if ( 0 != currentTime ) audioPlayer.currentTime = currentTime;
-        audioPlayer.rate = self.rate;
-        self.audioPlayer = audioPlayer;
-        self.isStartPlaying = YES;
-        [self _sjSetNowPlayingInfo];
-        
-        if ( self.enableDBUG ) {
-            NSLog(@"\n-开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ",
-                  audioPlayer.duration,
-                  fileURL);
-            NSLog(@"\n-线程: %@", [NSThread currentThread]);
-            if ( [[UIDevice currentDevice].systemVersion integerValue] >= 10 ) {
-                NSLog(@"\n-格式%@", audioPlayer.format);
-            }
-        }
-    }
-}
-
-// MARK: 下载任务初始化
-
-- (void)_SJStartDownloadWithURLStr:(NSString *)URLStr {
-    
-    if ( !URLStr ) return;
-    
-    NSURL *URL = [NSURL URLWithString:URLStr];
-    
-    if ( !URL ) return;
-    
-    [self _SJClearBeforeDownloadTask];
-    
-    NSURLSessionDataTask *task = [self.audioCacheSession dataTaskWithRequest:[NSURLRequest requestWithURL:URL]];;
-    
-    if ( !task ) return;
-    
-    _currentTask = task;
-    
-    [task resume];
-    
-    if ( self.enableDBUG ) {
-        NSLog(@"\n准备下载: %@ \n" , URLStr);
-    }
-    self.isDownloaded = NO;
-}
-
-- (void)_SJClearBeforeDownloadTask {
-    [_currentTask.outputStream close];
-    _currentTask.outputStream = nil;
-    [_currentTask cancel];
-    _currentTask = nil;
-}
-
-
-/*!
- *  获取当前的下载路径 */
-- (NSString *)_SJMP3PlayerCurrentTmpItemPath {
-    return objc_getAssociatedObject(self.currentTask, [NSString stringWithFormat:@"%zd", self.currentTask.taskIdentifier].UTF8String);
-}
-
-- (void)_SJClearMemoryCache {
-    [_currentTask cancel];
-    _currentTask = nil;
-    _currentPlayingURLStr = nil;
-}
-
-// MARK: Getter
-
-- (NSURLSession *)audioCacheSession {
-    if ( nil == _audioCacheSession ) {
-        NSURLSessionConfiguration *cofig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _audioCacheSession = [NSURLSession sessionWithConfiguration:cofig delegate:self delegateQueue:self.oprationQueue];
-    }
-    return _audioCacheSession;
-}
-
-- (NSOperationQueue *)oprationQueue {
-    if ( nil == _oprationQueue ) {
-        _oprationQueue = [NSOperationQueue new];
-        _oprationQueue.maxConcurrentOperationCount = 1;
-        _oprationQueue.name = @"com.dancebaby.lanwuzhe.audioCacheSessionOprationQueue";
-    }
-    return _oprationQueue;
-}
-
-- (NSTimer *)checkAudioTimeTimer {
-    if ( nil == _checkAudioTimeTimer) {
-        __weak typeof(self) _self = self;
-        _checkAudioTimeTimer = [NSTimer SJMP3Player_scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            __strong typeof(_self) self = _self;
-            if ( !self ) return;
-            [self _SJCheckAudioTime];
-        }];
-        [_checkAudioTimeTimer fire];
-    }
-    return _checkAudioTimeTimer;
-}
-
-- (NSTimer *)checkAudioIsPlayingTimer {
-    if ( _checkAudioIsPlayingTimer ) return _checkAudioIsPlayingTimer;
-    __weak typeof(self) _self = self;
-    _checkAudioIsPlayingTimer = [NSTimer SJMP3Player_scheduledTimerWithTimeInterval:SJAudioDelayTime repeats:YES block:^(NSTimer * _Nonnull timer) {
-        __strong typeof(_self) self = _self;
-        if ( !self ) return;
-        [self _SJCheckAudioIsPlayingTimer];
-    }];
-    [_checkAudioIsPlayingTimer fire];
-    return _checkAudioIsPlayingTimer;
-}
-
-- (double)minDuration {
-    if ( _minDuration > 0 ) return _minDuration;
-    return _audioPlayer.duration;
-}
 @end
 
-
-
-// MARK: Session Delegate
-/* 保持只有一个任务在下载 */
-@implementation SJMP3Player (NSURLSessionDelegateMethos)
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSHTTPURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    self.isDownloaded = NO;
-    dataTask.outputStream = [NSOutputStream outputStreamToFileAtPath:dataTask.tmpPath append:NO];
-    [dataTask.outputStream open];
-    dataTask.totalSize = response.expectedContentLength;
-    dataTask.downloadSize = 0;
-    completionHandler(NSURLSessionResponseAllow);
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    if ( 0 == data.length ) return;
-    dataTask.downloadSize += data.length;
-    [dataTask.outputStream write:data.bytes maxLength:data.length];
-    
-    if ( self.enableDBUG ) {
-        NSLog(@"\n-%@\n-写入大小: %zd - 文件大小: %zd - 下载进度: %f \n",
-              dataTask.requestURLStr,
-              dataTask.totalSize,
-              dataTask.downloadSize,
-              dataTask.downloadProgress);
-    }
-    
-    if ( [self.delegate respondsToSelector:@selector(audioPlayer:audioDownloadProgress:)] )
-        [self.delegate audioPlayer:self audioDownloadProgress:dataTask.downloadProgress];
-    
-    if ( self.userClickedPause ) return;
-    
-    if ( !self.isStartPlaying && (dataTask.downloadProgress > SJAudioWhenToStartPlaying) ) {
-        [self _SJReadyPlayDownloadingAudio:dataTask];
-    }
-    
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionDataTask *)dataTask didCompleteWithError:(NSError *)error {
-    
-    if ( error ) {
-        self.isDownloaded = NO;
-        if ( error.code == NSURLErrorCancelled ) {
-            if ( self.enableDBUG ) NSLog(@"下载被取消");
-            return;
-        }
-        if ( self.enableDBUG ) NSLog(@"\n-下载报错: %@", error);
-        self.isDownloaded = NO;
-        return;
-    }
-    
-    NSString *URLStr = dataTask.currentRequest.URL.absoluteString;
-    
-    if ( self.enableDBUG ) NSLog(@"\n-下载完成: %@", URLStr);
-    
-    self.isDownloaded = YES;
-    
-    NSString *cachePath = _SJAudioCachePathWithURLStr(URLStr);
-    
-    if ( !cachePath ) return;
-    
-    BOOL copyResult = [[NSFileManager defaultManager] copyItemAtPath:dataTask.tmpPath toPath:cachePath error:nil];
-    
-    if ( !copyResult ) return;
-    
-    if ( self.audioPlayer.isPlaying ) return;
-    
-    if ( self.userClickedPause ) return;
-    
-    NSURL *fileURL = [NSURL fileURLWithPath:cachePath];
-    
-    if ( !fileURL ) return;
-    
-    [self _SJPlayWithFileURL:fileURL];
-}
-
-#pragma mark -
-
-// MARK: 记录 到达播放点
-
-- (BOOL)isStartPlaying {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setIsStartPlaying:(BOOL)isStartPlaying {
-    objc_setAssociatedObject(self, @selector(isStartPlaying), @(isStartPlaying), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)isDownloaded {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setIsDownloaded:(BOOL)isDownloaded {
-    objc_setAssociatedObject(self, @selector(isDownloaded), @(isDownloaded), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-// MARK: 准备播放
-
-- (void)_SJReadyPlayDownloadingAudio:(NSURLSessionDataTask *)task {
-    
-    if ( self.audioPlayer.isPlaying ) return;
-    
-    NSString *ItemPath = task.tmpPath;
-    
-    if ( !ItemPath ) return;
-    
-    NSURL *fileURL = [NSURL fileURLWithPath:ItemPath];
-    
-    if ( !fileURL ) return;
-    
-    if ( self.enableDBUG ) {
-        NSLog(@"\n-准备完毕 开始播放 \n-%@ \n", task.response.URL);
-    }
-    
-    [self _SJPlayWithFileURL:fileURL];
-}
-
-@end
-
-// MARK: 播放完毕
-
-@implementation SJMP3Player (AVAudioPlayerDelegateMethods)
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    
-    if ( [self.currentPlayingURLStr hasPrefix:@"http"] ) {
-        /*!
-         *  如果未下载完毕 */
-        if ( !self.isDownloaded ) return;
-    }
-    
-    if ( self.enableDBUG ) {
-        NSLog(@"\n-播放完毕\n-播放地址:%@", player.url);
-    }
-    
-    [self _SJClearMemoryCache];
-    
-    if ( ![self.delegate respondsToSelector:@selector(audioPlayerDidFinishPlaying:)] ) return;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate audioPlayerDidFinishPlaying:self];
-    });
-}
-
-@end
-
-
-
-
-#pragma mark -
 
 @implementation SJMP3Info
-
 - (instancetype)initWithTitle:(NSString *)title artist:(NSString *)artist cover:(UIImage *)cover {
     self = [super init];
     if ( !self ) return nil;
@@ -920,7 +575,6 @@ static BOOL delay;
     _cover = cover;
     return self;
 }
-
 @end
 
-
+NS_ASSUME_NONNULL_END

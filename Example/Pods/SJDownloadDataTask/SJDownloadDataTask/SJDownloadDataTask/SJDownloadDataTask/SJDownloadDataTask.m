@@ -96,6 +96,18 @@ NS_ASSUME_NONNULL_BEGIN
                                   progress:(nullable void(^)(SJDownloadDataTask *dataTask, float progress))progressBlock
                                    success:(nullable void(^)(SJDownloadDataTask *dataTask))successBlock
                                    failure:(nullable void(^)(SJDownloadDataTask *dataTask))failureBlock {
+    SJDownloadDataTask *sjTask = [SJDownloadDataTask new];
+    sjTask.URLStr = URLStr;
+    sjTask.fileURL = fileURL;
+    sjTask.progressBlock = progressBlock;
+    sjTask.successBlock = successBlock;
+    sjTask.failureBlock = failureBlock;
+    sjTask.shouldAppend = shouldAppend;
+    [sjTask restart];
+    return sjTask;
+}
+
++ (NSURLSessionDataTask *)downloadTaskWithURLStr:(NSString *)URLStr toPath:(NSURL *)fileURL append:(BOOL)shouldAppend {
     NSURL *URL = [NSURL URLWithString:URLStr];
     NSParameterAssert(URL);
     NSParameterAssert(fileURL);
@@ -113,39 +125,50 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     NSURLRequest *request = nil;
-    long long wroteSize = 0;
     if ( !shouldAppend ) {
         request = [NSURLRequest requestWithURL:URL];
+        
+#ifdef DEBUG
+        printf("\nSJDownloadDataTask: 此次下载将覆盖原始文件数据(如果[%s]存在文件)\n", fileURL.absoluteString.UTF8String);
+#endif
     }
     else {
+        long long wroteSize = 0;
         request = [NSMutableURLRequest requestWithURL:URL
                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                       timeoutInterval:0];
         wroteSize = [[[[NSFileManager defaultManager] attributesOfItemAtPath:fileURL.path error:nil] valueForKey:NSFileSize] longLongValue];
         [(NSMutableURLRequest *)request setValue:[NSString stringWithFormat:@"bytes=%lld-", wroteSize]
                               forHTTPHeaderField:@"Range"];
-    }
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
-    SJDownloadDataTask *sjTask = dataTask.sj_downloadDataTask = [SJDownloadDataTask new];
-    sjTask.dataTask = dataTask;
-    sjTask.URLStr = URLStr;
-    sjTask.fileURL = fileURL;
-    sjTask.progressBlock = progressBlock;
-    sjTask.successBlock = successBlock;
-    sjTask.failureBlock = failureBlock;
-    sjTask.shouldAppend = shouldAppend;
-    sjTask.wroteSize = wroteSize;
-    [dataTask resume];
-    
+        
 #ifdef DEBUG
-    printf("\n准备下载: %s, 保存路径:%s, 下载标识:%ld \n", [URLStr UTF8String], [[fileURL absoluteString] UTF8String], (unsigned long)dataTask.taskIdentifier);
+        printf("\nSJDownloadDataTask: 此次下载为追加模式, 将会向文件中追加剩余数据. 当前文件大小为: %lld\n", wroteSize);
 #endif
-    return sjTask;
+    }
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request];
+    return dataTask;
 }
 
 - (void)cancel {
-    [self.dataTask cancel];
+    if ( self.dataTask && self.dataTask.state != NSURLSessionTaskStateCanceling ) {
+        [self.dataTask cancel];
+        self.dataTask = nil;
+#ifdef DEBUG
+        printf("\nSJDownloadDataTask: 下载被取消, URL: %s, 下载标识:%ld \n", [self.URLStr UTF8String], self.dataTask.taskIdentifier);
+#endif
+    }
+}
+
+- (void)restart {
+    [self cancel];
+    NSURLSessionDataTask *task = [[self class] downloadTaskWithURLStr:self.URLStr toPath:self.fileURL append:self.shouldAppend];
+    self.dataTask = task;
+    task.sj_downloadDataTask = self;
+    [task resume];
+    
+#ifdef DEBUG
+    printf("\nSJDownloadDataTask: 准备下载: %s, 保存路径:%s, 下载标识:%ld \n", [self.URLStr UTF8String], [[self.fileURL absoluteString] UTF8String], (unsigned long)task.taskIdentifier);
+#endif
 }
 
 + (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSHTTPURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
@@ -154,11 +177,21 @@ NS_ASSUME_NONNULL_BEGIN
         dataTask.sj_outputStream = [[SJOutPutStream alloc] initWithPath:sjTask.fileURL append:sjTask.shouldAppend];
     }
     sjTask.totalSize = response.expectedContentLength;
-    completionHandler(NSURLSessionResponseAllow);
-    
+    if ( response.expectedContentLength == 0 ) {
+        completionHandler(NSURLSessionResponseCancel);
+        if ( sjTask.successBlock ) sjTask.successBlock(sjTask);
+        
 #ifdef DEBUG
-    printf("\n接收到服务器响应, 文件总大小: %lld, 下载标识:%ld \n", sjTask.totalSize, (unsigned long)dataTask.taskIdentifier);
+        printf("\nSJDownloadDataTask: 接收到服务器响应, 但返回响应的文件大小为 0, 该文件可能已下载完毕. 我将取消本次请求, 并回调`successBlock`\n");
 #endif
+    }
+    else {
+        completionHandler(NSURLSessionResponseAllow);
+#ifdef DEBUG
+        printf("\nSJDownloadDataTask: 接收到服务器响应, 文件总大小: %lld, 下载标识:%ld \n", sjTask.totalSize, (unsigned long)dataTask.taskIdentifier);
+#endif
+    }
+    
 }
 
 + (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
@@ -170,7 +203,7 @@ NS_ASSUME_NONNULL_BEGIN
     if ( sjTask.progressBlock ) sjTask.progressBlock(sjTask, progress);
     
 #ifdef DEBUG
-    printf("\n写入大小: %lld, 文件大小: %lld, 下载进度: %f", sjTask.wroteSize, sjTask.totalSize, progress);
+    printf("\nSJDownloadDataTask: 写入大小: %lld, 文件大小: %lld, 下载进度: %f", sjTask.wroteSize, sjTask.totalSize, progress);
 #endif
 }
 
@@ -179,7 +212,7 @@ NS_ASSUME_NONNULL_BEGIN
     if ( error.code == NSURLErrorCancelled ) {
         
 #ifdef DEBUG
-        printf("\n取消下载, 下载标识:%ld \n", (unsigned long)dataTask.taskIdentifier);
+        printf("\nSJDownloadDataTask: 取消下载, 下载标识:%ld \n", (unsigned long)dataTask.taskIdentifier);
 #endif
         return;
     }
@@ -188,7 +221,7 @@ NS_ASSUME_NONNULL_BEGIN
         if ( sjTask.failureBlock ) sjTask.failureBlock(sjTask);
         
 #ifdef DEBUG
-        printf("\n下载错误, error: %s, 下载标识:%ld \n", [error.description UTF8String], (unsigned long)dataTask.taskIdentifier);
+        printf("\nSJDownloadDataTask: 下载错误, error: %s, 下载标识:%ld \n", [error.description UTF8String], (unsigned long)dataTask.taskIdentifier);
 #endif
         return;
     }
@@ -196,7 +229,7 @@ NS_ASSUME_NONNULL_BEGIN
     if ( sjTask.successBlock ) sjTask.successBlock(sjTask);
     
 #ifdef DEBUG
-    printf("\n文件下载完成, 下载标识: %ld, 保存路径:%s \n", (unsigned long)dataTask.taskIdentifier, [[sjTask fileURL].path UTF8String]);
+    printf("\nSJDownloadDataTask: 文件下载完成, 下载标识: %ld, 保存路径:%s \n", (unsigned long)dataTask.taskIdentifier, [[sjTask fileURL].path UTF8String]);
 #endif
 }
 

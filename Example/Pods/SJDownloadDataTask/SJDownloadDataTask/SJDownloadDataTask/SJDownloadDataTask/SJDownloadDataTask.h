@@ -26,9 +26,10 @@ typedef NSUInteger SJDownloadDataTaskIdentitifer;
                                    success:(nullable void(^)(SJDownloadDataTask *dataTask))successBlock
                                    failure:(nullable void(^)(SJDownloadDataTask *dataTask))failureBlock;
 
-- (void)cancel;
+- (void)cancel; // 取消下载
+- (void)restart; // 重启, 重新启动下载
 
-#pragma mark 
+#pragma mark
 @property (nonatomic, readonly) SJDownloadDataTaskIdentitifer identifier;
 @property (nonatomic, strong, readonly) NSString *URLStr;
 @property (nonatomic, strong, readonly) NSURL *fileURL;

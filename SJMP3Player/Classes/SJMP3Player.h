@@ -1,94 +1,68 @@
 //
 //  SJMP3Player.h
-//  SJMP3PlayWhileDownloadingProject
+//  SJMP3Player_Example
 //
-//  Created by BlueDancer on 2017/6/21.
-//  Copyright © 2017年 SanJiang. All rights reserved.
+//  Created by 畅三江 on 2018/5/26.
+//  Copyright © 2018年 changsanjiang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
-
-
 @protocol SJMP3PlayerDelegate;
 
 @interface SJMP3Player : NSObject
+@property (nonatomic) BOOL enableDBUG;
 
-/*!
- *  default if No. */
-@property (nonatomic, assign, readwrite) BOOL enableDBUG;
-
-@property (nonatomic, weak,   readwrite) id<SJMP3PlayerDelegate> delegate;
-
-@property (nonatomic, assign, readwrite) CGFloat rate;
-
-@property (nonatomic, strong, readonly) NSString *currentPlayingURLStr;
-
-@property (nonatomic, assign, readonly) BOOL playStatus;
-
-/*!
- *  初始化 */
 + (instancetype)player;
+- (void)playWithURL:(NSURL *)URL;
 
-/*!
- *  播放
- *  If you do not know, please set 5. */
-- (void)playeAudioWithPlayURLStr:(NSString *)playURLStr minDuration:(double)minDuration;
+@property (nonatomic, weak, nullable) id <SJMP3PlayerDelegate> delegate;
+@property (nonatomic, strong, readonly, nullable) NSURL *currentURL;
+@property (nonatomic, readonly) NSTimeInterval currentTime;
+@property (nonatomic, readonly) NSTimeInterval duration;
+@property (nonatomic, readonly) BOOL isPlaying;
+@property (nonatomic) float rate;
 
-/*!
- *  从指定的进度播放 */
-- (void)setPlayProgress:(float)progress;
+/// 跳转
+- (BOOL)seekToTime:(NSTimeInterval)sec;
 
-/*!
- *  暂停 */
+/// 暂停
 - (void)pause;
 
-/*!
- *  恢复播放 */
+/// 恢复播放
 - (void)resume;
 
-/*!
- *  停止播放, 停止缓存 */
+/// 停止播放, 停止缓存
 - (void)stop;
 
-/*!
- *  清除本地缓存 */
+/// 清除本地缓存
 - (void)clearDiskAudioCache;
 
-/*!
- *  已缓存的audios的大小 */
-- (NSInteger)diskAudioCacheSize;
+/// 清除临时缓存
+- (void)clearTmpAudioCache;
 
-/*!
- *  查看音乐是否已缓存 */
-- (BOOL)checkMusicHasBeenCachedWithPlayURL:(NSString *)playURL;
+/// 已缓存的audios的大小 bytes
+- (long long)diskAudioCacheSize;
+
+/// 查看音乐是否已缓存
+- (BOOL)isCached:(NSURL *)URL;
 
 @end
 
 
-
-
-#pragma mark -
-
-
 @interface SJMP3Info : NSObject
-
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *artist;
 @property (nonatomic, strong) UIImage *cover;
 
 - (instancetype)initWithTitle:(NSString *)title artist:(NSString *)artist cover:(UIImage *)cover;
-
 @end
 
 
 @protocol SJMP3PlayerDelegate <NSObject>
 
 @required
-
 /// 用于显示在锁屏界面 Control Center 的信息
 - (SJMP3Info *)playInfo;
 /// 点击了锁屏界面 Control Center 下一首按钮
@@ -100,10 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)audioPlayer:(SJMP3Player *)player audioDownloadProgress:(CGFloat)progress;
 
+- (void)audioPlayer:(SJMP3Player *)player downloadFinishedForURL:(NSURL *)URL;
+
 - (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime;
 
 - (void)audioPlayerDidFinishPlaying:(SJMP3Player *)player;
 
 @end
-
 NS_ASSUME_NONNULL_END

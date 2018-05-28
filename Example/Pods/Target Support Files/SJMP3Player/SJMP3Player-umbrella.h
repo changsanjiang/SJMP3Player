@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "NSTimer+SJMP3PlayerAdd.h"
 #import "SJMP3Player.h"
 
 FOUNDATION_EXPORT double SJMP3PlayerVersionNumber;
