@@ -406,8 +406,8 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     if ( !audioPlayer ) return NO;
     audioPlayer.enableRate = YES;
     if ( ![audioPlayer prepareToPlay] ) return NO;
-    if ( self.audioDuration != 0 ) {
-        if ( audioPlayer.currentTime < self.audioDuration * 0.3 ) return NO;
+    if ( self.audioDuration != 0 && self.needDownload ) {
+        if ( !self.isDownloaded && audioPlayer.currentTime < self.audioDuration * 0.3 ) return NO;
     }
     audioPlayer.delegate = self;
     audioPlayer.currentTime = currentTime;
