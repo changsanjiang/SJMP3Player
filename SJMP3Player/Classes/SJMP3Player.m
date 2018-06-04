@@ -293,6 +293,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     [self stop];
     [self.fileManager updateURL:URL];
     self.audioDuration = sec;
+    _currentURL = URL;
     if ( [self.delegate respondsToSelector:@selector(audioPlayer:currentTime:reachableTime:totalTime:)] ) {
         [self.delegate audioPlayer:self currentTime:0 reachableTime:0 totalTime:0];
     }
@@ -350,6 +351,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     } success:^(SJDownloadDataTask * _Nonnull dataTask) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
+        self.isDownloaded = YES;
         [self.fileManager moveTmpFileToCache];
         if ( self.needToPlay ) {
             [self _playFile:self.fileManager.fileURL
@@ -364,8 +366,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
                 [self.delegate audioPlayer:self downloadFinishedForURL:URL];
             }
         });
-        
-        self.isDownloaded = YES;
     } failure:^(SJDownloadDataTask * _Nonnull dataTask) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
