@@ -334,6 +334,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     self.task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:self.fileManager.tmpFileURL append:YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
+        self.downloadProgress = progress;
         if ( self.needToPlay && progress > 0.1 ) {
             [self _playFile:dataTask.fileURL
                  fileOrigin:SJMP3PlayerFileOriginTmpCache
@@ -347,11 +348,11 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
                      audioDownloadProgress:progress];
             });
         }
-        self.downloadProgress = progress;
     } success:^(SJDownloadDataTask * _Nonnull dataTask) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
         self.isDownloaded = YES;
+        self.downloadProgress = 1;
         [self.fileManager moveTmpFileToCache];
         if ( self.needToPlay ) {
             [self _playFile:self.fileManager.fileURL
