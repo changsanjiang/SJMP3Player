@@ -179,7 +179,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     if ( !self ) return nil;
     _rate = 1;
     NSError *error = NULL;
-    if ( ![[AVAudioSession sharedInstance] setActive: YES error:&error] ) {
+    if ( ![[AVAudioSession sharedInstance] setActive:YES error:&error] ) {
         NSLog(@"Failed to set active audio session! error: %@", error);
     }
     // 默认情况下为 AVAudioSessionCategorySoloAmbient,
@@ -190,14 +190,75 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error] ) {
         NSLog(@"Failed to set audio category! error: %@", error);
     }
-
+    
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+    
+    __weak typeof(self) _self = self;
+    [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
+        [self pause];
+        if ( [self.delegate respondsToSelector:@selector(remoteEventPausedForAudioPlayer:)] ) [self.delegate remoteEventPausedForAudioPlayer:self];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    
+    [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
+        [self resume];
+        if ( [self.delegate respondsToSelector:@selector(remoteEventPlayedForAudioPlayer:)] ) [self.delegate remoteEventPlayedForAudioPlayer:self];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    
+    [commandCenter.previousTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
+        [self.delegate remoteEvent_PreWithAudioPlayer:self];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    
+    [commandCenter.nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
+        [self.delegate remoteEvent_NextWithAudioPlayer:self];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    
+    if (@available(iOS 9.1, *)) {
+        [commandCenter.changePlaybackPositionCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+            __strong typeof(_self) self = _self;
+            if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
+            MPChangePlaybackPositionCommandEvent * playbackPositionEvent = (MPChangePlaybackPositionCommandEvent *)event;
+            [self seekToTime:playbackPositionEvent.positionTime];
+            return MPRemoteCommandHandlerStatusSuccess;
+        }];
+    }
+    
     _serialQueue = dispatch_queue_create("com.sjmp3player.audioQueue", DISPATCH_QUEUE_SERIAL);
+    
     _fileManager = [SJMP3PlayerFileManager new];
-    [self _configRemoteEventReceiver];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     return self;
 }
 
+- (void)applicationDidEnterBackground {
+    NSError *error = NULL;
+    if ( ![[AVAudioSession sharedInstance] setActive:YES error:&error] ) {
+        NSLog(@"Failed to set active audio session! error: %@", error);
+    }
+}
+
 - (void)dealloc {
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+    [commandCenter.pauseCommand removeTarget:self];
+    [commandCenter.playCommand removeTarget:self];
+    [commandCenter.previousTrackCommand removeTarget:self];
+    [commandCenter.nextTrackCommand removeTarget:self];
+    if (@available(iOS 9.1, *)) {
+        [commandCenter.changePlaybackPositionCommand removeTarget:self];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -490,38 +551,13 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
 }
 
 #pragma mark
-- (void)_configRemoteEventReceiver {
-    
-    SEL sel = @selector(remoteControlReceivedWithEvent:);
-    Method remoteControlReceivedWithEvent = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], sel);
-    class_replaceMethod([[UIApplication sharedApplication].delegate class], sel, (IMP)_sj_remoteControlReceived, method_getTypeEncoding(remoteControlReceivedWithEvent));
-    objc_setAssociatedObject([UIApplication sharedApplication].delegate, sel, self, OBJC_ASSOCIATION_ASSIGN);
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminateNotification) name:UIApplicationWillTerminateNotification object:nil];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActiveNotification) name:UIApplicationWillResignActiveNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
 
-}
 - (void)audioSessionInterruptionNotification:(NSNotification *)notification{
     NSDictionary *info = notification.userInfo;
     if( (AVAudioSessionInterruptionType)[info[AVAudioSessionInterruptionTypeKey] integerValue] == AVAudioSessionInterruptionTypeBegan ) {
         [self pause];
+        if ( [self.delegate respondsToSelector:@selector(remoteEventPausedForAudioPlayer:)] ) [self.delegate remoteEventPausedForAudioPlayer:self];
     }
-}
-
-- (void)applicationWillResignActiveNotification {
-    if ( !self.audioPlayer ) return;
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    [(UIResponder *)[UIApplication sharedApplication].delegate becomeFirstResponder];
-    [self _setPlayInfo];
-}
-
-- (void)applicationWillTerminateNotification {
-    [(UIResponder *)[UIApplication sharedApplication].delegate resignFirstResponder];
-    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 }
 
 - (void)_setPlayInfo {
@@ -544,35 +580,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
                      forKey:MPMediaItemPropertyArtwork];
     }
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = mediaDict;
-}
-
-static void _sj_remoteControlReceived(id self, SEL _cmd, UIEvent *event) {
-    SJMP3Player *player = objc_getAssociatedObject(self, _cmd);
-    if ( UIEventTypeRemoteControl != event.type ) return;
-    switch ( event.subtype ) {
-        case UIEventSubtypeRemoteControlPlay: {
-            [player resume];
-        }
-            break;
-        case UIEventSubtypeRemoteControlPause: {
-            [player pause];
-        }
-            break;
-            
-        case UIEventSubtypeRemoteControlNextTrack: {
-            if ( ![player.delegate respondsToSelector:@selector(remoteEvent_NextWithAudioPlayer:)] ) return;
-            [player.delegate remoteEvent_NextWithAudioPlayer:player];
-        }
-            break;
-            
-        case UIEventSubtypeRemoteControlPreviousTrack: {
-            if ( ![player.delegate respondsToSelector:@selector(remoteEvent_PreWithAudioPlayer:)] ) return;
-            [player.delegate remoteEvent_PreWithAudioPlayer:player];
-        }
-            break;
-        default:
-            break;
-    }
 }
 @end
 

@@ -252,7 +252,7 @@
 				ORGANIZATIONNAME = changsanjiang;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = DB5B5F2RH5;
+						DevelopmentTeam = U5A7L7SMNP;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -523,15 +523,15 @@
 			baseConfigurationReference = 9C83282895696C4A27956B7E /* Pods-SJMP3Player_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DB5B5F2RH5;
+				DEVELOPMENT_TEAM = U5A7L7SMNP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SJMP3Player/SJMP3Player-Prefix.pch";
 				INFOPLIST_FILE = "SJMP3Player/SJMP3Player-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "694b7939-1114-4ae4-b187-02fa71ba55eb";
-				PROVISIONING_PROFILE_SPECIFIER = sanjiang17macDev;
+				PROVISIONING_PROFILE = "e5bfade6-a1b9-4cb4-8c89-6fb1b1768fc7";
+				PROVISIONING_PROFILE_SPECIFIER = WildcardProfile;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

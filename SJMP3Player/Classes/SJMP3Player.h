@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol SJMP3PlayerDelegate;
 
-@interface SJMP3Player : NSObject
+@interface SJMP3Player : UIResponder
 @property (nonatomic) BOOL enableDBUG;
 
 + (instancetype)player;
@@ -81,6 +81,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime;
 
 - (void)audioPlayerDidFinishPlaying:(SJMP3Player *)player;
+
+- (void)remoteEventPausedForAudioPlayer:(SJMP3Player *)player;
+
+- (void)remoteEventPlayedForAudioPlayer:(SJMP3Player *)player;
 
 @end
 NS_ASSUME_NONNULL_END
