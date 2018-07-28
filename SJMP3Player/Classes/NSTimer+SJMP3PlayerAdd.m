@@ -23,5 +23,6 @@
 + (void)SJMP3PlayerAdd_exeBlock:(NSTimer *)timer {
     void(^block)(NSTimer *timer) = timer.userInfo;
     if ( block ) block(timer);
+    else [timer invalidate];
 }
 @end

@@ -11,13 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol SJMP3PlayerDelegate;
 
-@interface SJMP3Player : UIResponder
-@property (nonatomic) BOOL enableDBUG;
+@interface SJMP3Player : NSObject
+
 
 + (instancetype)player;
+
 - (void)playWithURL:(NSURL *)URL;
-/// 由外部提供源文件的播放时间, 这有助于让播放器更好的进行初始化工作
-- (void)playWithURL:(NSURL *)URL audioDuration:(NSTimeInterval)sec;
 
 @property (nonatomic, weak, nullable) id <SJMP3PlayerDelegate> delegate;
 @property (nonatomic, strong, readonly, nullable) NSURL *currentURL;
@@ -25,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic, readonly) BOOL isPlaying;
 @property (nonatomic) float rate;
+@property (nonatomic) BOOL enableDBUG;
 
 /// 跳转
 - (BOOL)seekToTime:(NSTimeInterval)sec;
@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查看音乐是否已缓存
 - (BOOL)isCached:(NSURL *)URL;
 
+- (void)playWithURL:(NSURL *)URL audioDuration:(NSTimeInterval)sec;
 @end
 
 
@@ -67,28 +68,44 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 /// 用于显示在锁屏界面 Control Center 的信息
 - (SJMP3Info *)playInfo;
+
 /// 点击了锁屏界面 Control Center 下一首按钮
 - (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player;
+
 /// 点击了锁屏界面 Control Center 上一首按钮
 - (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player;
 
 @optional
-
+/// 下载的进度回调
 - (void)audioPlayer:(SJMP3Player *)player audioDownloadProgress:(CGFloat)progress;
 
+/// 下载完成的回调
 - (void)audioPlayer:(SJMP3Player *)player downloadFinishedForURL:(NSURL *)URL;
 
+/// 播放相关时间的回调
+/// - currentTime   当前时间
+/// - reachableTime 可以播放到的时间(已下载的部分, 未下载的部分无法播放)
+/// - totalTime     全部时间
 - (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime;
 
+/// 播放完毕的回调
 - (void)audioPlayerDidFinishPlaying:(SJMP3Player *)player;
 
+/// 控制台进行了暂停操作
 - (void)remoteEventPausedForAudioPlayer:(SJMP3Player *)player;
 
+/// 控制台进行了播放操作
 - (void)remoteEventPlayedForAudioPlayer:(SJMP3Player *)player;
 
-- (NSURL *)prefetchPreviousAudio;
+/// 预加载
+/// 如果想提前下载`前一首歌曲`, 请返回相应的URL
+/// 当前播放的音频下载完成后, 会调用此方法, 优先下载`nextAudio`
+- (nullable NSURL *)prefetchURLOfPreviousAudio;
 
-- (NSURL *)prefetchNextAudio;
+/// 预加载
+/// 如果想提前下载`下一首歌曲`, 请返回相应的URL
+/// 当前播放的音频下载完成后, 会调用此方法, 优先下载`nextAudio`
+- (nullable NSURL *)prefetchURLOfNextAudio;
 
 @end
 NS_ASSUME_NONNULL_END

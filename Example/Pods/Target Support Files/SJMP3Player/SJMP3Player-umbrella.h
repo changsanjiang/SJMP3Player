@@ -12,6 +12,8 @@
 
 #import "NSTimer+SJMP3PlayerAdd.h"
 #import "SJMP3Player.h"
+#import "SJMP3PlayerFileManager.h"
+#import "SJMP3PlayerPrefetcher.h"
 
 FOUNDATION_EXPORT double SJMP3PlayerVersionNumber;
 FOUNDATION_EXPORT const unsigned char SJMP3PlayerVersionString[];

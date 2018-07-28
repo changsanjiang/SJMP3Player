@@ -23,7 +23,6 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7759C3291FAD9D7200E651A3 /* Mode Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 7759C3281FAD9D7200E651A3 /* Mode Select.png */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A65B0E33210BF466005791F0 /* SJTestPlayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A65B0E32210BF466005791F0 /* SJTestPlayInfo.m */; };
 		C5F5B828E74458F643F9C56A /* Pods_SJMP3Player_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F719335502FA241530C54D /* Pods_SJMP3Player_Tests.framework */; };
 		EE8CA4143E9E40675EC0522B /* Pods_SJMP3Player_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C8192080AAD5D415586BB2 /* Pods_SJMP3Player_Example.framework */; };
 /* End PBXBuildFile section */
@@ -68,8 +67,6 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BCE5DF759A34A48929DDA73 /* Pods-SJMP3Player_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJMP3Player_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SJMP3Player_Example/Pods-SJMP3Player_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9C83282895696C4A27956B7E /* Pods-SJMP3Player_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJMP3Player_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SJMP3Player_Example/Pods-SJMP3Player_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A65B0E31210BF466005791F0 /* SJTestPlayInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJTestPlayInfo.h; sourceTree = "<group>"; };
-		A65B0E32210BF466005791F0 /* SJTestPlayInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJTestPlayInfo.m; sourceTree = "<group>"; };
 		B101438352820E8F007A946E /* Pods-SJMP3Player_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJMP3Player_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SJMP3Player_Tests/Pods-SJMP3Player_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF0E068FDE49504F5F2F201C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,8 +150,6 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* SJViewController.h */,
 				6003F5A6195388D20070C39A /* SJViewController.m */,
-				A65B0E31210BF466005791F0 /* SJTestPlayInfo.h */,
-				A65B0E32210BF466005791F0 /* SJTestPlayInfo.m */,
 				7759C3281FAD9D7200E651A3 /* Mode Select.png */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -400,7 +395,6 @@
 			files = (
 				6003F59E195388D20070C39A /* SJAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* SJViewController.m in Sources */,
-				A65B0E33210BF466005791F0 /* SJTestPlayInfo.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
