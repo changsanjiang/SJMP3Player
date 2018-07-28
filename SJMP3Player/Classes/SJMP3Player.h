@@ -50,7 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查看音乐是否已缓存
 - (BOOL)isCached:(NSURL *)URL;
 
-- (void)playWithURL:(NSURL *)URL audioDuration:(NSTimeInterval)sec;
 @end
 
 

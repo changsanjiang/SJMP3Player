@@ -79,7 +79,7 @@
 }
 
 - (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player {
-    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"]];
+    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/14984717017302d80"]];
 }
 
 - (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player {
@@ -122,6 +122,15 @@
     NSLog(@"音乐播放完毕");
 }
 
+- (NSURL *)prefetchURLOfPreviousAudio {
+    // test
+    return [NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"];
+}
+
+- (NSURL *)prefetchURLOfNextAudio {
+    // test
+    return [NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/14984717017302d80"];
+}
 
 #pragma mark -
 
@@ -144,8 +153,7 @@
 
 - (void)clickedBtn:(UIButton *)btn {
 //    http://audio.cdn.lanwuzhe.com/1492776280608c177
-//    http://img.xk12580.net/Upload/UploadMusic/20171109161229night.mp3
-//    [self.player playeAudioWithPlayURLStr:@"http://audio.cdn.lanwuzhe.com/1492776280608c177" minDuration:5];
+//    http://audio.cdn.lanwuzhe.com/14984717017302d80
     [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"]];
 }
 

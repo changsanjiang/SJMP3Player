@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface SJMP3PlayerPrefetcher : NSObject
+@property (nonatomic, copy, nullable) void(^completionHandler)(SJMP3PlayerPrefetcher *prefetcher, BOOL finished);
 @property (nonatomic, strong, readonly, nullable) NSURL *URL;
 - (void)prefetchAudioForURL:(NSURL *)URL toPath:(NSURL *)fileURL;
 - (void)cancel;

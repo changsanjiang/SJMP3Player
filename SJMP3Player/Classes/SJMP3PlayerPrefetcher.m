@@ -14,11 +14,24 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @implementation SJMP3PlayerPrefetcher
+- (nullable NSURL *)URL {
+    if ( !_task ) return nil;
+    return [NSURL URLWithString:_task.URLStr];
+}
 - (void)prefetchAudioForURL:(NSURL *)URL toPath:(NSURL *)fileURL {
     if ( [_task.URLStr isEqualToString:URL.absoluteString] ) return;
     [self cancel];
-    _URL = URL;
-    _task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:fileURL append:YES progress:nil success:nil failure:nil];
+    __weak typeof(self) _self = self;
+    _task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:fileURL append:YES progress:nil success:^(SJDownloadDataTask * _Nonnull dataTask) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        self.task = nil;
+        if ( self.completionHandler ) self.completionHandler(self, YES);
+    } failure:^(SJDownloadDataTask * _Nonnull dataTask) {
+        __strong typeof(_self) self = _self;
+        if ( !self ) return ;
+        if ( self.completionHandler ) self.completionHandler(self, NO);
+    }];
 }
 - (void)cancel {
     [_task cancel];

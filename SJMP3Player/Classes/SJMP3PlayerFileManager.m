@@ -59,7 +59,7 @@
 }
 + (long long)cacheSize {
     __block long long size = 0;
-    [[self cacheFiles] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[self fileCaches] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         size += [self _fileSizeOfPath:obj];
     }];
     return size;
@@ -68,7 +68,7 @@
     [[NSFileManager defaultManager] removeItemAtPath:[self tmpCacheFolder] error:nil];
     [self _checkoutCacheFolder];
 }
-+ (NSArray<NSString *> *)cacheFiles {
++ (NSArray<NSString *> *)fileCaches {
     NSString *rootFolder = [self rootCacheFolder];
     NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rootFolder error:nil];
     NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
