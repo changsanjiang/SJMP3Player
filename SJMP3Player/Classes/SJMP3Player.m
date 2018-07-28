@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 @interface SJMP3Player()<AVAudioPlayerDelegate>
 @property (nonatomic, strong, readonly) SJMP3PlayerFileManager *fileManager;
 @property (nonatomic, readonly) dispatch_queue_t serialQueue;
-@property (nonatomic, readonly) BOOL needToPlay;
+@property (nonatomic, readonly) BOOL isNeedToPlay;
 
 @property (nonatomic, strong, nullable) NSTimer *refreshTimeTimer;
 @property (strong, nullable) AVAudioPlayer *audioPlayer;
@@ -206,7 +206,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 }
 
 /// 是否需要播放
-- (BOOL)needToPlay {
+- (BOOL)isNeedToPlay {
     return !self.isPlaying && !self.userClickedPause;
 }
 
@@ -321,7 +321,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         self.downloadProgress = 1;
         self.task = nil;
         [self.fileManager copyTmpFileToCache];
-        if ( self.needToPlay ) {
+        if ( self.isNeedToPlay ) {
             [self _playFile:self.fileManager.tmpFileCacheURL source:SJMP3PlayerFileSourceTmpCache currentTime:self.audioPlayer.currentTime];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -337,10 +337,10 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         if ( !self ) return ;
         
         if ( self.enableDBUG ) {
-            printf("\n- 下载失败, 2秒后将重启下载. URL: %s \n", URL.description.UTF8String);
+            printf("\n- 下载失败, 将会在3秒后重启下载. URL: %s \n", URL.description.UTF8String);
         }
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __strong typeof(_self) self = _self;
             if ( !self ) return ;
             if ( self.task.identifier == dataTask.identifier ) [dataTask restart];
@@ -398,9 +398,9 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
                 return;
             }
             // `finished == NO`
-            printf("\n- 预加载失败: URL: %s, 将会在2秒后重启下载\n", prefetcher.URL.description.UTF8String);
+            printf("\n- 预加载失败: URL: %s, 将会在3秒后重启下载\n", prefetcher.URL.description.UTF8String);
             NSURL *URL = prefetcher.URL;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __strong typeof(_self) self = _self;
                 if ( !self ) return ;
                 if ( [prefetcher.URL isEqual:URL] ) [prefetcher restart];
@@ -420,8 +420,8 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 #pragma mark play file
 
 - (void)_tryToPlayTmpFileCache:(NSURL *)tmpFileCacheURL progress:(float)progress {
+    if ( ![self isNeedToPlay] ) return;
     if ( self.task.wroteSize < 1024 * 400 ) return;
-    if ( ![self needToPlay] ) return;
     [self _playFile:tmpFileCacheURL source:SJMP3PlayerFileSourceTmpCache currentTime:self.audioPlayer.currentTime];
 }
 
@@ -491,6 +491,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         if ( !self ) return ;
         if ( 0 == secs ) return;
         if ( completionHandler ) completionHandler(ceil(self.audioPlayer.duration) == ceil(secs));
+        self.durationLoader = nil;
     }];
 }
 
@@ -518,9 +519,11 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         return;
     }
     
+    NSURL *URL = self.audioPlayer.url;
     [self confirmTmpFileIsFinishedPlaying:^(BOOL result) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
+        if ( ![self.audioPlayer.url isEqual:URL] ) return;
         if ( result ) inner_finishPlayingExeBlock();
         else if ( !self.userClickedPause ) [self _playFile:player.url source:SJMP3PlayerFileSourceTmpCache currentTime:player.duration];
     }];
@@ -568,8 +571,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     [_refreshTimeTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_refreshTimeTimer.timeInterval]];
     [[NSRunLoop mainRunLoop] addTimer:_refreshTimeTimer forMode:NSRunLoopCommonModes];
 }
-
-#pragma mark
 
 - (void)_setPlayInfo {
     if ( !self.audioPlayer ) return;
