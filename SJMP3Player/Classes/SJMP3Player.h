@@ -86,5 +86,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)remoteEventPlayedForAudioPlayer:(SJMP3Player *)player;
 
+- (NSURL *)prefetchPreviousAudio;
+
+- (NSURL *)prefetchNextAudio;
+
 @end
 NS_ASSUME_NONNULL_END

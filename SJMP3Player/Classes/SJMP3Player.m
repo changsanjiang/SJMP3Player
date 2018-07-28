@@ -168,7 +168,13 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
 @property float downloadProgress;
 @end
 
-@implementation SJMP3Player
+@implementation SJMP3Player {
+    id _pauseToken;
+    id _playToken;
+    id _previousToken;
+    id _nextToken;
+    id _changePlaybackPositionToken;
+}
 
 + (instancetype)player {
     return [self new];
@@ -194,7 +200,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     
     __weak typeof(self) _self = self;
-    [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+    _pauseToken = [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         __strong typeof(_self) self = _self;
         if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
         [self pause];
@@ -202,7 +208,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
         return MPRemoteCommandHandlerStatusSuccess;
     }];
     
-    [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+    _playToken = [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         __strong typeof(_self) self = _self;
         if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
         [self resume];
@@ -210,14 +216,14 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
         return MPRemoteCommandHandlerStatusSuccess;
     }];
     
-    [commandCenter.previousTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+    _previousToken = [commandCenter.previousTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         __strong typeof(_self) self = _self;
         if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
         [self.delegate remoteEvent_PreWithAudioPlayer:self];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
     
-    [commandCenter.nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+    _nextToken = [commandCenter.nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         __strong typeof(_self) self = _self;
         if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
         [self.delegate remoteEvent_NextWithAudioPlayer:self];
@@ -225,7 +231,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
     }];
     
     if (@available(iOS 9.1, *)) {
-        [commandCenter.changePlaybackPositionCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        _changePlaybackPositionToken = [commandCenter.changePlaybackPositionCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
             __strong typeof(_self) self = _self;
             if ( !self ) return MPRemoteCommandHandlerStatusSuccess;
             MPChangePlaybackPositionCommandEvent * playbackPositionEvent = (MPChangePlaybackPositionCommandEvent *)event;
@@ -252,12 +258,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileOrigin) {
 
 - (void)dealloc {
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
-    [commandCenter.pauseCommand removeTarget:self];
-    [commandCenter.playCommand removeTarget:self];
-    [commandCenter.previousTrackCommand removeTarget:self];
-    [commandCenter.nextTrackCommand removeTarget:self];
+    [commandCenter.pauseCommand removeTarget:_pauseToken];
+    [commandCenter.playCommand removeTarget:_playToken];
+    [commandCenter.previousTrackCommand removeTarget:_previousToken];
+    [commandCenter.nextTrackCommand removeTarget:_nextToken];
     if (@available(iOS 9.1, *)) {
-        [commandCenter.changePlaybackPositionCommand removeTarget:self];
+        [commandCenter.changePlaybackPositionCommand removeTarget:_changePlaybackPositionToken];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
