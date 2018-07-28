@@ -32,10 +32,12 @@
     return [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
 }
 + (NSString *)fileCachePath:(NSURL *)URL {
-    return [SJMP3PlayerFileManager.rootCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mp3", (unsigned long)[URL.absoluteString hash]]];
+    NSString *format = URL.pathExtension; if ( !format ) format = @"mp3";
+    return [SJMP3PlayerFileManager.rootCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
 }
 + (NSString *)tmpFileCachePath:(NSURL *)URL {
-    return [SJMP3PlayerFileManager.tmpCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mp3", (unsigned long)[URL.absoluteString hash]]];
+    NSString *format = URL.pathExtension; if ( !format ) format = @"mp3";
+    return [SJMP3PlayerFileManager.tmpCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
 }
 + (BOOL)delete:(NSURL *)fileCacheURL {
     return [[NSFileManager defaultManager] removeItemAtURL:fileCacheURL error:nil];

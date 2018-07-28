@@ -154,7 +154,8 @@
 - (void)clickedBtn:(UIButton *)btn {
 //    http://audio.cdn.lanwuzhe.com/1492776280608c177
 //    http://audio.cdn.lanwuzhe.com/14984717017302d80
-    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/1492776280608c177"]];
+//    http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3
+    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"]];
 }
 
 

@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SJMP3Player : NSObject
 
-
 + (instancetype)player;
 
 - (void)playWithURL:(NSURL *)URL;

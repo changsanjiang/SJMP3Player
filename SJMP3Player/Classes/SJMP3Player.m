@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// - SJMP3PlayerFileSourceUnknown:         未知
 /// - SJMP3PlayerFileSourceLocal:           本地文件
 /// - SJMP3PlayerFileSourceCache:           缓存文件(cache目录)
-///- SJMP3PlayerFileSourceTmpCache:         临时缓存文件(tmp目录)
+/// - SJMP3PlayerFileSourceTmpCache:        临时缓存文件(tmp目录)
+///
 typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     SJMP3PlayerFileSourceUnknown,
     SJMP3PlayerFileSourceLocal,
@@ -63,7 +64,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 
 @property (nonatomic, strong, nullable) NSTimer *refreshTimeTimer;
 @property (strong, nullable) AVAudioPlayer *audioPlayer;
-
 
 #pragma mark
 @property (nonatomic, strong, nullable) _SJMP3PlayerGetFileDuration *durationLoader;
@@ -299,12 +299,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 #pragma mark downlaod
 
 - (void)_needDownloadAudio {
-    [self.prefetcher cancel]; // 取消预缓存, 等待当前任务下载完成
+    [self _cancelPrefetch]; // 取消预缓存, 等待当前任务下载完成
     self.needDownload = YES;
     [self.fileManager updateURL:self.currentURL];
     NSURL *URL = self.fileManager.URL;
     __weak typeof(self) _self = self;
-    self.task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:self.fileManager.tmpFileCacheURL append:YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
+    self.task = [SJDownloadDataTask downloadWithURLStr:URL.description toPath:self.fileManager.tmpFileCacheURL append:YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
         [self _tryToPlayTmpFileCache:self.fileManager.tmpFileCacheURL progress:progress];
@@ -337,7 +337,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         if ( !self ) return ;
         
         if ( self.enableDBUG ) {
-            printf("\n- 下载失败, 2秒后将重启下载. URL: %s \n", URL.absoluteString.UTF8String);
+            printf("\n- 下载失败, 2秒后将重启下载. URL: %s \n", URL.description.UTF8String);
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -348,12 +348,17 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     }];
     
     if ( self.enableDBUG ) {
-        printf("\n- 准备缓存, URL: %s, 临时缓存地址: %s \n", URL.absoluteString.UTF8String, self.fileManager.tmpFileCacheURL.absoluteString.UTF8String);
+        printf("\n- 准备缓存, URL: %s, 临时缓存地址: %s \n", URL.description.UTF8String, self.fileManager.tmpFileCacheURL.description.UTF8String);
     }
 }
 
 - (BOOL)isDownloaded {
     return [SJMP3PlayerFileManager isCached:self.currentURL];
+}
+
+- (void)_cancelPrefetch {
+    [self.prefetcherFileManager updateURL:nil];
+    [self.prefetcher cancel];
 }
 
 - (void)_tryToPrefetchNextAudio {
@@ -393,7 +398,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
                 return;
             }
             // `finished == NO`
-            printf("\n- 预加载失败: URL: %s, 将会在2秒后重启下载\n", prefetcher.URL.absoluteString.UTF8String);
+            printf("\n- 预加载失败: URL: %s, 将会在2秒后重启下载\n", prefetcher.URL.description.UTF8String);
             NSURL *URL = prefetcher.URL;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __strong typeof(_self) self = _self;
@@ -405,14 +410,9 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     
     if ( [_prefetcherFileManager.URL isEqual:preURL] && ![SJMP3PlayerFileManager isCached:preURL] ) return;
     
-    if ( self.enableDBUG ) {
-        printf("\n- 准备进行预缓存: URL: %s, 临时缓存地址: %s \n", preURL.absoluteString.UTF8String, _prefetcherFileManager.tmpFileCacheURL.absoluteString.UTF8String);
-    }
-    
     [_prefetcher cancel];
-    
     [_prefetcherFileManager updateURL:preURL];
-    
+    if ( self.enableDBUG ) printf("\n- 准备进行预缓存: URL: %s, 临时缓存地址: %s \n", preURL.description.UTF8String, _prefetcherFileManager.tmpFileCacheURL.description.UTF8String);
     [_prefetcher prefetchAudioForURL:preURL toPath:_prefetcherFileManager.tmpFileCacheURL];
 }
 
@@ -420,7 +420,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 #pragma mark play file
 
 - (void)_tryToPlayTmpFileCache:(NSURL *)tmpFileCacheURL progress:(float)progress {
-    if ( progress < 0.1 ) return;
+    if ( self.task.wroteSize < 1024 * 400 ) return;
     if ( ![self needToPlay] ) return;
     [self _playFile:tmpFileCacheURL source:SJMP3PlayerFileSourceTmpCache currentTime:self.audioPlayer.currentTime];
 }
@@ -434,13 +434,13 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         switch ( origin ) {
             case SJMP3PlayerFileSourceUnknown: break;
             case SJMP3PlayerFileSourceLocal:
-                printf("\n- 此次将播放`本地文件`, URL: %s, FileURL: %s \n", self.currentURL.absoluteString.UTF8String, fileURL.absoluteString.UTF8String);
+                printf("\n- 此次将播放`本地文件`, URL: %s, FileURL: %s \n", self.currentURL.description.UTF8String, fileURL.description.UTF8String);
                 break;
             case SJMP3PlayerFileSourceCache:
-                printf("\n- 此次将播放`缓存文件`, URL: %s, FileURL: %s \n", self.currentURL.absoluteString.UTF8String, fileURL.absoluteString.UTF8String);
+                printf("\n- 此次将播放`缓存文件`, URL: %s, FileURL: %s \n", self.currentURL.description.UTF8String, fileURL.description.UTF8String);
                 break;
             case SJMP3PlayerFileSourceTmpCache:
-                printf("\n- 此次将播放`临时缓存文件`, URL: %s, FileURL: %s \n", self.currentURL.absoluteString.UTF8String, fileURL.absoluteString.UTF8String);
+                printf("\n- 此次将播放`临时缓存文件`, URL: %s, FileURL: %s \n", self.currentURL.description.UTF8String, fileURL.description.UTF8String);
                 break;
         }
     }
@@ -453,10 +453,10 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     if ( error ) {
         if ( [SJMP3PlayerFileManager isCachedOfFileURL:fileURL] ) {
             [SJMP3PlayerFileManager delete:fileURL];
-            NSLog(@"\nSJMP3Player: -播放失败, 已删除下载文件-%@ \n", fileURL);
+            printf("\n- 播放失败, 已删除下载文件: %s \n", fileURL.description.UTF8String);
         }
         
-        if ( self.enableDBUG ) NSLog(@"\nSJMP3Player: -播放器初始化失败-%@-%@ \n", error, fileURL);
+        if ( self.enableDBUG ) printf("\n- 播放器初始化失败, Error: %s, FileURL:%s \n", error.description.UTF8String, fileURL.description.UTF8String);
         return NO;
     }
     
@@ -468,8 +468,8 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     [audioPlayer play];
     audioPlayer.rate = self.rate;
     if ( self.enableDBUG ) {
-        NSLog(@"\nSJMP3Player: -开始播放\n-持续时间: %f 秒\n-播放地址为: %@ ", audioPlayer.duration, fileURL);
-        if ( @available(ios 10, *) ) NSLog(@"\n-格式%@", audioPlayer.format);
+        printf("\n- 开始播放\n-持续时间: %f 秒\n-播放地址为: %s ", audioPlayer.duration, fileURL.description.UTF8String);
+        if ( @available(ios 10, *) ) printf("\n- 格式%s", audioPlayer.format.description.UTF8String);
     }
     self.audioPlayer = audioPlayer;
     [self activateRefreshTimeTimer];
@@ -500,7 +500,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
         if ( self.enableDBUG ) {
-            printf("- 播放完毕\n-播放地址:%s", player.url.absoluteString.UTF8String);
+            printf("- 播放完毕\n-播放地址:%s", player.url.description.UTF8String);
         }
         
         if ( [self.delegate respondsToSelector:@selector(audioPlayerDidFinishPlaying:)] ) {

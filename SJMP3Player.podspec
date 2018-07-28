@@ -39,4 +39,7 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MediaPlayer'
   s.dependency 'SJDownloadDataTask'
+  s.subspec 'Core' do |ss|
+      ss.source_files = 'SJMP3Player/Classes/Core/**/*.{h,m}'
+  end
 end
