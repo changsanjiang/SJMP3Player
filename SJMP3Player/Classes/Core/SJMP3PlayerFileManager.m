@@ -32,11 +32,11 @@
     return [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
 }
 + (NSString *)fileCachePath:(NSURL *)URL {
-    NSString *format = URL.pathExtension; if ( !format ) format = @"mp3";
+    NSString *format = URL.pathExtension; if ( format.length == 0 ) format = @"mp3";
     return [SJMP3PlayerFileManager.rootCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
 }
 + (NSString *)tmpFileCachePath:(NSURL *)URL {
-    NSString *format = URL.pathExtension; if ( !format ) format = @"mp3";
+    NSString *format = URL.pathExtension; if ( format.length == 0 ) format = @"mp3";
     return [SJMP3PlayerFileManager.tmpCacheFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
 }
 + (BOOL)delete:(NSURL *)fileCacheURL {
@@ -76,6 +76,15 @@
     NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
     [paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [itemPaths addObject:[rootFolder stringByAppendingPathComponent:obj]];
+    }];
+    return itemPaths;
+}
++ (NSArray<NSString *> *)tmpFileCaches {
+    NSString *tmpCacheFolder = [self tmpCacheFolder];
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tmpCacheFolder error:nil];
+    NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
+    [paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [itemPaths addObject:[tmpCacheFolder stringByAppendingPathComponent:obj]];
     }];
     return itemPaths;
 }
