@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 @property (nonatomic, strong, nullable) NSTimer *refreshTimeTimer;
 @property (nonatomic, strong, nullable) NSTimer *tryToPlayTimer;
 @property (strong, nullable) AVAudioPlayer *audioPlayer;
+@property (nonatomic) NSTimeInterval duration;
 
 #pragma mark
 @property (nonatomic, strong, nullable) _SJMP3PlayerGetFileDuration *durationLoader;
@@ -77,8 +78,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 
 // current task
 @property float downloadProgress;
-
-@property (nonatomic, strong, readonly) NSLock *lock;
 
 @end
 
@@ -119,7 +118,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     self = [super init];
     if ( !self ) return nil;
     _rate = 1;
-    
+
     __weak typeof(self) _self = self;
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     _pauseToken = [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
@@ -172,9 +171,6 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_activateAudioSession) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    
-    _lock = [NSLock new];
-    _lock.name = @"SJMP3Player.lock";
     return self;
 }
 
@@ -244,6 +240,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 - (void)resume {
     self.userClickedPause = NO;
     [self.audioPlayer play];
+    self.audioPlayer.rate = self.rate;
     [self _setPlayInfo];
     [self _activateRefreshTimeTimer];
 }
@@ -529,16 +526,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     if ( ![audioPlayer prepareToPlay] ) return;
     audioPlayer.delegate = self;
     audioPlayer.currentTime = currentTime;
-    [audioPlayer play];
-    audioPlayer.rate = self.rate;
-    
+    self.audioPlayer = audioPlayer;
+    [self resume];
     if ( self.enableDBUG ) {
-        printf("\n- SJMP3Player: 开始播放: %d - %s, 持续时间: %f 秒 - 播放地址为: %s \n", audioPlayer.isPlaying, audioPlayer.description.UTF8String, audioPlayer.duration, fileURL.description.UTF8String);
+        printf("\n- SJMP3Player: 开始播放: 当前时间: %f 秒 - %s, 持续时间: %f 秒 - 播放地址为: %s \n", audioPlayer.currentTime, audioPlayer.description.UTF8String, audioPlayer.duration, fileURL.description.UTF8String);
         if ( @available(ios 10, *) ) printf("\n- SJMP3Player: 格式%s \n", audioPlayer.format.description.UTF8String);
     }
-    self.audioPlayer = audioPlayer;
-    [self _activateRefreshTimeTimer];
-    [self _setPlayInfo];
 }
 
 #pragma mark - delegate
@@ -573,6 +566,8 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         if ( self.enableDBUG ) {
             printf("\n- SJMP3Player: 播放完毕, 播放地址:%s \n ", player.url.description.UTF8String);
         }
+        
+        [self _clearRefreshTimeTimer];
         
         if ( [self.delegate respondsToSelector:@selector(audioPlayerDidFinishPlaying:)] ) {
             __weak typeof(self) _self = self;
@@ -671,7 +666,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         [mediaDict setValue:[[MPMediaItemArtwork alloc] initWithImage:info.cover]
                      forKey:MPMediaItemPropertyArtwork];
     }
-    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = mediaDict;
+    if ( [NSThread currentThread].isMainThread ) [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = mediaDict;
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = mediaDict;
+        });
+    }
 }
 @end
 

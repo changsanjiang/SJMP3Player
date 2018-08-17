@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL isPlaying;
 @property (nonatomic) float rate;
 @property (nonatomic) BOOL enableDBUG;
+// current task
+@property (readonly) float downloadProgress;
 
 /// 跳转
 - (BOOL)seekToTime:(NSTimeInterval)sec;
