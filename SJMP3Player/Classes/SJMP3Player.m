@@ -527,10 +527,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     audioPlayer.delegate = self;
     audioPlayer.currentTime = currentTime;
     self.audioPlayer = audioPlayer;
-    [self resume];
-    if ( self.enableDBUG ) {
-        printf("\n- SJMP3Player: 开始播放: 当前时间: %f 秒 - %s, 持续时间: %f 秒 - 播放地址为: %s \n", audioPlayer.currentTime, audioPlayer.description.UTF8String, audioPlayer.duration, fileURL.description.UTF8String);
-        if ( @available(ios 10, *) ) printf("\n- SJMP3Player: 格式%s \n", audioPlayer.format.description.UTF8String);
+    if ( !self.userClickedPause ) {
+        [self resume];
+        if ( self.enableDBUG ) {
+            printf("\n- SJMP3Player: 开始播放: 当前时间: %f 秒 - %s, 持续时间: %f 秒 - 播放地址为: %s \n", audioPlayer.currentTime, audioPlayer.description.UTF8String, audioPlayer.duration, fileURL.description.UTF8String);
+            if ( @available(ios 10, *) ) printf("\n- SJMP3Player: 格式%s \n", audioPlayer.format.description.UTF8String);
+        }
     }
 }
 
