@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic, readonly) BOOL isPlaying;
 @property (nonatomic) float rate;
+@property (nonatomic) BOOL mute;
+@property (nonatomic) float volume;
 @property (nonatomic) BOOL enableDBUG;
 // current task
 @property (readonly) float downloadProgress;

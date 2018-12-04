@@ -122,6 +122,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     self = [super init];
     if ( !self ) return nil;
     _rate = 1;
+    _volume = 1;
     _lock = dispatch_semaphore_create(1);
     
     __weak typeof(self) _self = self;
@@ -177,6 +178,16 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_activateAudioSession) name:UIApplicationDidEnterBackgroundNotification object:nil];
     return self;
+}
+
+- (void)setMute:(BOOL)mute {
+    _mute = mute;
+    _audioPlayer.volume = mute?0.001:_volume;
+}
+
+- (void)setVolume:(float)volume {
+    _volume = volume;
+    _audioPlayer.volume = volume;
 }
 
 - (void)_activateAudioSession {
@@ -546,6 +557,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
     if ( ![audioPlayer prepareToPlay] ) return;
     audioPlayer.delegate = self;
     audioPlayer.currentTime = currentTime;
+    audioPlayer.volume = _mute?0.001:_volume;
     self.audioPlayer = audioPlayer;
     if ( !self.userClickedPause ) {
         [self resume];
@@ -648,7 +660,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 - (void)_activateRefreshTimeTimer {
     if ( _refreshTimeTimer ) return;
     __weak typeof(self) _self = self;
-    _refreshTimeTimer = [NSTimer SJMP3PlayerAdd_timerWithTimeInterval:0.2 block:^(NSTimer *timer) {
+    _refreshTimeTimer = [NSTimer SJMP3PlayerAdd_timerWithTimeInterval:0.5 block:^(NSTimer *timer) {
         __strong typeof(_self) self = _self;
         if ( !self ) {
             [timer invalidate];
