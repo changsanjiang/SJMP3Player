@@ -124,6 +124,8 @@
 }
 - (void)copyTmpFileToCache {
     if ( !_URL ) return;
-    [[NSFileManager defaultManager] copyItemAtURL:self.tmpFileCacheURL toURL:self.fileCacheURL error:nil];
+    if ( [NSFileManager.defaultManager fileExistsAtPath:self.tmpFileCacheURL.path] ) {    
+        [[NSFileManager defaultManager] copyItemAtURL:self.tmpFileCacheURL toURL:self.fileCacheURL error:nil];
+    }
 }
 @end

@@ -75,7 +75,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 @property (nonatomic, strong, readonly) SJMP3PlayerPrefetcher *prefetcher;
 @property (nonatomic, strong, readonly) SJMP3PlayerFileManager *prefetcherFileManager;
 @property (nonatomic) SJMP3PlayerFileSource fileOrigin;
-@property (nonatomic, strong, nullable) SJDownloadDataTask *task;
+@property (strong, nullable) SJDownloadDataTask *task;
 @property BOOL userClickedPause;
 @property (nonatomic) BOOL needDownload;
 
@@ -196,12 +196,12 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         NSLog(@"Failed to set active audio session! error: %@", error);
     }
     
-    // 默认情况下为 AVAudioSessionCategorySoloAmbient,
-    // 这种类型可以确保当应用开始时关闭其他的音频, 并且当屏幕锁定或者设备切换为静音模式时应用能够自动保持静音,
-    // 当屏幕锁定或其他应用置于前台时, 音频将会停止, AVAudioSession会停止工作.
-    // 设置为AVAudioSessionCategoryPlayback, 可以实现当应用置于后台或用户切换设备为静音模式还可以继续播放音频.
-    if ( ![[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error] ) {
-        NSLog(@"Failed to set audio category! error: %@", error);
+    if ( AVAudioSession.sharedInstance.category != AVAudioSessionCategoryPlayback ||
+         AVAudioSession.sharedInstance.category != AVAudioSessionCategoryPlayAndRecord ) {
+        NSError *error = nil;
+        // 使播放器在静音状态下也能放出声音
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+        if ( error ) NSLog(@"%@", error.userInfo);
     }
 }
 
@@ -268,9 +268,9 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
         self.audioPlayer = nil;
     }
     self.userClickedPause = NO;
-    if ( _task ) {
-        [_task cancel];
-        _task = nil;
+    if ( self.task ) {
+        [self.task cancel];
+        self.task = nil;
     }
     self.needDownload = NO;
     self.downloadProgress = 0;
@@ -660,7 +660,7 @@ typedef NS_ENUM(NSUInteger, SJMP3PlayerFileSource) {
 - (void)_activateRefreshTimeTimer {
     if ( _refreshTimeTimer ) return;
     __weak typeof(self) _self = self;
-    _refreshTimeTimer = [NSTimer SJMP3PlayerAdd_timerWithTimeInterval:0.5 block:^(NSTimer *timer) {
+    _refreshTimeTimer = [NSTimer SJMP3PlayerAdd_timerWithTimeInterval:0.2 block:^(NSTimer *timer) {
         __strong typeof(_self) self = _self;
         if ( !self ) {
             [timer invalidate];
