@@ -1,6 +1,0 @@
-framework module Pods_SJMP3Player_Tests {
-  umbrella header "Pods-SJMP3Player_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

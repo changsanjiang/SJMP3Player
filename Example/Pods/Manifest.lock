@@ -1,30 +1,29 @@
 PODS:
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
   - Masonry (1.1.0)
-  - SJDownloadDataTask (1.0.6)
-  - SJMP3Player (1.1.0):
+  - SJDownloadDataTask (1.1.1):
+    - SJDownloadDataTask/Core (= 1.1.1)
+    - SJObserverHelper
+  - SJDownloadDataTask/Core (1.1.1):
+    - SJObserverHelper
+  - SJMP3Player (1.2.0):
     - SJDownloadDataTask
-    - SJMP3Player/Core (= 1.1.0)
-  - SJMP3Player/Core (1.1.0):
+    - SJMP3Player/Core (= 1.2.0)
+  - SJMP3Player/Core (1.2.0):
     - SJDownloadDataTask
-  - SJSlider (1.3.4.1):
+  - SJObserverHelper (1.0.7)
+  - SJSlider (1.3.8):
     - Masonry
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
   - SJDownloadDataTask
   - SJMP3Player (from `../`)
   - SJSlider
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - FBSnapshotTestCase
     - Masonry
     - SJDownloadDataTask
+    - SJObserverHelper
     - SJSlider
 
 EXTERNAL SOURCES:
@@ -32,12 +31,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SJDownloadDataTask: 0b866faa05a7cef9e13c7ab369180214efdf62d4
-  SJMP3Player: d8f553d7a7fe6de75b3222fad8d8279a0ef3a7dd
-  SJSlider: b99b498920d70df659923459ccd9083dea621ce5
+  SJDownloadDataTask: f02912c2120dc17416f19378de9d191123d80fd1
+  SJMP3Player: 12218a672c3dd1b84c899a3880a7912e8a274821
+  SJObserverHelper: 864366ffb6f9dfc10ee7831cbb39576912913fbf
+  SJSlider: 55151a0f4931d57918018618be3e0b3650c9846c
 
-PODFILE CHECKSUM: 88c7649a0c47ee08d89f3c09cf8ab49a7239c86b
+PODFILE CHECKSUM: b40b450c2c95b20233efd305a810448276ba5012
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

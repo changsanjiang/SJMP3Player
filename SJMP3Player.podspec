@@ -30,16 +30,11 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'SJMP3Player/Classes/*.{h,m}'
+  s.source_files = 'SJMP3Player/*.{h,m}'
   
-  # s.resource_bundles = {
-  #   'SJMP3Player' => ['SJMP3Player/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'MediaPlayer'
-  s.dependency 'SJDownloadDataTask'
   s.subspec 'Core' do |ss|
-      ss.source_files = 'SJMP3Player/Classes/Core/**/*.{h,m}'
+      ss.source_files = 'SJMP3Player/Core/*.{h,m}'
   end
+  
+  s.dependency 'SJDownloadDataTask'
 end

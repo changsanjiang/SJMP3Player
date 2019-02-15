@@ -165,7 +165,7 @@
 }
 
 - (IBAction)clearTmp:(id)sender {
-    [self.player clearTmpAudioCache];
+    [self.player clearDiskAudioCache];
 }
 
 - (IBAction)pause:(id)sender {
@@ -185,7 +185,6 @@
 - (SJMP3Player *)player {
     if ( _player ) return _player;
     _player = [SJMP3Player player];
-    _player.enableDBUG = YES;
     _player.delegate = self;
     return _player;
 }
