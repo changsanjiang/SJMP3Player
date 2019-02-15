@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "SJRemoteCommandHandler.h"
 @protocol SJMP3PlayerDelegate;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface SJMP3Player : NSObject
-
 + (instancetype)player;
 
 - (void)playWithURL:(NSURL *)URL;
+
+@property (nonatomic, strong, readonly) id<SJRemoteCommandHandler> remoteCommandHandler;
 
 @property (nonatomic, weak, nullable) id <SJMP3PlayerDelegate> delegate;
 @property (nonatomic, strong, readonly, nullable) NSURL *currentURL;
@@ -25,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) float rate;
 @property (nonatomic) BOOL mute;
 @property (nonatomic) float volume;
-@property (nonatomic) BOOL enableDBUG;
 // current task
 @property (readonly) float downloadProgress;
 
@@ -43,9 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 清除本地缓存
 - (void)clearDiskAudioCache;
-
-/// 清除临时缓存
-- (void)clearTmpAudioCache;
 
 /// 已缓存的audios的大小 bytes
 - (long long)diskAudioCacheSize;

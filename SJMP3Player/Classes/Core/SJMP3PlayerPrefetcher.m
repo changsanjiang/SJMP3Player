@@ -9,9 +9,11 @@
 #import <SJDownloadDataTask/SJDownloadDataTask.h>
 
 NS_ASSUME_NONNULL_BEGIN
+#define SJMP3PlayerPrefetcherLock()   dispatch_semaphore_wait(self->_lock, DISPATCH_TIME_FOREVER);
+#define SJMP3PlayerPrefetcherUnlock() dispatch_semaphore_signal(self->_lock);
+
 @interface SJMP3PlayerPrefetcher ()
 @property (nonatomic, strong, nullable) SJDownloadDataTask *task;
-@property (strong, nullable) NSURL *URL;
 @end
 
 @implementation SJMP3PlayerPrefetcher {
@@ -24,33 +26,32 @@ NS_ASSUME_NONNULL_BEGIN
     _lock = dispatch_semaphore_create(1);
     return self;
 }
-- (void)prefetchAudioForURL:(NSURL *)URL toPath:(NSURL *)fileURL {
-    if ( [_task.URLStr isEqualToString:URL.absoluteString] ) return;
+- (void)prefetchAudioForURL:(NSURL *)URL toPath:(NSURL *)fileURL completionHandler:(void (^)(SJMP3PlayerPrefetcher * _Nonnull, BOOL))completionHandler {
     [self cancel];
-    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
-    self.URL = URL;
+    SJMP3PlayerPrefetcherLock();
     __weak typeof(self) _self = self;
     _task = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:fileURL append:YES progress:nil success:^(SJDownloadDataTask * _Nonnull dataTask) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
         self.task = nil;
-        if ( self.completionHandler ) self.completionHandler(self, YES);
+        if ( completionHandler ) completionHandler(self, YES);
     } failure:^(SJDownloadDataTask * _Nonnull dataTask) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
-        if ( self.completionHandler ) self.completionHandler(self, NO);
+        if ( completionHandler ) completionHandler(self, NO);
     }];
-    dispatch_semaphore_signal(_lock);
+    SJMP3PlayerPrefetcherUnlock();
 }
 - (void)cancel {
-    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    SJMP3PlayerPrefetcherLock();
     [_task cancel];
     _task = nil;
-    self.URL = nil;
-    dispatch_semaphore_signal(_lock);
+    SJMP3PlayerPrefetcherUnlock();
 }
 - (void)restart {
+    SJMP3PlayerPrefetcherLock();
     [_task restart];
+    SJMP3PlayerPrefetcherUnlock();
 }
 @end
 NS_ASSUME_NONNULL_END
