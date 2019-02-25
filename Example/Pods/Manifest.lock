@@ -8,8 +8,10 @@ PODS:
   - SJMP3Player (1.2.0):
     - SJDownloadDataTask
     - SJMP3Player/Core (= 1.2.0)
+    - SJObserverHelper
   - SJMP3Player/Core (1.2.0):
     - SJDownloadDataTask
+    - SJObserverHelper
   - SJObserverHelper (1.0.7)
   - SJSlider (1.3.8):
     - Masonry
@@ -33,7 +35,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SJDownloadDataTask: f02912c2120dc17416f19378de9d191123d80fd1
-  SJMP3Player: 12218a672c3dd1b84c899a3880a7912e8a274821
+  SJMP3Player: 0460a7765fbde3ca998f5f4c29bc08394f310c02
   SJObserverHelper: 864366ffb6f9dfc10ee7831cbb39576912913fbf
   SJSlider: 55151a0f4931d57918018618be3e0b3650c9846c
 

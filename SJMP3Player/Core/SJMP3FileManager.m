@@ -101,6 +101,14 @@ static BOOL sj_file_exists(NSURL *URL);
 - (nullable NSData *)fileData {
     return [NSData dataWithContentsOfFile:self.filePath];
 }
+- (nullable NSURL *)fileURL {
+    if ( !_URL ) return nil;
+    return [NSURL fileURLWithPath:self.filePath];
+}
+- (nullable NSURL *)tmpURL {
+    if ( !_URL ) return nil;
+    return [NSURL fileURLWithPath:self.tmpPath];
+}
 @end
 
 #pragma mark -

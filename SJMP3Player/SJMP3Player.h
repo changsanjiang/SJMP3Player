@@ -14,23 +14,23 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SJMP3Player : NSObject
 + (instancetype)player;
 
+@property (strong, readonly, nullable) NSURL *currentURL;
 - (void)playWithURL:(NSURL *)URL;
 
 @property (nonatomic, strong, readonly) id<SJRemoteCommandHandler> remoteCommandHandler;
 
 @property (nonatomic, weak, nullable) id <SJMP3PlayerDelegate> delegate;
-@property (nonatomic, strong, readonly, nullable) NSURL *currentURL;
 @property (nonatomic, readonly) NSTimeInterval currentTime;
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic, readonly) BOOL isPlaying;
-@property (nonatomic) float rate;
-@property (nonatomic) BOOL mute;
-@property (nonatomic) float volume;
+@property float volume;
+@property float rate;
+@property BOOL mute;
 // current task
 @property (readonly) float downloadProgress;
 
 /// 跳转
-- (BOOL)seekToTime:(NSTimeInterval)sec;
+- (void)seekToTime:(NSTimeInterval)sec;
 
 /// 暂停
 - (void)pause;

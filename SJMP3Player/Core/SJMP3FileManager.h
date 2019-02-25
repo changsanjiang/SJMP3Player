@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSData *)tmpData;
 - (nullable NSData *)fileData;
+- (nullable NSURL *)fileURL;
+- (nullable NSURL *)tmpURL;
 @end
 
 @interface SJMP3FileManager : NSObject<SJMP3FileManager>

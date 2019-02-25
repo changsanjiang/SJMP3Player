@@ -76,6 +76,13 @@
 			remoteGlobalIDString = 414B7C0A39EC293EAEB09AD639D17B03;
 			remoteInfo = SJSlider;
 		};
+		2F4316CA508ADA64635D04B423A0A66C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8115D9002E03BEBEBF96BD138C9600A5;
+			remoteInfo = SJObserverHelper;
+		};
 		6058183E0B7B7BE3AF3D53EDE904C0CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -653,6 +660,7 @@
 			);
 			dependencies = (
 				742DB7A576D9286BBA224BB406C17AA9 /* PBXTargetDependency */,
+				9B73B27A9A4802E4A351FCDB4E804EDF /* PBXTargetDependency */,
 			);
 			name = SJMP3Player;
 			productName = SJMP3Player;
@@ -822,6 +830,12 @@
 			name = Masonry;
 			target = B854683690DC218F2B6E2FFDB0D27CDC /* Masonry */;
 			targetProxy = DC313256247C6F8A8CD35470BCC64816 /* PBXContainerItemProxy */;
+		};
+		9B73B27A9A4802E4A351FCDB4E804EDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SJObserverHelper;
+			target = 8115D9002E03BEBEBF96BD138C9600A5 /* SJObserverHelper */;
+			targetProxy = 2F4316CA508ADA64635D04B423A0A66C /* PBXContainerItemProxy */;
 		};
 		9C08E078B3965467AF03DD7955604B02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
