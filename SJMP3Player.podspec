@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SJMP3Player'
-  s.version          = '1.3.0'
+  s.version          = '1.3.1'
   s.summary          = 'mp3 player.'
 
 # This description is used to generate tags and improve search results.
@@ -37,5 +37,5 @@ Pod::Spec.new do |s|
   end
   
   s.dependency 'SJDownloadDataTask'
-  s.dependency 'SJObserverHelper'
+  s.dependency 'SJUIKit/ObserverHelper'
 end

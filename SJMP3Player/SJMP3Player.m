@@ -15,8 +15,8 @@
 #import "SJMP3FileManager.h"
 #import "SJMP3DurationLoader.h"
 
-#if __has_include(<SJObserverHelper/NSObject+SJObserverHelper.h>)
-#import <SJObserverHelper/NSObject+SJObserverHelper.h>
+#if __has_include(<SJUIKit/NSObject+SJObserverHelper.h>)
+#import <SJUIKit/NSObject+SJObserverHelper.h>
 #import <SJDownloadDataTask/SJDownloadDataTask.h>
 #else
 #import "NSObject+SJObserverHelper.h"
