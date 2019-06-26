@@ -427,6 +427,7 @@ typedef struct {
     
     [player setEnableRate:YES];
     [player prepareToPlay];
+    player.delegate = self;
     return player;
 }
 
