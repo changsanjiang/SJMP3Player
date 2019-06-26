@@ -2,7 +2,7 @@
 //  SJMP3Player.m
 //  Pods
 //
-//  Created by BlueDancer on 2019/6/25.
+//  Created by changsanjiang on 10/13/2017.
 //
 
 #import "SJMP3Player.h"
@@ -50,7 +50,7 @@ typedef struct {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if ( AVAudioSession.sharedInstance.category != AVAudioSessionCategoryPlayback &&
-             AVAudioSession.sharedInstance.category != AVAudioSessionCategoryPlayAndRecord ) {
+            AVAudioSession.sharedInstance.category != AVAudioSessionCategoryPlayAndRecord ) {
             NSError *error = nil;
             // 使播放器在静音状态下也能放出声音
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
@@ -124,7 +124,7 @@ typedef struct {
                 if ( [self.delegate respondsToSelector:@selector(mp3Player:durationDidChange:)] ) {
                     [self.delegate mp3Player:self durationDidChange:duration];
                 }
-
+                
                 [self _loadAudioPlayer];
             }
         });
@@ -328,7 +328,7 @@ typedef struct {
     }
     
     // previous
-    if ( URL != nil ) {
+    if ( URL == nil ) {
         if ( [self.delegate respondsToSelector:@selector(prefetchURLOfNextAudio)] ) {
             NSURL *_Nullable audio = [self.delegate prefetchURLOfPreviousAudio];
             if ( ![SJMP3FileManager fileExistsForURL:audio] ) {
@@ -348,6 +348,10 @@ typedef struct {
                 [_self _didCompletePrefetch:dataTask.error URL:URL];
             });
         }];
+        
+#if ENABLE_DEBUG
+        [self _log_prefetch_begin];
+#endif
     }
 }
 
@@ -440,12 +444,12 @@ typedef struct {
         currentTime = 1.0 * self.player.data.length / self.downloadTask.totalSize * self.duration;
     }
     
-//    NSLog(@"=========");
-//    NSLog(@"Old: %lf - %lf", currentTime, self.player.duration);
+    //    NSLog(@"=========");
+    //    NSLog(@"Old: %lf - %lf", currentTime, self.player.duration);
     
     player.currentTime = currentTime;
     
-//    NSLog(@"New: %lf - %lf", player.currentTime, player.duration);
+    //    NSLog(@"New: %lf - %lf", player.currentTime, player.duration);
     
     [self setPlayer:player];
     [self resume];
@@ -501,7 +505,7 @@ typedef struct {
                 [timer invalidate];
                 return;
             }
-
+            
             if ( !self.player.isPlaying ) {
                 return;
             }

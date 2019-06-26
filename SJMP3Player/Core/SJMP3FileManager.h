@@ -2,7 +2,7 @@
 //  SJMP3FileManager.h
 //  Pods
 //
-//  Created by BlueDancer on 2019/6/25.
+//  Created by changsanjiang on 10/13/2017.
 //
 
 #import <Foundation/Foundation.h>
