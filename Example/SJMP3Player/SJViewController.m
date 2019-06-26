@@ -8,9 +8,9 @@
 
 #import "SJViewController.h"
 #import <SJMP3Player/SJMP3Player.h>
+#import <SJMP3Player/SJMP3FileManager.h>
 #import <SJSlider/SJLabelSlider.h>
 #import <Masonry/Masonry.h>
-#import "SJMP3Player.h"
 
 @interface SJViewController ()<SJMP3PlayerDelegate, SJSliderDelegate, SJMP3PlayerDelegate>
 
@@ -69,39 +69,30 @@
 }
 
 - (void)_updateCacheSize {
-    self.cacheSizeLabel.text = [NSString stringWithFormat:@"CacheSize: %0.2lfM", [self.player diskAudioCacheSize] / 1024 / 1024.0];
+    self.cacheSizeLabel.text = [NSString stringWithFormat:@"CacheSize: %0.2lfM", [SJMP3FileManager size] / 1024 / 1024.0];
 }
 
 #pragma mark -
 
-- (SJMP3Info *)playInfo {
-    return [[SJMP3Info alloc] initWithTitle:@"Title" artist:@"artist" cover:[UIImage imageNamed:@"image"]];
-}
-
-- (void)remoteEvent_NextWithAudioPlayer:(SJMP3Player *)player {
-    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/14984717017302d80"]];
-}
-
-- (void)remoteEvent_PreWithAudioPlayer:(SJMP3Player *)player {
-    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"]];
-}
-
-- (void)audioPlayer:(SJMP3Player *)player audioDownloadProgress:(CGFloat)progress {
-    _slider.slider.bufferProgress = progress;
-}
-
-- (void)audioPlayer:(SJMP3Player *)player downloadFinishedForURL:(NSURL *)URL {
-    [self _updateCacheSize];
-    NSLog(@"文件缓存完毕");
-}
-
-- (void)audioPlayer:(SJMP3Player *)player currentTime:(NSTimeInterval)currentTime reachableTime:(NSTimeInterval)reachableTime totalTime:(NSTimeInterval)totalTime {
+- (void)mp3Player:(SJMP3Player *)player currentTimeDidChange:(NSTimeInterval)currentTime {
     if ( _slider.slider.isDragging ) return;
-    if ( 0 == totalTime ) return;
-    _slider.slider.value = currentTime * 1.0 / totalTime;
+    if ( 0 == _player.duration ) return;
+    _slider.slider.value = currentTime * 1.0 / _player.duration;
     _slider.leftLabel.text = [self timeString:currentTime];
-    _slider.rightlabel.text = [self timeString:totalTime];
 }
+
+- (void)mp3Player:(SJMP3Player *)player durationDidChange:(NSTimeInterval)duration {
+    _slider.rightlabel.text = [self timeString:duration];
+}
+
+- (void)mp3Player:(SJMP3Player *)player downloadProgressDidChange:(float)progress {
+    _slider.slider.bufferProgress = progress;
+    if ( progress == 1 ) {
+        [self _updateCacheSize];
+        NSLog(@"文件缓存完毕");
+    }
+}
+
 - (NSString *)timeString:(NSTimeInterval)secs {
     long min = 60;
     long hour = 60 * min;
@@ -155,17 +146,18 @@
 //    http://audio.cdn.lanwuzhe.com/1492776280608c177
 //    http://audio.cdn.lanwuzhe.com/14984717017302d80
 //    http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3
-    [self.player playWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"]];
+    
+    _player = [SJMP3Player playerWithURL:[NSURL URLWithString:@"http://audio.cdn.lanwuzhe.com/Ofenbach+-+Katchi15267958245107aa1.mp3"]];
+    _player.delegate = self;
 }
 
 
 - (IBAction)clear:(id)sender {
-    [self.player clearDiskAudioCache];
+    [SJMP3FileManager clear];
     [self _updateCacheSize];
 }
 
 - (IBAction)clearTmp:(id)sender {
-    [self.player clearDiskAudioCache];
 }
 
 - (IBAction)pause:(id)sender {
@@ -181,13 +173,6 @@
 }
 
 #pragma mark -
-
-- (SJMP3Player *)player {
-    if ( _player ) return _player;
-    _player = [SJMP3Player player];
-    _player.delegate = self;
-    return _player;
-}
 
 - (UIButton *)downloadBtn {
     if ( _downloadBtn ) return _downloadBtn;

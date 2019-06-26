@@ -1,148 +1,116 @@
 //
 //  SJMP3FileManager.m
-//  SJMP3PlayerProject
+//  Pods
 //
-//  Created by 畅三江 on 2018/5/26.
-//  Copyright © 2018年 changsanjiang. All rights reserved.
+//  Created by BlueDancer on 2019/6/25.
 //
 
 #import "SJMP3FileManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
-// folder
-static void sj_checkout_folders(void);
-static NSString *sj_root_folder(void);
-static NSString *sj_tmp_folder(void);
-
-// file path
-static NSString *sj_tmp_path(NSURL *URL);
-static NSString *sj_file_path(NSURL *URL);
-static BOOL sj_file_exists(NSURL *URL);
-
-#pragma mark -
-@interface SJMP3FileManager()
-
-@end
-
 @implementation SJMP3FileManager
-@synthesize URL = _URL;
-@synthesize filePath = _filePath;
-@synthesize tmpPath = _tmpPath;
-
-+ (void)clear {
-    [NSFileManager.defaultManager removeItemAtPath:sj_root_folder() error:nil];
-    [NSFileManager.defaultManager removeItemAtPath:sj_tmp_folder() error:nil];
-    sj_checkout_folders();
+static NSString *_rootFolder;
+static NSString *_tmpFolder;
++ (void)initialize {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _rootFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"com.dancebaby.lanwuzhe.audioCacheFolder/cache"];
+        _tmpFolder = [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
+        [self _checkoutRootFolderIfNeeded];
+        [self _checkoutTmpFolderIfNeeded];
+    });
 }
-
-+ (long long)size {
-    NSString *rootFolder = sj_root_folder();
-    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rootFolder error:nil];
++ (void)clear {
+    NSArray<NSString *> *folders = @[_tmpFolder, _rootFolder];
+    for ( NSString *folder in folders ) {
+        if ( [NSFileManager.defaultManager isDeletableFileAtPath:folder] ) {
+            [NSFileManager.defaultManager removeItemAtPath:folder error:nil];
+        }
+        else {
+            NSArray<NSString *> *contents = [NSFileManager.defaultManager contentsOfDirectoryAtPath:folder error:nil];
+            [contents enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *path = [folder stringByAppendingPathComponent:obj];
+                if ( [NSFileManager.defaultManager isDeletableFileAtPath:path] ) {
+                    [NSFileManager.defaultManager removeItemAtPath:path error:nil];
+                }
+            }];
+        }
+    }
+    
+    [self _checkoutRootFolderIfNeeded];
+    [self _checkoutTmpFolderIfNeeded];
+}
++ (unsigned long long)size {
+    NSArray *paths = [NSFileManager.defaultManager contentsOfDirectoryAtPath:_rootFolder error:nil];
     NSMutableArray<NSString *> *itemPaths = [NSMutableArray new];
     [paths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [itemPaths addObject:[rootFolder stringByAppendingPathComponent:obj]];
+        [itemPaths addObject:[_rootFolder stringByAppendingPathComponent:obj]];
     }];
     
-    __block long long size = 0;
+    __block unsigned long long size = 0;
     [itemPaths enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary<NSFileAttributeKey, id> *dict = [[NSFileManager defaultManager] attributesOfItemAtPath:obj error:nil];
-        size += [dict[NSFileSize] longLongValue];
+        NSDictionary<NSFileAttributeKey, id> *dict = [NSFileManager.defaultManager attributesOfItemAtPath:obj error:nil];
+        size += [dict[NSFileSize] unsignedLongLongValue];
     }];
     return size;
 }
-
-+ (nullable NSString *)filePathForURL:(NSURL *)URL {
-    return sj_file_path(URL);
++ (NSString *)filePathForURL:(NSURL *)URL {
+    return [_rootFolder stringByAppendingPathComponent:[self _fileNameForURL:URL]];
 }
-
-+ (nullable NSString *)tmpPathForURL:(NSURL *)URL {
-    return sj_tmp_path(URL);
++ (NSURL *)fileURLForURL:(NSURL *)URL {
+    return [NSURL fileURLWithPath:[self filePathForURL:URL]];
 }
-
 + (BOOL)fileExistsForURL:(NSURL *)URL {
-    return sj_file_exists(URL);
+    return [NSFileManager.defaultManager fileExistsAtPath:[self filePathForURL:URL]];
 }
-
-+ (void)deleteForURL:(NSURL *)URL {
-    if ( !URL )
-        return;
-    [NSFileManager.defaultManager removeItemAtPath:sj_file_path(URL) error:nil];
-    [NSFileManager.defaultManager removeItemAtPath:sj_tmp_path(URL) error:nil];
-}
-
-- (instancetype)initWithURL:(NSURL *)URL {
-    self = [super init];
-    if ( !self )
-        return nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sj_checkout_folders();
-    });
-    
-    _URL = URL;
-    _filePath = sj_file_path(URL);
-    _tmpPath = sj_tmp_path(URL);
-    return self;
-}
-
-- (BOOL)fileExists {
-    return sj_file_exists(_URL);
-}
-
-- (void)saveTmpItemToFilePath {
-    if ( [NSFileManager.defaultManager fileExistsAtPath:_tmpPath] ) {
-        [NSFileManager.defaultManager copyItemAtPath:_tmpPath toPath:_filePath error:nil];
++ (void)deleteFileForURL:(NSURL *)URL {
+    NSString *path = [self filePathForURL:URL];
+    if ( [NSFileManager.defaultManager isDeletableFileAtPath:path] ) {
+        [NSFileManager.defaultManager removeItemAtPath:path error:nil];
     }
 }
-
-- (nullable NSData *)tmpData {
-    return [NSData dataWithContentsOfFile:self.tmpPath];
++ (void)deleteFile:(NSURL *)fileURL {
+    [NSFileManager.defaultManager removeItemAtPath:fileURL.absoluteString error:nil];
 }
-- (nullable NSData *)fileData {
-    return [NSData dataWithContentsOfFile:self.filePath];
++ (BOOL)isSubitemInRootFolderWithFileURL:(NSURL *)fileURL {
+    NSString *folder = [fileURL.absoluteString stringByDeletingLastPathComponent];
+    return [folder isEqualToString:_rootFolder];
 }
-- (nullable NSURL *)fileURL {
-    if ( !_URL ) return nil;
-    return [NSURL fileURLWithPath:self.filePath];
++ (NSString *)tmpPathForURL:(NSURL *)URL {
+    return [_tmpFolder stringByAppendingPathComponent:[self _fileNameForURL:URL]];
 }
-- (nullable NSURL *)tmpURL {
-    if ( !_URL ) return nil;
-    return [NSURL fileURLWithPath:self.tmpPath];
++ (NSURL *)tmpURLForURL:(NSURL *)URL {
+    return [NSURL fileURLWithPath:[self tmpPathForURL:URL]];
 }
-@end
++ (void)copyTmpFileToRootFolderForURL:(NSURL *)URL {
+    NSString *tmp = [self tmpPathForURL:URL];
+    NSString *file = [self filePathForURL:URL];
+    if ( [NSFileManager.defaultManager fileExistsAtPath:tmp] ) {
+        @try {
+            [NSFileManager.defaultManager copyItemAtPath:tmp toPath:file error:nil];
+        } @catch (NSException *exception) { } @finally { }
+    }
+}
 
 #pragma mark -
-static NSString *sj_root_folder(void) {
-    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"com.dancebaby.lanwuzhe.audioCacheFolder/cache"];
-}
 
-static NSString *sj_tmp_folder(void) {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:@"audioTmpFolder"];
-}
-
-static void sj_checkout_folders(void) {
-    NSString *folder = sj_root_folder();
-    if ( ![[NSFileManager defaultManager] fileExistsAtPath:folder] ) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
++ (void)_checkoutRootFolderIfNeeded {
+    if ( ![NSFileManager.defaultManager fileExistsAtPath:_rootFolder] ) {
+        [NSFileManager.defaultManager createDirectoryAtPath:_rootFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
-
-    folder = sj_tmp_folder();
-    if ( ![[NSFileManager defaultManager] fileExistsAtPath:folder] ) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
+}
++ (void)_checkoutTmpFolderIfNeeded {
+    if ( ![NSFileManager.defaultManager fileExistsAtPath:_tmpFolder] ) {
+        [NSFileManager.defaultManager createDirectoryAtPath:_tmpFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
 }
 
-static NSString *sj_tmp_path(NSURL *URL) {
-    NSString *format = URL.pathExtension; if ( format.length == 0 ) format = @"mp3";
-    return [sj_tmp_folder() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
++ (NSString *)_fileNameForURL:(NSURL *)URL {
+    NSString *format = URL.pathExtension;
+    if ( format.length == 0 )
+        format = @"mp3";
+    NSString *name = [NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format];
+    return name;
 }
-
-static NSString *sj_file_path(NSURL *URL) {
-    NSString *format = URL.pathExtension; if ( format.length == 0 ) format = @"mp3";
-    return [sj_root_folder() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.%@", (unsigned long)[URL.absoluteString hash], format]];
-}
-
-static BOOL sj_file_exists(NSURL *URL) {
-    return [[NSFileManager defaultManager] fileExistsAtPath:sj_file_path(URL)];
-}
+@end
 NS_ASSUME_NONNULL_END

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SJOutPutStream : NSObject
 - (instancetype)initWithPath:(NSURL *)filePath append:(BOOL)shouldAppend;
 - (void)open;
+- (void)close;
 - (NSInteger)write:(NSData *)data;
 @end
 

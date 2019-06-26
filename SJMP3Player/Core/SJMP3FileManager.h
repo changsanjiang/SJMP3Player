@@ -1,40 +1,28 @@
 //
 //  SJMP3FileManager.h
-//  SJMP3PlayerProject
+//  Pods
 //
-//  Created by 畅三江 on 2018/5/26.
-//  Copyright © 2018年 changsanjiang. All rights reserved.
+//  Created by BlueDancer on 2019/6/25.
 //
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol SJMP3FileManager <NSObject>
+
+@interface SJMP3FileManager : NSObject
 + (void)clear;
-+ (long long)size;
-+ (nullable NSString *)filePathForURL:(NSURL *)URL;
-+ (nullable NSString *)tmpPathForURL:(NSURL *)URL;
++ (unsigned long long)size;
++ (NSString *)filePathForURL:(NSURL *)URL;
++ (NSURL *)fileURLForURL:(NSURL *)URL;
 + (BOOL)fileExistsForURL:(NSURL *)URL;
-+ (void)deleteForURL:(NSURL *)URL;
++ (void)deleteFileForURL:(NSURL *)URL;
++ (void)deleteFile:(NSURL *)fileURL;
++ (BOOL)isSubitemInRootFolderWithFileURL:(NSURL *)fileURL;
 
-- (instancetype)initWithURL:(NSURL *)URL;
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
++ (NSString *)tmpPathForURL:(NSURL *)URL;
++ (NSURL *)tmpURLForURL:(NSURL *)URL;
 
-@property (nonatomic, strong, readonly) NSString *filePath;
-@property (nonatomic, strong, readonly) NSString *tmpPath;
-@property (nonatomic, strong, readonly) NSURL *URL;
-
-@property (nonatomic, readonly) BOOL fileExists;
-- (void)saveTmpItemToFilePath;
-
-- (nullable NSData *)tmpData;
-- (nullable NSData *)fileData;
-- (nullable NSURL *)fileURL;
-- (nullable NSURL *)tmpURL;
++ (void)copyTmpFileToRootFolderForURL:(NSURL *)URL;
 @end
 
-@interface SJMP3FileManager : NSObject<SJMP3FileManager>
-
-@end
 NS_ASSUME_NONNULL_END

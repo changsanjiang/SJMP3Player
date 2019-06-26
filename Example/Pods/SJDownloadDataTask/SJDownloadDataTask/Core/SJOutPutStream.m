@@ -16,12 +16,15 @@
     self = [super init];
     if ( !self ) return nil;
     _outputStream = [[NSOutputStream alloc] initWithURL:filePath append:shouldAppend];
-    [_outputStream open];
     return self;
 }
 
 - (void)open {
     [_outputStream open];
+}
+
+- (void)close {
+    [_outputStream close];
 }
 
 - (NSInteger)write:(NSData *)data {

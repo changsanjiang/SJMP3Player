@@ -36,7 +36,7 @@ typedef NSUInteger SJDownloadDataTaskIdentitifer;
 
 - (void)restart; // 重启下载
 - (void)cancel;  // 取消下载
-@property (nonatomic) BOOL shouldAppend; // 是否追加数据. 调用重启之前, 建议设置此属性为YES
+@property (nonatomic) BOOL shouldAppend;
 
 @property (nonatomic, readonly) SJDownloadDataTaskIdentitifer identifier;
 @property (nonatomic, strong, readonly) NSString *URLStr;
@@ -46,8 +46,5 @@ typedef NSUInteger SJDownloadDataTaskIdentitifer;
 @property (nonatomic, readonly) float progress;
 @property (nonatomic, readonly) int64_t totalSize; // 总size, 单位: byte
 @property (nonatomic, readonly) int64_t wroteSize; // 已写入的size, 单位: byte
-@property (readonly) long long speed; // 每秒速度, 单位: byte/s
-
-@property (nonatomic, copy, nullable) void(^speedDidChangeExeBlock)(SJDownloadDataTask *dataTask);
 @end
 NS_ASSUME_NONNULL_END
