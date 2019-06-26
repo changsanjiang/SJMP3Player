@@ -8,11 +8,11 @@ PODS:
     - SJUIKit/ObserverHelper
   - SJDownloadDataTask/Core/ResourceLoader (1.2.1):
     - SJUIKit/ObserverHelper
-  - SJMP3Player (1.3.1):
+  - SJMP3Player (1.4.1):
     - SJDownloadDataTask
-    - SJMP3Player/Core (= 1.3.1)
+    - SJMP3Player/Core (= 1.4.1)
     - SJUIKit/ObserverHelper
-  - SJMP3Player/Core (1.3.1):
+  - SJMP3Player/Core (1.4.1):
     - SJDownloadDataTask
     - SJUIKit/ObserverHelper
   - SJSlider (1.4.0):
@@ -38,7 +38,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SJDownloadDataTask: f3d6eca47ecdd165375e73cc82c252ca63d7a22b
-  SJMP3Player: 37c7fdb3d9f68380c1f20bcf4f21b6fa6e3332ab
+  SJMP3Player: af57d916f626944d161f7ce110484709a25f35b4
   SJSlider: db525a767cdbb2a714dc1392e4a74f38226f4085
   SJUIKit: 77fc2857b2322b950597dec7f39ceea12d4bf2b9
 
