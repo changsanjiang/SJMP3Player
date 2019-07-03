@@ -121,6 +121,7 @@ typedef struct {
                 [self _log_asset_finish_init];
 #endif
                 self.duration = duration;
+                
                 if ( [self.delegate respondsToSelector:@selector(mp3Player:durationDidChange:)] ) {
                     [self.delegate mp3Player:self durationDidChange:duration];
                 }
@@ -312,7 +313,7 @@ typedef struct {
 #if ENABLE_DEBUG
         [self _log_player_last_continue_playing];
 #endif
-        [self _continuePlaying];
+        [self _resetPlayer];
         [self _prefetchIfNeeded];
     }
 }
@@ -408,7 +409,7 @@ typedef struct {
 #endif
     }
     else {
-        [self _continuePlaying];
+        [self _resetPlayer];
     }
 }
 
@@ -431,7 +432,7 @@ typedef struct {
     return player;
 }
 
-- (void)_continuePlaying {
+- (void)_resetPlayer {
     AVAudioPlayer *_Nullable player = [self _createAudioPlayerForFileURL:self.downloadTask.fileURL error:nil];
     if ( player == nil ) {
         return;
@@ -453,7 +454,8 @@ typedef struct {
     //    NSLog(@"New: %lf - %lf", player.currentTime, player.duration);
     
     [self setPlayer:player];
-    [self resume];
+    if ( !self.controlInfo.isPaused )
+        [self resume];
     [self _tryToPlay_end];
     
 #if ENABLE_DEBUG
@@ -481,7 +483,7 @@ typedef struct {
                 [self _tryToPlay_end];
             }
             else {
-                [self _continuePlaying];
+                [self _resetPlayer];
             }
         } repeats:YES];
         
