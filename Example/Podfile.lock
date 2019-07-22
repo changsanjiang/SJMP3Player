@@ -1,23 +1,23 @@
 PODS:
   - Masonry (1.1.0)
-  - SJDownloadDataTask (1.2.1):
-    - SJDownloadDataTask/Core (= 1.2.1)
+  - SJDownloadDataTask (1.2.2):
+    - SJDownloadDataTask/Core (= 1.2.2)
     - SJUIKit/ObserverHelper
-  - SJDownloadDataTask/Core (1.2.1):
-    - SJDownloadDataTask/Core/ResourceLoader (= 1.2.1)
+  - SJDownloadDataTask/Core (1.2.2):
+    - SJDownloadDataTask/Core/ResourceLoader (= 1.2.2)
     - SJUIKit/ObserverHelper
-  - SJDownloadDataTask/Core/ResourceLoader (1.2.1):
+  - SJDownloadDataTask/Core/ResourceLoader (1.2.2):
     - SJUIKit/ObserverHelper
-  - SJMP3Player (1.4.1):
+  - SJMP3Player (1.4.4):
     - SJDownloadDataTask
-    - SJMP3Player/Core (= 1.4.1)
+    - SJMP3Player/Core (= 1.4.4)
     - SJUIKit/ObserverHelper
-  - SJMP3Player/Core (1.4.1):
+  - SJMP3Player/Core (1.4.4):
     - SJDownloadDataTask
     - SJUIKit/ObserverHelper
   - SJSlider (1.4.0):
     - Masonry
-  - SJUIKit/ObserverHelper (0.0.0.32)
+  - SJUIKit/ObserverHelper (0.0.0.34)
 
 DEPENDENCIES:
   - SJDownloadDataTask
@@ -37,11 +37,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SJDownloadDataTask: f3d6eca47ecdd165375e73cc82c252ca63d7a22b
-  SJMP3Player: af57d916f626944d161f7ce110484709a25f35b4
+  SJDownloadDataTask: 2c81d6e1160b90da99a2b4c710b70f48ef145f7a
+  SJMP3Player: 89a905b38159c684f53a4c9850161ebfa7332e5c
   SJSlider: db525a767cdbb2a714dc1392e4a74f38226f4085
-  SJUIKit: 77fc2857b2322b950597dec7f39ceea12d4bf2b9
+  SJUIKit: 9fc7b17d7f421ca64304c42d1a9ae387bed35bb1
 
 PODFILE CHECKSUM: b40b450c2c95b20233efd305a810448276ba5012
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.5

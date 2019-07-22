@@ -265,7 +265,7 @@ typedef struct {
     NSURL *URL = self.URL;
     NSURL *toPath = [SJMP3FileManager tmpURLForURL:URL];
     __weak typeof(self) _self = self;
-    self.downloadTask = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:toPath append:(BOOL)YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
+    self.downloadTask = [SJDownloadDataTask downloadWithURLStr:URL.absoluteString toPath:toPath append:YES progress:^(SJDownloadDataTask * _Nonnull dataTask, float progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [_self _downloadProgressDidChange:progress];
         });
@@ -414,6 +414,9 @@ typedef struct {
 }
 
 - (nullable AVAudioPlayer *)_createAudioPlayerForFileURL:(NSURL *)fileURL error:(NSError *_Nullable * _Nullable)error {
+    if ( fileURL == nil )
+        return nil;
+    
     NSData *_Nullable data = [NSData dataWithContentsOfURL:fileURL
                                                    options:NSDataReadingMappedIfSafe|NSDataReadingUncached
                                                      error:error];

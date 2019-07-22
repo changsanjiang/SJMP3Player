@@ -7,7 +7,6 @@
 //
 
 #import "SJURLSessionDataTaskServer.h"
-#import <objc/message.h>
 #import <AVFoundation/AVFoundation.h>
 #import "SJDownloadDataTaskResourceLoader.h"
 
@@ -69,8 +68,21 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @end
 
-@interface SJURLSessionDataTaskServer ()<NSURLSessionDelegate>
+@interface _SJDataTaskHandlers : NSObject
+@property (nonatomic, strong, nullable) NSURLSessionDataTask *dataTask;
+@property (nonatomic, copy, nullable) SJURLSessionDataTaskResponseHandler responseHandler;
+@property (nonatomic, copy, nullable) SJURLSessionDataTaskReceivedDataHandler receivedDataHandler;
+@property (nonatomic, copy, nullable) SJURLSessionDataTaskCompletionHandler completionHandler;
+@property (nonatomic, copy, nullable) SJURLSessionDataTaskCancelledHandler cancelledHandler;
+@end
 
+@implementation _SJDataTaskHandlers
+
+@end
+
+@interface SJURLSessionDataTaskServer ()<NSURLSessionDelegate>
+@property (nonatomic, strong, readonly) NSMutableDictionary<NSNumber *, _SJDataTaskHandlers *> *m;
+@property (nonatomic, strong, readonly) dispatch_semaphore_t lock;
 @end
 
 @implementation SJURLSessionDataTaskServer
@@ -83,10 +95,13 @@ NS_ASSUME_NONNULL_BEGIN
     return _instance;
 }
 
-static void *kResponseHandler = &kResponseHandler;
-static void *kReceivedDataHandler = &kReceivedDataHandler;
-static void *kCompletionHandler = &kCompletionHandler;
-static void *kCancelledHandler = &kCancelledHandler;
+- (instancetype)init {
+    self = [super init];
+    if ( !self ) return nil;
+    _m = [NSMutableDictionary new];
+    _lock = dispatch_semaphore_create(1);
+    return self;
+}
 
 - (nullable NSURLSessionDataTask *)dataTaskWithURL:(NSURL *)URL
                                          wroteSize:(long long)wroteSize
@@ -120,48 +135,72 @@ static void *kCancelledHandler = &kCancelledHandler;
     }
     
     NSURLSessionDataTask *dataTask = [Session dataTaskWithRequest:request];
-    objc_setAssociatedObject(dataTask, kResponseHandler, responseHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(dataTask, kReceivedDataHandler, receivedDataHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(dataTask, kCompletionHandler, completionHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(dataTask, kCancelledHandler, cancelledHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    _SJDataTaskHandlers *handlers = [_SJDataTaskHandlers new];
+    handlers.dataTask = dataTask;
+    handlers.responseHandler = responseHandler;
+    handlers.receivedDataHandler = receivedDataHandler;
+    handlers.completionHandler = completionHandler;
+    handlers.cancelledHandler = cancelledHandler;
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    _m[@(dataTask.taskIdentifier)] = handlers;
+    dispatch_semaphore_signal(_lock);
     return dataTask;
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSHTTPURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    SJURLSessionDataTaskResponseHandler _Nullable handler = objc_getAssociatedObject(dataTask, kResponseHandler);
-    if ( handler != nil ) {
-        if ( handler(dataTask) == YES )
-            completionHandler(NSURLSessionResponseAllow);
-        else
-            completionHandler(NSURLSessionResponseCancel);
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    _SJDataTaskHandlers *_Nullable handlers = _m[@(dataTask.taskIdentifier)];
+    dispatch_semaphore_signal(_lock);
+    
+    if ( handlers != nil ) {
+        SJURLSessionDataTaskResponseHandler _Nullable handler = handlers.responseHandler;
+        if ( handler != nil ) {
+            if ( handler(dataTask) == YES )
+                completionHandler(NSURLSessionResponseAllow);
+            else
+                completionHandler(NSURLSessionResponseCancel);
+        }
     }
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-    SJURLSessionDataTaskReceivedDataHandler _Nullable handler = objc_getAssociatedObject(dataTask, kReceivedDataHandler);
-    if ( handler != nil ) {
-        handler(dataTask, data);
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    _SJDataTaskHandlers *_Nullable handlers = _m[@(dataTask.taskIdentifier)];
+    dispatch_semaphore_signal(_lock);
+
+    if ( handlers != nil ) {
+        SJURLSessionDataTaskReceivedDataHandler _Nullable handler = handlers.receivedDataHandler;
+        if ( handler != nil ) {
+            handler(dataTask, data);
+        }
     }
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionDataTask *)dataTask didCompleteWithError:(NSError *)error {
     [_SJBackgroundAudioPlayer.shared stop];
     
-    if ( error.code == NSURLErrorCancelled ) {
-        objc_setAssociatedObject(dataTask, kResponseHandler, nil, 0);
-        objc_setAssociatedObject(dataTask, kReceivedDataHandler, nil, 0);
-        objc_setAssociatedObject(dataTask, kCompletionHandler, nil, 0);
-        SJURLSessionDataTaskCancelledHandler _Nullable handler = objc_getAssociatedObject(self, kCancelledHandler);
-        if ( handler != nil ) {
-            handler(dataTask);
-        }
-        objc_setAssociatedObject(dataTask, kCancelledHandler, nil, 0);
-        return;
-    }
+    NSNumber *key = @(dataTask.taskIdentifier);
+    dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+    _SJDataTaskHandlers *_Nullable handlers = _m[key];
+    dispatch_semaphore_signal(_lock);
 
-    SJURLSessionDataTaskCompletionHandler _Nullable handler = objc_getAssociatedObject(dataTask, kCompletionHandler);
-    if ( handler != nil ) {
-        handler(dataTask);
+    if ( handlers != nil ) {
+        if ( error.code == NSURLErrorCancelled ) {
+            SJURLSessionDataTaskCancelledHandler _Nullable handler = handlers.cancelledHandler;
+            if ( handler != nil ) {
+                handler(dataTask);
+            }
+        }
+        else {
+            SJURLSessionDataTaskCompletionHandler _Nullable handler = handlers.completionHandler;
+            if ( handler != nil ) {
+                handler(dataTask);
+            }
+        }
+        
+        dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+        _m[key] = nil;
+        dispatch_semaphore_signal(_lock);
     }
 }
 @end
