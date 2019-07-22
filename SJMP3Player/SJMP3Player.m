@@ -237,6 +237,8 @@ typedef struct {
         [self _refreshTime_end];
         [self _tryToPlay_end];
         [self _cancelDownloadTasks];
+        [self.player stop];
+        self.player = nil;
         _controlInfo.isPaused = NO;
         _controlInfo.isPlaying = NO;
         _controlInfo.isStopped = YES;
