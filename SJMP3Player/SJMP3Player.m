@@ -433,7 +433,6 @@ typedef struct {
     
     [player setEnableRate:YES];
     [player prepareToPlay];
-    player.delegate = self;
     return player;
 }
 
@@ -531,6 +530,21 @@ typedef struct {
     if ( _refreshTimeTimer != nil ) {
         [_refreshTimeTimer invalidate];
         _refreshTimeTimer = nil;
+    }
+}
+
+@synthesize player = _player;
+- (void)setPlayer:(nullable AVAudioPlayer *)player {
+    @synchronized (self) {
+        _player.delegate = nil;
+        _player = player;
+        player.delegate = self;
+    }
+}
+
+- (nullable AVAudioPlayer *)player {
+    @synchronized (self) {
+        return _player;
     }
 }
 
